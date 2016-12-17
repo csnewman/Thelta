@@ -11,7 +11,7 @@ public class TheltaComputers {
 	public static BasicMonitor basicMonitor;
 
 	public static void preInit() {
-		basicMonitor = new BasicMonitor("basicMonitor");
+		basicMonitor = new BasicMonitor("computer_monitor_basic");
 		registerSimpleBlock(basicMonitor);
 	}
 
