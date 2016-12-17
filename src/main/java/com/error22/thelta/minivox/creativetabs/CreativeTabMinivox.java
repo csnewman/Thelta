@@ -1,12 +1,15 @@
-package com.error22.thelta.testing;
+package com.error22.thelta.minivox.creativetabs;
+
+import com.error22.thelta.minivox.TheltaTesting;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-public class TheltaMainTab extends CreativeTabs {
+public class CreativeTabMinivox extends CreativeTabs {
 
-	public TheltaMainTab(String label) {
+	public CreativeTabMinivox(String label) {
 		super(label);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

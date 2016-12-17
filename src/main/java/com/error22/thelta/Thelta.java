@@ -2,8 +2,8 @@ package com.error22.thelta;
 
 import com.error22.thelta.computers.BlockComputer;
 import com.error22.thelta.computers.TheltaComputers;
-import com.error22.thelta.testing.QuickItem;
-import com.error22.thelta.testing.TheltaTesting;
+import com.error22.thelta.minivox.TheltaTesting;
+import com.error22.thelta.minivox.items.QuickItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

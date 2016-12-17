@@ -1,4 +1,6 @@
-package com.error22.thelta.testing;
+package com.error22.thelta.minivox;
+
+import com.error22.thelta.minivox.items.QuickItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -9,15 +11,15 @@ public class TheltaTesting {
 	public static Block testBlock;
 
 	public static void preInit() {
-		GameRegistry.register(new QuickItem("test"));
+		Items.testItem = new QuickItem("test");
 	}
 
 	public static void init() {
-
+		
 	}
 
 	public static void postInit() {
-
+		
 	}
 
 }
