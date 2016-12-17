@@ -1,5 +1,8 @@
 package com.error22.thelta;
 
+import com.error22.thelta.items.QuickItem;
+
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -7,6 +10,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = Thelta.MODID, version = Thelta.VERSION)
 public class Thelta {
@@ -21,6 +25,7 @@ public class Thelta {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		GameRegistry.register(new QuickItem("test"));
 	}
 
 	@EventHandler
