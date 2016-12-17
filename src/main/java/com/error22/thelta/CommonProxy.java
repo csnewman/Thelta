@@ -1,10 +1,25 @@
 package com.error22.thelta;
 
+import com.error22.thelta.computers.TheltaComputers;
+import com.error22.thelta.minivox.Minivox;
+
 import net.minecraft.item.Item;
 
 public class CommonProxy {
-	
-	public void registerItemRenderer(Item item, int meta, String id) {
+
+	public void preInit() {
+		TheltaComputers.preInit();
+		Minivox.preInit();
 	}
-	
+
+	public void init() {
+		TheltaComputers.init();
+		Minivox.init();
+	}
+
+	public void postInit() {
+		TheltaComputers.postInit();
+		Minivox.postInit();
+	}
+
 }
