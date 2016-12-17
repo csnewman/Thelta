@@ -1,4 +1,4 @@
-package com.error22.thelta.blocks;
+package com.error22.thelta.testing;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

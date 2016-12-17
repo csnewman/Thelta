@@ -1,4 +1,4 @@
-package com.error22.thelta.items;
+package com.error22.thelta.testing;
 
 import com.error22.thelta.Thelta;
 

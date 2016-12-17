@@ -1,7 +1,9 @@
 package com.error22.thelta;
 
 import com.error22.thelta.computers.BlockComputer;
-import com.error22.thelta.items.QuickItem;
+import com.error22.thelta.computers.TheltaComputers;
+import com.error22.thelta.testing.QuickItem;
+import com.error22.thelta.testing.TheltaTesting;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -25,29 +27,21 @@ public class Thelta {
 	@SidedProxy(serverSide = "com.error22.thelta.CommonProxy", clientSide = "com.error22.thelta.ClientProxy")
 	public static CommonProxy proxy;
 
-	public BlockComputer testComputer;
-
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		testComputer = new BlockComputer("computer_test");
-		registerSimpleBlock(testComputer);
-		
-		GameRegistry.register(new QuickItem("test"));
+		TheltaComputers.preInit();
+		TheltaTesting.preInit();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		TheltaComputers.init();
+		TheltaTesting.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-	}
-
-	private void registerSimpleBlock(Block block) {
-		ItemBlock item = new ItemBlock(block);
-		item.setRegistryName(block.getRegistryName());
-		GameRegistry.register(block);
-		GameRegistry.register(item);
-		proxy.registerItemRenderer(item, 0, block.getRegistryName().getResourcePath());
+		TheltaComputers.postInit();
+		TheltaTesting.postInit();
 	}
 }
