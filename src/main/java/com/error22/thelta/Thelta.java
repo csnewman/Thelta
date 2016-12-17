@@ -1,7 +1,7 @@
 package com.error22.thelta;
 
 import com.error22.thelta.computers.TheltaComputers;
-import com.error22.thelta.minivox.TheltaTesting;
+import com.error22.thelta.minivox.Minivox;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -25,18 +25,18 @@ public class Thelta {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		TheltaComputers.preInit();
-		TheltaTesting.preInit();
+		Minivox.preInit();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		TheltaComputers.init();
-		TheltaTesting.init();
+		Minivox.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		TheltaComputers.postInit();
-		TheltaTesting.postInit();
+		Minivox.postInit();
 	}
 }

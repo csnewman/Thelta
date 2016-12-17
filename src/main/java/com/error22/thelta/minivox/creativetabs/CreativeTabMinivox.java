@@ -1,6 +1,6 @@
 package com.error22.thelta.minivox.creativetabs;
 
-import com.error22.thelta.minivox.TheltaTesting;
+import com.error22.thelta.minivox.Minivox;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,7 @@ public class CreativeTabMinivox extends CreativeTabs {
 	@Override
 	public ItemStack getTabIconItem() {
 		// TODO Auto-generated method stub
-		return new ItemStack(TheltaTesting.testItem);
+		return new ItemStack(Minivox.testItem);
 	}
 
 }
