@@ -8,6 +8,9 @@ public class QuickBlock extends Block {
 	
 	public QuickBlock(String itemname) {
 		super(Material.ROCK);
+		setUnlocalizedName(itemname);
+		setRegistryName(itemname);
+		setCreativeTab(com.error22.thelta.minivox.CreativeTabs.minivox);
 		GameRegistry.register(this);
 	}
 
