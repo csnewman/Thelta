@@ -1,7 +1,7 @@
 package com.error22.thelta;
 
 import com.error22.thelta.computers.TheltaComputers;
-import com.error22.thelta.testing.TheltaTesting;
+import com.error22.thelta.minivox.TheltaTesting;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
