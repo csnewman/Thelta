@@ -4,6 +4,7 @@ import com.error22.thelta.Thelta;
 import com.error22.thelta.minivox.entities.mobs.EntityMinivox;
 import com.error22.thelta.minivox.models.ModelMinivox;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntityCow;
@@ -13,9 +14,9 @@ public class RenderMinivox extends RenderLiving<EntityMinivox>
 {
     private static final ResourceLocation VOXTEXTURE = new ResourceLocation(Thelta.MODID+":textures/entity/minivox/Minivox.png");
 
-    public RenderMinivox(RenderManager rmanager)
+    public RenderMinivox()
     {
-        super(rmanager, new ModelMinivox(), 0.7F);
+        super(Minecraft.getMinecraft().getRenderManager(), new ModelMinivox(), 0.7F);
     }
 
     /**

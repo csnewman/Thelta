@@ -57,10 +57,11 @@ public class Minivox {
 		GameRegistry.addRecipe(new ItemStack(rottenFleshBlock), "AAA", "AAA", "AAA", 'A', Items.ROTTEN_FLESH);
 	}
 
+	
 	@StageMethod(stage = stagenameCreateMobs,	pass = Pass.PreInit)	private static void createMobs() {
 		//MobAPI.registerNewMob("Minivox", EntityMinivox.class, new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
 		
-		MobAPI.registerNewMob(1, "Minivox", EntityMinivox.class, new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
+		MobAPI.registerNewMob(1, "Minivox", EntityMinivox.class, RenderMinivox.class);
 		
 		//EntityRegistry.registerModEntity(new ResourceLocation(Thelta.MODID, "EntityMinivox"), EntityMinivox.class, "MiniVox", 1, Thelta.INSTANCE, 80, 3, true, 0, 0);
 		//EntityRegistry.addSpawn(EntityMinivox.class, 6, 1, 5, EnumCreatureType.CREATURE, Biomes.PLAINS);
