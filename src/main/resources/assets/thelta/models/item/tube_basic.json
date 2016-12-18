@@ -1,3 +1,6 @@
 {  
-    "parent":"thelta:block/tube_straight"
+    "parent":"thelta:block/tube_straight",
+    "textures": {
+        "tube": "thelta:blocks/tube_generic"
+    }   
 }

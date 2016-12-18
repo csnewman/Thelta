@@ -1,7 +1,40 @@
 {  
+    "forge_marker": 1,
+    "defaults": {
+       "textures": {
+           "particle": "blocks/particle",
+           "texture": "blocks/texture"
+       }
+    },
     "variants":{  
-        "facing=x": { "model": "thelta:tube_straight", "y": 90 },
-        "facing=y": { "model": "thelta:tube_straight", "x": 90 },
-        "facing=z": { "model":"thelta:tube_straight", "y": 0 }
+        "colour": {
+             "generic": {
+                "textures": {
+                    "tube": "thelta:blocks/tube_generic"
+                }
+            },
+            "red": {
+                "textures": {
+                    "tube": "thelta:blocks/tube_red"
+                }
+            }
+        },
+        "mode": {
+            "joint": {
+                "model": "thelta:tube_joint"
+            },
+            "x": {
+                "model": "thelta:tube_straight",
+                "y": 90
+            },
+            "z": {
+                "model": "thelta:tube_straight"
+            }
+        },
+        "sidezpos": {
+            "true": {
+                "submodel": "thelta:tube_side"
+            }, "false": {}
+        }
     }
 }
