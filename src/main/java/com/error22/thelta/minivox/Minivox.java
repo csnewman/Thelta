@@ -15,13 +15,26 @@ public class Minivox {
 	public static void preInit() {
 		testItem = new QuickItem("testitem");
 		testBlock = new QuickBlock("testblock");
-	}
-	
-	public static void init() {
+		
+		registerItemRenderers();
+		registerBlockRenderers();
 		
 	}
 	
+	public static void init() {
+		//Here we are handling the item renderers
+		MinivoxItemRenderRegistry.registerItemRenderer();
+	}
+	
 	public static void postInit() {
+		
+	}
+	
+	public static void registerItemRenderers() {
+		
+	}
+	
+	public static void registerBlockRenderers() {
 		
 	}
 
