@@ -25,6 +25,15 @@ public class TheltaPipeline {
 	public void construct(Class<?>... classes) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		for (Class<?> clazz : classes) {
+			if (clazz.isAnnotationPresent(Stages.class)) {
+				Stages stages = clazz.getDeclaredAnnotation(Stages.class);
+				for (Stage stage : stages.value()) {
+					PipelineStage stageInst = newStage(stage.name());
+					stageInst.before(stage.before());
+					stageInst.after(stage.after());
+				}
+			}
+
 			Object instance = null;
 			for (Field f : clazz.getDeclaredFields()) {
 				if (f.isAnnotationPresent(PipelineInstance.class)) {
@@ -46,27 +55,27 @@ public class TheltaPipeline {
 			}
 
 			for (Field f : clazz.getDeclaredFields()) {
-				if (f.isAnnotationPresent(FieldStage.class)) {
+				if (f.isAnnotationPresent(Stage.class)) {
 					if (!f.getType().isAssignableFrom(PipelineStage.class)) {
 						throw new RuntimeException(
 								"FieldStage annotation on none assignable field in " + clazz.getName() + "!");
 					}
 
-					FieldStage fs = f.getAnnotation(FieldStage.class);
-					PipelineStage stage = newStage(fs.name());
-					stage.before(fs.before());
-					stage.after(fs.after());
+					Stage stage = f.getAnnotation(Stage.class);
+					PipelineStage stageInst = newStage(stage.name());
+					stageInst.before(stage.before());
+					stageInst.after(stage.after());
 
 					f.setAccessible(true);
 					if (Modifier.isStatic(f.getModifiers())) {
-						f.set(null, stage);
+						f.set(null, stageInst);
 					} else {
 						if (instance == null) {
 							throw new RuntimeException(
-									"FieldStage annotation on non static field where no PipelineInstance exists in "
+									"Stage annotation on non static field where no PipelineInstance exists in "
 											+ clazz.getName() + "!");
 						}
-						f.set(instance, stage);
+						f.set(instance, stageInst);
 					}
 				}
 			}
