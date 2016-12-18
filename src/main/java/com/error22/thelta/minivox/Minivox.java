@@ -6,10 +6,12 @@ import com.error22.thelta.minivox.creativetabs.CreativeTabMinivox;
 import com.error22.thelta.minivox.entities.mobs.EntityMinivox;
 import com.error22.thelta.minivox.entities.render.RenderMinivox;
 import com.error22.thelta.minivox.items.QuickItem;
+import com.error22.thelta.mobapi.MobAPI;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.PipelineStage;
 import com.error22.thelta.pipeline.Stage;
 import com.error22.thelta.pipeline.StageMethod;
+import com.error22.thelta.pipeline.Stages;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -25,6 +27,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Stages({
+	@Stage(name = Minivox.stagenameCreateItems),
+	@Stage(name = Minivox.stagenameCreateBlocks),
+	@Stage(name = Minivox.stagenameCreateMobs, before = { MobAPI.stagenameInit }),
+	@Stage(name = Minivox.stagenameHandleRender)
+})
 public class Minivox {
 	
 	//Staging variables
@@ -32,11 +40,6 @@ public class Minivox {
 	public static final String stagenameCreateBlocks	= "minivox-createblocks";
 	public static final String stagenameCreateMobs		= "minivox-createmobs";
 	public static final String stagenameHandleRender	= "minivox-handlerenderers";
-
-	@Stage(name = stagenameCreateItems)		private static PipelineStage stageCreateItems;
-	@Stage(name = stagenameCreateBlocks)	private static PipelineStage stageCreateBlocks;
-	@Stage(name = stagenameCreateMobs)		private static PipelineStage stageCreateMobs;
-	@Stage(name = stagenameHandleRender)	private static PipelineStage stageHandleRender;
 	
 	//forge variables
 	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("myMod");
@@ -55,17 +58,21 @@ public class Minivox {
 	}
 
 	@StageMethod(stage = stagenameCreateMobs,	pass = Pass.PreInit)	private static void createMobs() {
-		EntityRegistry.registerModEntity(new ResourceLocation(Thelta.MODID, "EntityMinivox"), EntityMinivox.class, "MiniVox", 1, Thelta.INSTANCE, 80, 3, true, 0, 0);
-		EntityRegistry.addSpawn(EntityMinivox.class, 6, 1, 5, EnumCreatureType.CREATURE, Biomes.PLAINS);
+		//MobAPI.registerNewMob("Minivox", EntityMinivox.class, new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
+		
+		MobAPI.registerNewMob(1, "Minivox", EntityMinivox.class, new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
+		
+		//EntityRegistry.registerModEntity(new ResourceLocation(Thelta.MODID, "EntityMinivox"), EntityMinivox.class, "MiniVox", 1, Thelta.INSTANCE, 80, 3, true, 0, 0);
+		//EntityRegistry.addSpawn(EntityMinivox.class, 6, 1, 5, EnumCreatureType.CREATURE, Biomes.PLAINS);
 	}
 	
 	@SideOnly(Side.CLIENT) @StageMethod(stage = stagenameHandleRender,	pass = Pass.Init, client = true)
 																		private static void handlerRenders() {
 		registerItemRenderer(rottenFleshBlockItem);
 		registerItemRenderer(testItem);
-
-		RenderingRegistry.registerEntityRenderingHandler(EntityMinivox.class,
-				new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
+		//Render<? extends Entity>
+		//RenderingRegistry.registerEntityRenderingHandler(EntityMinivox.class,
+		//		new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
 		
 	}
 

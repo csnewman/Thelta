@@ -2,8 +2,10 @@ package com.error22.thelta;
 
 import com.error22.thelta.computers.TheltaComputers;
 import com.error22.thelta.minivox.Minivox;
+import com.error22.thelta.mobapi.MobAPI;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.TheltaPipeline;
+import com.error22.thelta.pipelineaddons.PipelineAddons;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -32,6 +34,8 @@ public class Thelta {
 		 */
 		pipeline.construct(TheltaComputers.class);
 		pipeline.construct(Minivox.class);
+		pipeline.construct(MobAPI.class);
+		pipeline.construct(PipelineAddons.class);
 
 		pipeline.rebuild();
 
