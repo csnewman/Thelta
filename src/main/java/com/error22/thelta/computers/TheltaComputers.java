@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TheltaComputers {
 	public static final String monitorStage = "computers-monitors";
 	public static final String renderersStage = "computers-renderers";
-	private static PipelineStage postStageInst;
 	private static BasicMonitor basicMonitor;
 
 	@StageMethod(stage = monitorStage, pass = Pass.PreInit)
