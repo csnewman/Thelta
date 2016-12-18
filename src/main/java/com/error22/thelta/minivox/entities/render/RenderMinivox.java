@@ -6,14 +6,15 @@ import com.error22.thelta.minivox.models.ModelMinivox;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.util.ResourceLocation;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+@SideOnly(Side.CLIENT)
 public class RenderMinivox extends RenderLiving<EntityMinivox>
 {
+	
     private static final ResourceLocation VOXTEXTURE = new ResourceLocation(Thelta.MODID+":textures/entity/minivox/Minivox.png");
-
+    
     public RenderMinivox()
     {
         super(Minecraft.getMinecraft().getRenderManager(), new ModelMinivox(), 0.7F);

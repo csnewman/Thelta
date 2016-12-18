@@ -13,18 +13,29 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Stages({
-	@Stage(name = MobAPI.stagenameInit),
+	@Stage(name = "mobapi-preinit"),
+	@Stage(name = MobAPI.stagenameInit, after = { "mobapi-preinit" }),
 	@Stage(name = "mobapi-load")
 })
 public class MobAPI {
 	
 	public static final String stagenameInit = "mobapi-init";
 	private static List<MobListItem> mobsToRegister = new ArrayList<MobListItem>();
+	
+	@SideOnly(Side.CLIENT)
+	private static List<MobRenderListItem> mobsToRegisterRender;
+	
+	@StageMethod(stage = "mobapi-load",	pass = Pass.PreInit)	public static void preinitMobs() {
+		if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			mobsToRegisterRender = new ArrayList<MobRenderListItem>();
+		}
+	}
 	
 
 	@StageMethod(stage = MobAPI.stagenameInit,	pass = Pass.PreInit)	public static void initMobs() {
@@ -40,24 +51,26 @@ public class MobAPI {
 	@SideOnly(Side.CLIENT)
 	@StageMethod(stage = "mobapi-load",	pass = Pass.Init, client = true)	public static void loadMobs() {
 		System.out.println("Registering mob renderers");
-		for(MobListItem item : mobsToRegister) {
-			System.out.println("Regestering renderer to "+item.mobname);
+		for(MobRenderListItem item : mobsToRegisterRender) {
 			try {
 				RenderingRegistry.registerEntityRenderingHandler(item.entityClass,
 						item.renderClass.newInstance());
 			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 	
 	//This registers a new mob to get registered in the queue
-	public static void registerNewMob(int mobid, String mobname, Class<? extends Entity> entityClass, Class<? extends RenderLiving> renderClass) {
+	public static void registerNewMob(int mobid, String mobname, Class<? extends Entity> entityClass) {
 		System.out.println("Creating mob, "+mobname);
-		mobsToRegister.add(new MobListItem(mobid, mobname, entityClass, renderClass));
+		mobsToRegister.add(new MobListItem(mobid, mobname, entityClass));
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static void registerMobRender(Class<? extends Entity> entityClass, Class<? extends RenderLiving> renderClass) {
+		mobsToRegisterRender.add(new MobRenderListItem(entityClass, renderClass));
 	}
 }

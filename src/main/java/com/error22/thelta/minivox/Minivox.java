@@ -59,21 +59,18 @@ public class Minivox {
 
 	
 	@StageMethod(stage = stagenameCreateMobs,	pass = Pass.PreInit)	private static void createMobs() {
-		//MobAPI.registerNewMob("Minivox", EntityMinivox.class, new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
-		
-		MobAPI.registerNewMob(1, "Minivox", EntityMinivox.class, RenderMinivox.class);
-		
-		//EntityRegistry.registerModEntity(new ResourceLocation(Thelta.MODID, "EntityMinivox"), EntityMinivox.class, "MiniVox", 1, Thelta.INSTANCE, 80, 3, true, 0, 0);
-		//EntityRegistry.addSpawn(EntityMinivox.class, 6, 1, 5, EnumCreatureType.CREATURE, Biomes.PLAINS);
+		MobAPI.registerNewMob(1, "Minivox", EntityMinivox.class);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@StageMethod(stage = stagenameCreateMobs,	pass = Pass.PreInit, client = true)	private static void createMobsClient() {
+		MobAPI.registerMobRender(EntityMinivox.class, RenderMinivox.class);
 	}
 	
 	@SideOnly(Side.CLIENT) @StageMethod(stage = stagenameHandleRender,	pass = Pass.Init, client = true)
 																		private static void handlerRenders() {
 		registerItemRenderer(rottenFleshBlockItem);
 		registerItemRenderer(testItem);
-		//Render<? extends Entity>
-		//RenderingRegistry.registerEntityRenderingHandler(EntityMinivox.class,
-		//		new RenderMinivox(Minecraft.getMinecraft().getRenderManager()));
 		
 	}
 
