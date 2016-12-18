@@ -8,13 +8,20 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 public class Minivox {
+	//items
 	public static Item testItem;
+	
+	//blocks
 	public static Block testBlock;
+	public static Block rottenFleshBlock;
+	
+	//creative tabs
 	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("myMod");
 
 	public static void preInit() {
 		testItem = new QuickItem("testitem");
 		testBlock = new QuickBlock("testblock");
+		rottenFleshBlock = new QuickBlock("rottenfleshblock");
 		
 		registerItemRenderers();
 		registerBlockRenderers();

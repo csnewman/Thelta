@@ -26,8 +26,7 @@ public class MinivoxItemRenderRegistry {
             .register(item, 0, new ModelResourceLocation(
             		Thelta.MODID + ":" + item.getRegistryName().getResourcePath(), "inventory")
             	);
-    	}
-    	
+    	}    	
     	//Freeing up any used memory, tossing it into the garbage collection :P
     	registerableItems = null;
     }

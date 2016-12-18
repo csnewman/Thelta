@@ -1,16 +1,11 @@
 package com.error22.thelta.minivox.blocks;
 
-import com.error22.thelta.Thelta;
 import com.error22.thelta.minivox.Minivox;
-import com.error22.thelta.utility.Helper;
+import com.error22.thelta.minivox.MinivoxItemRenderRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class QuickBlock extends Block {
@@ -33,6 +28,7 @@ public class QuickBlock extends Block {
 		item.setRegistryName(block.getRegistryName());
 		GameRegistry.register(block);
 		GameRegistry.register(item);
+		MinivoxItemRenderRegistry.register(item);
 	}
 
 }
