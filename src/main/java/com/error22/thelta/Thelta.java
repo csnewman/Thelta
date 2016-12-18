@@ -1,9 +1,13 @@
 package com.error22.thelta;
 
+import com.error22.thelta.computers.TheltaComputers;
+import com.error22.thelta.minivox.Minivox;
+import com.error22.thelta.pipeline.Pass;
+import com.error22.thelta.pipeline.TheltaPipeline;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -16,21 +20,32 @@ public class Thelta {
 	@Instance(value = MODID)
 	public static Thelta INSTANCE;
 
-	@SidedProxy(serverSide = "com.error22.thelta.CommonProxy", clientSide = "com.error22.thelta.ClientProxy")
-	public static CommonProxy proxy;
+	public static TheltaPipeline pipeline;
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		proxy.preInit();
+	public void preInit(FMLPreInitializationEvent event) throws Exception {
+		pipeline = new TheltaPipeline(event.getSide());
+
+		/*
+		 * Register your pipeline aware objects here (Order does NOT matter, it
+		 * is rearranged as needed)
+		 */
+		pipeline.construct(TheltaComputers.class);
+		pipeline.construct(Minivox.class);
+
+		pipeline.rebuild();
+
+		pipeline.performPass(Pass.Config);
+		pipeline.performPass(Pass.PreInit);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		proxy.init();
+		pipeline.performPass(Pass.Init);
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		proxy.postInit();
+		pipeline.performPass(Pass.PostInit);
 	}
 }

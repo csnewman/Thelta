@@ -1,11 +1,14 @@
 package com.error22.thelta.computers;
 
 import com.error22.thelta.Thelta;
+import com.error22.thelta.pipeline.FieldStage;
+import com.error22.thelta.pipeline.PipelineInstance;
+import com.error22.thelta.pipeline.Pass;
+import com.error22.thelta.pipeline.PipelineStage;
+import com.error22.thelta.pipeline.StageMethod;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockGlass;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -14,26 +17,25 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TheltaComputers {
-	public static BasicMonitor basicMonitor;
+	public static final String monitorStage = "computers-monitors";
+	@PipelineInstance
+	public static TheltaComputers instance;
+	@FieldStage(name = monitorStage)
+	private static PipelineStage monitorStageInst;
+	private static BasicMonitor basicMonitor;
 
-	public static void preInit() {
+	@StageMethod(stage = monitorStage, pass = Pass.PreInit)
+	private void registerMonitors() {
 		basicMonitor = new BasicMonitor("computer_monitor_basic");
 		registerSimpleBlock(basicMonitor);
 		GameRegistry.registerTileEntity(TileEntityComputerMonitor.class, "thelta_computer_monitor");
-		
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void preInitClient() {
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityComputerMonitor.class, new TileEntityComputerMonitorRenderer());
-	}
-
-	public static void init() {
-
-	}
-
-	public static void postInit() {
-
+	@StageMethod(stage = monitorStage, pass = Pass.PreInit, client = true)
+	private void registerMonitorsRenderers() {
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityComputerMonitor.class,
+				new TileEntityComputerMonitorRenderer());
 	}
 
 	private static void registerSimpleBlock(Block block) {
