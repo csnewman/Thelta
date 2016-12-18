@@ -18,14 +18,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TheltaComputers {
 	public static final String monitorStage = "computers-monitors";
-	@PipelineInstance
-	public static TheltaComputers instance;
 	@FieldStage(name = monitorStage)
 	private static PipelineStage monitorStageInst;
 	private static BasicMonitor basicMonitor;
 
 	@StageMethod(stage = monitorStage, pass = Pass.PreInit)
-	private void registerMonitors() {
+	private static void registerMonitors() {
 		basicMonitor = new BasicMonitor("computer_monitor_basic");
 		registerSimpleBlock(basicMonitor);
 		GameRegistry.registerTileEntity(TileEntityComputerMonitor.class, "thelta_computer_monitor");
@@ -33,7 +31,7 @@ public class TheltaComputers {
 
 	@SideOnly(Side.CLIENT)
 	@StageMethod(stage = monitorStage, pass = Pass.PreInit, client = true)
-	private void registerMonitorsRenderers() {
+	private static void registerMonitorsRenderers() {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityComputerMonitor.class,
 				new TileEntityComputerMonitorRenderer());
 	}

@@ -59,13 +59,13 @@ public class TheltaPipeline {
 
 					f.setAccessible(true);
 					if (Modifier.isStatic(f.getModifiers())) {
+						f.set(null, stage);
+					} else {
 						if (instance == null) {
 							throw new RuntimeException(
 									"FieldStage annotation on non static field where no PipelineInstance exists in "
 											+ clazz.getName() + "!");
 						}
-						f.set(null, stage);
-					} else {
 						f.set(instance, stage);
 					}
 				}
