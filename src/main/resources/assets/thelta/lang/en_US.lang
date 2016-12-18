@@ -1,4 +1,8 @@
-item.testitem.name=Test Item
-tile.testblock.name=Test Block
-tile.rottenfleshblock.name=Rotten Flesh Block
+
 item.exampleingredient.name=Example Ingredient
+item.testitem.name=Test Item
+
+tile.rottenfleshblock.name=Rotten Flesh Block
+tile.testblock.name=Test Block
+
+entity.MiniVox.name=Mini Vox
