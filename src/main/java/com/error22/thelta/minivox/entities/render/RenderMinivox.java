@@ -17,7 +17,7 @@ public class RenderMinivox extends RenderLiving<EntityMinivox>
     
     public RenderMinivox()
     {
-        super(Minecraft.getMinecraft().getRenderManager(), new ModelMinivox(), 0.7F);
+        super(Minecraft.getMinecraft().getRenderManager(), new ModelMinivox(), 0.3F);
     }
 
     /**

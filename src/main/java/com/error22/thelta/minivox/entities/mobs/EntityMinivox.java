@@ -2,6 +2,8 @@ package com.error22.thelta.minivox.entities.mobs;
 
 import javax.annotation.Nullable;
 
+import com.error22.thelta.minivox.MinivoxSoundEvents;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
@@ -33,7 +35,7 @@ public class EntityMinivox extends EntityAnimal
     public EntityMinivox(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.9F, 1.4F);
+        this.setSize(0.3F, 1F);
     }
 
     public static void registerFixesCow(DataFixer fixer)
@@ -60,22 +62,22 @@ public class EntityMinivox extends EntityAnimal
 
     protected SoundEvent getAmbientSound()
     {
-        return SoundEvents.ENTITY_COW_AMBIENT;
+        return MinivoxSoundEvents.ENTITY_MINIVOX_IDLE;
     }
 
     protected SoundEvent getHurtSound()
     {
-        return SoundEvents.ENTITY_COW_HURT;
+        return MinivoxSoundEvents.ENTITY_MINIVOX_TAKEDAMAGE;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.ENTITY_COW_DEATH;
+        return MinivoxSoundEvents.ENTITY_MINIVOX_DEATH;
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
+        this.playSound(MinivoxSoundEvents.ENTITY_MINIVOX_WALK, 0.15F, 1.0F);
     }
 
     /**

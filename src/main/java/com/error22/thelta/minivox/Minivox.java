@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Stages({
+	@Stage(name = Minivox.stagenameInit),
 	@Stage(name = Minivox.stagenameCreateItems),
 	@Stage(name = Minivox.stagenameCreateBlocks),
 	@Stage(name = Minivox.stagenameCreateMobs, before = { MobAPI.stagenameInit }),
@@ -36,6 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Minivox {
 	
 	//Staging variables
+	public static final String stagenameInit		= "minivox-init";
 	public static final String stagenameCreateItems		= "minivox-createitems";
 	public static final String stagenameCreateBlocks	= "minivox-createblocks";
 	public static final String stagenameCreateMobs		= "minivox-createmobs";
@@ -46,6 +48,10 @@ public class Minivox {
 	public static Item testItem;
 	public static QuickBlock rottenFleshBlock;
 	public static Item rottenFleshBlockItem;
+	
+	@StageMethod(stage = stagenameInit,	pass = Pass.PreInit)	private static void init() {
+		MinivoxSoundEvents.registerSoundEvents();
+	}
 	
 	@StageMethod(stage = stagenameCreateItems,	pass = Pass.PreInit)	private static void createItems() {
 		testItem = new QuickItem("testitem");

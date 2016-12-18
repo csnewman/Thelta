@@ -1,0 +1,50 @@
+{
+	"entity.minivox.idle":{
+	    "category": "master",
+	    "sounds": [
+	        {
+	            "name": "thelta:/sounds/minivox/idle","stream":true
+	        }
+	    ]
+	},
+	"entity.minivox.takedamage":{
+        "category": "master",
+        "sounds": [
+            {
+                "name": "thelta:/sounds/minivox/idle","stream":true
+            }
+        ]
+	},
+	"entity.minivox.poop":{
+        "category": "master",
+        "sounds": [
+            {
+                "name": "thelta:/sounds/minivox/idle","stream":true
+            }
+        ]
+	},
+	"entity.minivox.walk":{
+        "category": "master",
+        "sounds": [
+            {
+                "name": "thelta:/sounds/minivox/idle","stream":true
+            }
+        ]
+	},
+	"entity.minivox.fall":{
+        "category": "master",
+        "sounds": [
+            {
+                "name": "thelta:/sounds/minivox/idle","stream":true
+            }
+        ]
+	},
+	"entity.minivox.death":{
+        "category": "master",
+        "sounds": [
+            {
+                "name": "thelta:/sounds/minivox/idle","stream":true
+            }
+        ]
+	}
+}

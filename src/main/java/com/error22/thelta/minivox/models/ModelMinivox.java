@@ -72,16 +72,23 @@ public class ModelMinivox extends ModelBase
 		setRotation(leftleg, 0F, 0F, 0F);
 	}
 	
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		head.render(f5);
-		body.render(f5);
-		rightarm.render(f5);
-		leftarm.render(f5);
-		rightleg.render(f5);
-		leftleg.render(f5);
+		//entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale
+		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale/2);
+		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale/2, entityIn);
+		head.offsetY = -0.5f;
+		head.render(scale/2);
+		body.offsetY = -0.5f;
+		body.render(scale/2);
+		rightarm.offsetY = -0.5f;
+		rightarm.render(scale/2);
+		leftarm.offsetY = -0.5f;
+		leftarm.render(scale/2);
+		rightleg.offsetY = -0.5f;
+		rightleg.render(scale/2);
+		leftleg.offsetY = -0.5f;
+		leftleg.render(scale/2);
 	}
 	
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -94,7 +101,8 @@ public class ModelMinivox extends ModelBase
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		//super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-
+		
+		
         boolean flag = entityIn instanceof EntityLivingBase && ((EntityLivingBase)entityIn).getTicksElytraFlying() > 4;
         head.rotateAngleY = netHeadYaw * 0.017453292F;
 
