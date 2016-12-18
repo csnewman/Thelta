@@ -1,0 +1,7 @@
+{  
+    "variants":{  
+        "facing=x": { "model": "thelta:tube_straight", "y": 90 },
+        "facing=y": { "model": "thelta:tube_straight", "x": 90 },
+        "facing=z": { "model":"thelta:tube_straight", "y": 0 }
+    }
+}
