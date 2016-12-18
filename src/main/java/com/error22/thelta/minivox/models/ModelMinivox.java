@@ -77,17 +77,18 @@ public class ModelMinivox extends ModelBase
 		//entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale
 		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale/2);
 		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale/2, entityIn);
-		head.offsetY = -0.5f;
+		float offset = 0.75f;
+		head.offsetY = offset;
 		head.render(scale/2);
-		body.offsetY = -0.5f;
+		body.offsetY = offset;
 		body.render(scale/2);
-		rightarm.offsetY = -0.5f;
+		rightarm.offsetY = offset;
 		rightarm.render(scale/2);
-		leftarm.offsetY = -0.5f;
+		leftarm.offsetY = offset;
 		leftarm.render(scale/2);
-		rightleg.offsetY = -0.5f;
+		rightleg.offsetY = offset;
 		rightleg.render(scale/2);
-		leftleg.offsetY = -0.5f;
+		leftleg.offsetY = offset;
 		leftleg.render(scale/2);
 	}
 	
@@ -133,13 +134,17 @@ public class ModelMinivox extends ModelBase
         {
             f = 1.0F;
         }
+        
+        float animspeed = 2.0f;
 
-        rightarm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 2.0F * limbSwingAmount * 0.5F / f;
-        leftarm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / f;
+        head.rotateAngleX = MathHelper.cos(limbSwing * (0.6662F*animspeed*1.1f) + (float)Math.PI) * 2.0F * limbSwingAmount * 0.3F / f;
+        
+        rightarm.rotateAngleX = MathHelper.cos(limbSwing * (0.6662F*animspeed) + (float)Math.PI) * 2.0F * limbSwingAmount * 0.5F / f;
+        leftarm.rotateAngleX = MathHelper.cos(limbSwing * (0.6662F*animspeed)) * 2.0F * limbSwingAmount * 0.5F / f;
         rightarm.rotateAngleZ = 0.0F;
         leftarm.rotateAngleZ = 0.0F;
-        rightleg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / f;
-        leftleg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount / f;
+        rightleg.rotateAngleX = MathHelper.cos(limbSwing * (0.6662F*animspeed)) * 1.4F * limbSwingAmount * 1.0f / f;
+        leftleg.rotateAngleX = MathHelper.cos(limbSwing * (0.6662F*animspeed) + (float)Math.PI) * 1.4F * limbSwingAmount * 1.0f / f;
         rightleg.rotateAngleY = 0.0F;
         leftleg.rotateAngleY = 0.0F;
         rightleg.rotateAngleZ = 0.0F;

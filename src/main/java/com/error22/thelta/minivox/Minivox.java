@@ -6,23 +6,18 @@ import com.error22.thelta.minivox.creativetabs.CreativeTabMinivox;
 import com.error22.thelta.minivox.entities.mobs.EntityMinivox;
 import com.error22.thelta.minivox.entities.render.RenderMinivox;
 import com.error22.thelta.minivox.items.QuickItem;
+import com.error22.thelta.minivox.items.TacoGodRing;
 import com.error22.thelta.mobapi.MobAPI;
 import com.error22.thelta.pipeline.Pass;
-import com.error22.thelta.pipeline.PipelineStage;
 import com.error22.thelta.pipeline.Stage;
 import com.error22.thelta.pipeline.StageMethod;
 import com.error22.thelta.pipeline.Stages;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,6 +41,7 @@ public class Minivox {
 	//forge variables
 	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("myMod");
 	public static Item testItem;
+	public static Item tacogodring;
 	public static QuickBlock rottenFleshBlock;
 	public static Item rottenFleshBlockItem;
 	
@@ -55,6 +51,7 @@ public class Minivox {
 	
 	@StageMethod(stage = stagenameCreateItems,	pass = Pass.PreInit)	private static void createItems() {
 		testItem = new QuickItem("testitem");
+		tacogodring = new TacoGodRing("tacogodsummonring");
 	}
 
 	@StageMethod(stage = stagenameCreateBlocks,	pass = Pass.PreInit)	private static void createBlocks() {
@@ -77,6 +74,7 @@ public class Minivox {
 																		private static void handlerRenders() {
 		registerItemRenderer(rottenFleshBlockItem);
 		registerItemRenderer(testItem);
+		registerItemRenderer(tacogodring);
 		
 	}
 

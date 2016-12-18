@@ -3,7 +3,7 @@
 	    "category": "master",
 	    "sounds": [
 	        {
-	            "name": "thelta:/sounds/minivox/idle","stream":true
+	            "name": "thelta:sounds/minivox/idle","stream":true
 	        }
 	    ]
 	},
@@ -11,7 +11,7 @@
         "category": "master",
         "sounds": [
             {
-                "name": "thelta:/sounds/minivox/idle","stream":true
+                "name": "thelta:sounds/minivox/idle","stream":true
             }
         ]
 	},
@@ -19,7 +19,7 @@
         "category": "master",
         "sounds": [
             {
-                "name": "thelta:/sounds/minivox/idle","stream":true
+                "name": "thelta:sounds/minivox/idle","stream":true
             }
         ]
 	},
@@ -27,7 +27,7 @@
         "category": "master",
         "sounds": [
             {
-                "name": "thelta:/sounds/minivox/idle","stream":true
+                "name": "thelta:sounds/minivox/idle","stream":true
             }
         ]
 	},
@@ -35,7 +35,7 @@
         "category": "master",
         "sounds": [
             {
-                "name": "thelta:/sounds/minivox/idle","stream":true
+                "name": "thelta:sounds/minivox/idle","stream":true
             }
         ]
 	},
@@ -43,7 +43,7 @@
         "category": "master",
         "sounds": [
             {
-                "name": "thelta:/sounds/minivox/idle","stream":true
+                "name": "thelta:sounds/minivox/idle","stream":true
             }
         ]
 	}
