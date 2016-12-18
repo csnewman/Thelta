@@ -5,7 +5,11 @@ import com.error22.thelta.minivox.creativetabs.CreativeTabMinivox;
 import com.error22.thelta.minivox.items.QuickItem;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Minivox {
 	//items
@@ -19,13 +23,18 @@ public class Minivox {
 	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("myMod");
 
 	public static void preInit() {
+		//Item creation
 		testItem = new QuickItem("testitem");
-		testBlock = new QuickBlock("testblock");
 		rottenFleshBlock = new QuickBlock("rottenfleshblock");
 		
-		registerItemRenderers();
-		registerBlockRenderers();
-		
+		//recipes
+		//rotten flesh block
+		GameRegistry.addRecipe(new ItemStack(rottenFleshBlock),
+		    	"AAA",
+		    	"AAA",
+		    	"AAA",
+		    	'A', Items.ROTTEN_FLESH
+		);
 	}
 	
 	public static void init() {
@@ -36,13 +45,4 @@ public class Minivox {
 	public static void postInit() {
 		
 	}
-	
-	public static void registerItemRenderers() {
-		
-	}
-	
-	public static void registerBlockRenderers() {
-		
-	}
-
 }
