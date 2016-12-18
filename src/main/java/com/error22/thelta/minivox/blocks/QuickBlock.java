@@ -4,8 +4,13 @@ import com.error22.thelta.minivox.Minivox;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class QuickBlock extends Block {
+	
+	public Item blockItem;
 	
 	public QuickBlock(String itemname) {
 		super(Material.ROCK);
@@ -14,8 +19,19 @@ public class QuickBlock extends Block {
 		setUnlocalizedName(itemname);
 		setRegistryName(itemname);
 		setCreativeTab(Minivox.creativetab);
+		
+		blockItem = registerSimpleBlock();
 	}
 
+	
+	//Copied from newmans code (did i use this?)
+	private ItemBlock registerSimpleBlock() {
+		ItemBlock item = new ItemBlock(this);
+		item.setRegistryName(getRegistryName());
+		GameRegistry.register(this);
+		GameRegistry.register(item);
+		return item;
+	}
 	
 
 }
