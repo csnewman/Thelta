@@ -23,7 +23,6 @@ public class TileEntityTube extends TileEntity implements ITickable {
 
 	@Override
 	public void update() {
-		System.out.println(colour);
 		updateConnections();
 	}
 
