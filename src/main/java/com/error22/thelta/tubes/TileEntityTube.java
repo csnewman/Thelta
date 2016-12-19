@@ -1,44 +1,58 @@
 package com.error22.thelta.tubes;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
 public class TileEntityTube extends TileEntity implements ITickable {
 	private TubeColour colour;
 	private boolean[] connections;
+	private boolean needsRefresh;
 
 	public TileEntityTube() {
 		colour = TubeColour.Generic;
 		connections = new boolean[6];
-	}
-
-	@Override
-	public void onLoad() {
-
+		markForRefresh();
 	}
 
 	@Override
 	public void update() {
-		updateConnections();
+		if (needsRefresh) {
+			updateConnections();
+			needsRefresh = false;
+		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound = super.writeToNBT(compound);
-		System.out.println("writeToNBT "+colour.ordinal());
-		compound.setInteger("colour", colour.ordinal());
+		compound.setString("colour", colour.getName());
 		return compound;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		System.out.println("readFromNBT "+compound.getInteger("colour"));
-		colour = TubeColour.values()[compound.getInteger("colour")];
+		colour = TubeColour.getColourByName(compound.getString("colour"));
+	}
+
+	@Nullable
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		NBTTagCompound data = new NBTTagCompound();
+		data.setString("colour", colour.getName());
+		return new SPacketUpdateTileEntity(this.pos, 0, data);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+		NBTTagCompound data = pkt.getNbtCompound();
+		setColour(TubeColour.getColourByName(data.getString("colour")));
 	}
 
 	public void updateConnections() {
@@ -48,7 +62,9 @@ public class TileEntityTube extends TileEntity implements ITickable {
 		connections[EnumFacing.EAST.getIndex()] = canConnect(EnumFacing.EAST);
 		connections[EnumFacing.SOUTH.getIndex()] = canConnect(EnumFacing.SOUTH);
 		connections[EnumFacing.WEST.getIndex()] = canConnect(EnumFacing.WEST);
-		worldObj.markBlockRangeForRenderUpdate(pos, pos);
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(pos, pos);
+		}
 	}
 
 	private boolean canConnect(EnumFacing direction) {
@@ -58,8 +74,12 @@ public class TileEntityTube extends TileEntity implements ITickable {
 
 	public void setColour(TubeColour colour) {
 		this.colour = colour;
-		worldObj.markBlockRangeForRenderUpdate(pos, pos);
-		markDirty();
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(pos, pos);
+		} else {
+			worldObj.notifyBlockUpdate(pos, worldObj.getBlockState(pos), worldObj.getBlockState(pos), 0);
+			markDirty();
+		}
 	}
 
 	public TubeColour getColour() {
@@ -68,6 +88,10 @@ public class TileEntityTube extends TileEntity implements ITickable {
 
 	public boolean isConnected(EnumFacing direction) {
 		return connections[direction.getIndex()];
+	}
+
+	public void markForRefresh() {
+		needsRefresh = true;
 	}
 
 }

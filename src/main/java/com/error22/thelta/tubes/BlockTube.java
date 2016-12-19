@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDye;
+import net.minecraft.item.ItemEgg;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -53,6 +54,9 @@ public class BlockTube extends BlockContainer {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
+		if(worldIn.isRemote)
+			return false;
+		
 		boolean shouldDye = (playerIn.getHeldItemMainhand().getItem() instanceof ItemDye);
 
 		if (shouldDye) {
