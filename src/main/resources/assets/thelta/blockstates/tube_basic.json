@@ -1,11 +1,5 @@
 {  
     "forge_marker": 1,
-    "defaults": {
-       "textures": {
-           "particle": "blocks/particle",
-           "texture": "blocks/texture"
-       }
-    },
     "variants":{  
         "colour": {
              "generic": {
@@ -21,20 +15,95 @@
         },
         "mode": {
             "joint": {
-                "model": "thelta:tube_joint"
+                "submodel": {
+                    "center": {
+                        "model": "thelta:tube_joint"
+                    }
+                }
             },
             "x": {
-                "model": "thelta:tube_straight",
-                "y": 90
+                "submodel": {
+                    "center": {
+                        "model": "thelta:tube_straight",
+                        "y": 90
+                    }
+                }
+            },
+            "y": {
+                "submodel": {
+                    "center": {
+                        "model": "thelta:tube_straight",
+                        "x": 90
+                    }
+                }
             },
             "z": {
-                "model": "thelta:tube_straight"
+                "submodel": {
+                    "center": {
+                        "model": "thelta:tube_straight"
+                    }
+                }
             }
         },
-        "sidezpos": {
+        "north": {
             "true": {
-                "submodel": "thelta:tube_side"
+                "submodel": {
+                    "tubezneg": {
+                        "model": "thelta:tube_side"
+                    }
+                }
+            }, "false": {}
+        },
+        "east": {
+            "true": {
+                "submodel": {
+                    "tubexpos": {
+                        "model": "thelta:tube_side",
+                        "y": 90
+                    }
+                }
+            }, "false": {}
+        },
+        "south": {
+            "true": {
+                "submodel": {
+                    "tubezpos": {
+                        "model": "thelta:tube_side",
+                        "y": 180
+                    }
+                }
+            }, "false": {}
+        },
+        "west": {
+            "true": {
+                "submodel": {
+                    "tubexneg": {
+                        "model": "thelta:tube_side",
+                        "y": 270
+                    }
+                }
+            }, "false": {}
+        },
+        "up": {
+            "true": {
+                "submodel": {
+                    "tubeup": {
+                        "model": "thelta:tube_side",
+                        "x": 270
+                    }
+                }
+            }, "false": {}
+        },
+        "down": {
+            "true": {
+                "submodel": {
+                    "tubedown": {
+                        "model": "thelta:tube_side",
+                        "x": 90
+                    }
+                }
             }, "false": {}
         }
+        
     }
 }

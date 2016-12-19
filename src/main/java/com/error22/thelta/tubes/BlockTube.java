@@ -9,12 +9,13 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemDye;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -22,48 +23,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTube extends BlockContainer {
-	public static enum TubeColour implements IStringSerializable {
-		Red("red"), Generic("generic");
-
-		private String name;
-
-		private TubeColour(String name) {
-			this.name = name;
-		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-	}
-
-	public static enum TubeMode implements IStringSerializable {
-		Joint("joint"), X("x"), Z("z");
-
-		private String name;
-
-		private TubeMode(String name) {
-			this.name = name;
-		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-	}
-
-	// public static final PropertyAxis FACING = PropertyAxis.create("facing");
 	public static final PropertyEnum<TubeColour> COLOUR = PropertyEnum.create("colour", TubeColour.class);
 	public static final PropertyEnum<TubeMode> MODE = PropertyEnum.create("mode", TubeMode.class);
-	public static final PropertyBool SIDE_ZPOS = PropertyBool.create("sidezpos");
+	public static final PropertyBool UP = PropertyBool.create("up");
+	public static final PropertyBool DOWN = PropertyBool.create("down");
+	public static final PropertyBool SOUTH = PropertyBool.create("south");
+	public static final PropertyBool NORTH = PropertyBool.create("north");
+	public static final PropertyBool EAST = PropertyBool.create("east");
+	public static final PropertyBool WEST = PropertyBool.create("west");
 
 	public BlockTube(String name) {
 		super(Material.ROCK);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-
-		setDefaultState(blockState.getBaseState().withProperty(COLOUR, TubeColour.Generic)
-				.withProperty(MODE, TubeMode.Joint).withProperty(SIDE_ZPOS, true));
 		setHardness(3f);
 		setResistance(5f);
 		setCreativeTab(CreativeTabs.REDSTONE);
@@ -72,45 +44,83 @@ public class BlockTube extends BlockContainer {
 	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
 			int meta, EntityLivingBase placer) {
-		System.out
-				.println(facing + "  1 " + placer.getHorizontalFacing() + "=" + placer.getHorizontalFacing().getAxis());
-		// return this.getDefaultState().withProperty(FACING,
+		// System.out
+		// .println(facing + " 1 " + placer.getHorizontalFacing() + "=" +
 		// placer.getHorizontalFacing().getAxis());
-		return this.getDefaultState().withProperty(COLOUR, TubeColour.Red).withProperty(MODE, TubeMode.Joint).withProperty(SIDE_ZPOS, true);
+		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-			ItemStack stack) {
-		System.out.println(placer.getHorizontalFacing() + "=" + placer.getHorizontalFacing().getAxis());
-		// worldIn.setBlockState(pos, state.withProperty(FACING,
-		// placer.getHorizontalFacing().getAxis()), 2);
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
+		boolean shouldDye = (playerIn.getHeldItemMainhand().getItem() instanceof ItemDye);
+
+		if (shouldDye) {
+			TileEntityTube tube = (TileEntityTube) worldIn.getTileEntity(pos);
+			tube.setColour(TubeColour.Red);
+		}
+
+		return shouldDye;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public IBlockState getStateForEntityRender(IBlockState state) {
-		// return this.getDefaultState().withProperty(FACING,
-		// EnumFacing.Axis.Z);
-		return getDefaultState().withProperty(COLOUR, TubeColour.Generic)
-				.withProperty(MODE, TubeMode.X).withProperty(SIDE_ZPOS, false);
+		return getDefaultState().withProperty(COLOUR, TubeColour.Generic).withProperty(MODE, TubeMode.X);
+	}
+
+	@Override
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
+		((TileEntityTube) world.getTileEntity(pos)).updateConnections();
+	}
+
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+		TileEntityTube tube = (TileEntityTube) world.getTileEntity(pos);
+		state = getDefaultState();
+		state = state.withProperty(COLOUR, tube.getColour());
+
+		boolean up = tube.isConnected(EnumFacing.UP);
+		boolean down = tube.isConnected(EnumFacing.DOWN);
+		boolean north = tube.isConnected(EnumFacing.NORTH);
+		boolean east = tube.isConnected(EnumFacing.EAST);
+		boolean south = tube.isConnected(EnumFacing.SOUTH);
+		boolean west = tube.isConnected(EnumFacing.WEST);
+
+		if (!up && !down && !north && east && !south && west) {
+			state = state.withProperty(MODE, TubeMode.X);
+			up = down = north = east = south = west = false;
+		} else if (up && down && !north && !east && south && !west) {
+			state = state.withProperty(MODE, TubeMode.Y);
+			up = down = north = east = south = west = false;
+		} else if (!up && !down && north && !east && south && !west) {
+			state = state.withProperty(MODE, TubeMode.Z);
+			up = down = north = east = south = west = false;
+		} else {
+			state = state.withProperty(MODE, TubeMode.Joint);
+		}
+
+		state = state.withProperty(UP, up);
+		state = state.withProperty(DOWN, down);
+		state = state.withProperty(NORTH, north);
+		state = state.withProperty(EAST, east);
+		state = state.withProperty(SOUTH, south);
+		state = state.withProperty(WEST, west);
+		return state;
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		// return this.getDefaultState().withProperty(FACING,
-		// EnumFacing.Axis.values()[meta]);
 		return getDefaultState();
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return 0;
-		// return ((EnumFacing.Axis) state.getValue(FACING)).ordinal();
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { COLOUR, MODE, SIDE_ZPOS });
+		return new BlockStateContainer(this, new IProperty[] { COLOUR, MODE, UP, DOWN, NORTH, EAST, SOUTH, WEST });
 	}
 
 	@Override
@@ -147,5 +157,4 @@ public class BlockTube extends BlockContainer {
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-
 }
