@@ -1,5 +1,8 @@
 package com.error22.thelta.tubes;
 
+import com.error22.thelta.common.BlockContainerWrapped;
+import com.error22.thelta.common.TileEntityWrapped;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -12,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemEgg;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -23,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockTube extends BlockContainer {
+public class BlockTube extends BlockContainerWrapped {
 	public static final PropertyEnum<TubeColour> COLOUR = PropertyEnum.create("colour", TubeColour.class);
 	public static final PropertyEnum<TubeMode> MODE = PropertyEnum.create("mode", TubeMode.class);
 	public static final PropertyBool UP = PropertyBool.create("up");
@@ -42,44 +46,15 @@ public class BlockTube extends BlockContainer {
 		setCreativeTab(CreativeTabs.REDSTONE);
 	}
 
-	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer) {
-		// System.out
-		// .println(facing + " 1 " + placer.getHorizontalFacing() + "=" +
-		// placer.getHorizontalFacing().getAxis());
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
-		if(worldIn.isRemote)
-			return false;
-		
-		boolean shouldDye = (playerIn.getHeldItemMainhand().getItem() instanceof ItemDye);
-
-		if (shouldDye) {
-			TileEntityTube tube = (TileEntityTube) worldIn.getTileEntity(pos);
-			tube.setColour(TubeColour.Red);
-		}
-
-		return shouldDye;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public IBlockState getStateForEntityRender(IBlockState state) {
 		return getDefaultState().withProperty(COLOUR, TubeColour.Generic).withProperty(MODE, TubeMode.X);
 	}
 
 	@Override
-	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-		((TileEntityTube) world.getTileEntity(pos)).updateConnections();
-	}
-
-	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntityTube tube = (TileEntityTube) world.getTileEntity(pos);
+		
 		state = getDefaultState();
 		state = state.withProperty(COLOUR, tube.getColour());
 
@@ -110,16 +85,6 @@ public class BlockTube extends BlockContainer {
 		state = state.withProperty(SOUTH, south);
 		state = state.withProperty(WEST, west);
 		return state;
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState();
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return 0;
 	}
 
 	@Override
