@@ -1,5 +1,6 @@
 package com.error22.thelta;
 
+import com.error22.thelta.common.CraftingMaterials;
 import com.error22.thelta.computers.TheltaComputers;
 import com.error22.thelta.machines.Machines;
 import com.error22.thelta.minivox.Minivox;
@@ -40,6 +41,7 @@ public class Thelta {
 		pipeline.construct(PipelineAddons.class);
 		pipeline.construct(TheltaTubes.class);
 		pipeline.construct(Machines.class);
+		pipeline.construct(CraftingMaterials.class);
 
 		pipeline.rebuild();
 
