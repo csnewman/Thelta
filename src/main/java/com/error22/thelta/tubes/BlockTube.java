@@ -68,7 +68,7 @@ public class BlockTube extends BlockContainerWrapped {
 		if (!up && !down && !north && east && !south && west) {
 			state = state.withProperty(MODE, TubeMode.X);
 			up = down = north = east = south = west = false;
-		} else if (up && down && !north && !east && south && !west) {
+		} else if (up && down && !north && !east && !south && !west) {
 			state = state.withProperty(MODE, TubeMode.Y);
 			up = down = north = east = south = west = false;
 		} else if (!up && !down && north && !east && south && !west) {
