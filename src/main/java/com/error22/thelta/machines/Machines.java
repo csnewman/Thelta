@@ -18,10 +18,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 		@Stage(name = "craft_init_renderers") })
 public class Machines {
 
-	// Creative Tab
-	public static CreativeTabCraftingMaterials creativeTabCraftingMaterials = new CreativeTabCraftingMaterials(
-			"machinecraftingmaterials");
-
 	// blocks
 	public static Block blockConvayorT1;
 	public static Block blockBurnerMachineArm;
