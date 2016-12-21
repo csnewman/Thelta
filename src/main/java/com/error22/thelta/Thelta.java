@@ -1,6 +1,7 @@
 package com.error22.thelta;
 
 import com.error22.thelta.computers.TheltaComputers;
+import com.error22.thelta.machines.Machines;
 import com.error22.thelta.minivox.Minivox;
 import com.error22.thelta.mobapi.MobAPI;
 import com.error22.thelta.pipeline.Pass;
@@ -38,6 +39,7 @@ public class Thelta {
 		pipeline.construct(MobAPI.class);
 		pipeline.construct(PipelineAddons.class);
 		pipeline.construct(TheltaTubes.class);
+		pipeline.construct(Machines.class);
 
 		pipeline.rebuild();
 
