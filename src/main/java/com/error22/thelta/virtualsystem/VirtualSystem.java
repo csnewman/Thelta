@@ -1,13 +1,13 @@
 package com.error22.thelta.virtualsystem;
 
 public class VirtualSystem {
-	private MemoryManager memory;
-	
+	private Memory memory;
+
 	public VirtualSystem() {
-		memory = new MemoryManager(2000);
+		memory = new Memory(2000);
 	}
-	
-	public MemoryManager getMemory() {
+
+	public Memory getMemory() {
 		return memory;
 	}
 }
