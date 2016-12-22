@@ -1,0 +1,48 @@
+{
+	"__comment": "Designed by Csnewman with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "blocks/e_particle",
+		"texture": "ConvayorBelt"
+	},
+	"elements": [
+		{
+			"__comment": "Cube1",
+			"from": [ 1, 0, 0 ],
+			"to": [ 2, 1, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 1, 1, 0 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 1, 16 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 15, 1, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 15, 1, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 16, 1, 0 ], "texture": "#texture" },
+				"east": { "uv": [ 0, 16, 1, 0 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Cube2",
+			"from": [ 2, 0, 0 ],
+			"to": [ 14, 0.5, 16 ],
+			"faces": {
+				"down": { "uv": [ 1, 0, 15, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 1, 0, 15, 16 ], "texture": "#texture" },
+				"north": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Cube1",
+			"from": [ 14, 0, 0 ],
+			"to": [ 15, 1, 16 ],
+			"faces": {
+				"down": { "uv": [ 15, 1, 16, 0 ], "texture": "#texture" },
+				"up": { "uv": [ 15, 0, 16, 16 ], "texture": "#texture" },
+				"north": { "uv": [ 15, 15, 16, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 15, 15, 16, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 15, 16, 16, 0 ], "texture": "#texture" },
+				"east": { "uv": [ 15, 16, 16, 0 ], "texture": "#texture" }
+			}
+		}
+	]
+}
