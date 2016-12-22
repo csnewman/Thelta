@@ -1,6 +1,6 @@
 {
     "parent": "thelta:item/craftingitem",
     "textures": {
-        "layer0": "thelta:items/steelingot"
+        "layer0": "thelta:items/tiningot"
     }
 }
