@@ -1,11 +1,16 @@
 package com.error22.thelta.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.error22.thelta.Thelta;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.Stage;
 import com.error22.thelta.pipeline.StageMethod;
 import com.error22.thelta.pipeline.Stages;
 
-import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,6 +24,9 @@ public class CraftingMaterials {
 	// Creative Tab
 	public static CreativeTabCraftingMaterials creativeTabCraftingMaterials = new CreativeTabCraftingMaterials(
 			"machinecraftingmaterials");;
+			
+	//Automatic item render handeling
+	public static List<Item> itemsToBeRegisteredByRender = new ArrayList<Item>();
 
 	// items
 	// ingots
@@ -154,8 +162,11 @@ public class CraftingMaterials {
 	}
 
 	@SideOnly(Side.CLIENT)
-	@StageMethod(stage = "machine_init_renderers", pass = Pass.PreInit, client = true)
+	@StageMethod(stage = "machine_init_renderers", pass = Pass.Init, client = true)
 	private static void init_renderers() {
-
+		for(Item item : itemsToBeRegisteredByRender) {
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
+					new ModelResourceLocation(Thelta.MODID + ":" + item.getRegistryName().getResourcePath(), "inventory"));
+		}
 	}
 }

@@ -11,5 +11,6 @@ public class CraftingItem extends Item {
 		setUnlocalizedName(itemname);
 		setCreativeTab(CraftingMaterials.creativeTabCraftingMaterials);
 		GameRegistry.register(this);
+		CraftingMaterials.itemsToBeRegisteredByRender.add(this);
 	}
 }
