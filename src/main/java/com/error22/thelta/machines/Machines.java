@@ -1,6 +1,6 @@
 package com.error22.thelta.machines;
 
-import com.error22.thelta.machines.blocks.BlockBasic;
+import com.error22.thelta.machines.blocks.BlockConvayorBelt;
 import com.error22.thelta.minivox.creativetabs.CreativeTabMinivox;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.Stage;
@@ -34,7 +34,7 @@ public class Machines {
 
 	@StageMethod(stage = "craft_init_blocks", pass = Pass.PreInit)
 	private static void init_blocks() {
-		blockConvayorT1 = new BlockBasic("convayorbeltt1");
+		blockConvayorT1 = new BlockConvayorBelt("convayorbeltt1");
 	}
 
 	@StageMethod(stage = "craft_init_items", pass = Pass.PreInit)
