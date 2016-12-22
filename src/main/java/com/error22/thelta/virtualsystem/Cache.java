@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 public class Cache {
+	//Left public for speed improvement
 	public int size;
 	public byte[] data;
 	public ByteBuffer buffer;

@@ -4,11 +4,11 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import scala.NotImplementedError;
 
-public class Context {
+public class PageTable {
 	private boolean mappingEnabled;
 	private Int2ObjectMap<Integer> pageMapping;
 
-	public Context() {
+	public PageTable() {
 		pageMapping = new Int2ObjectOpenHashMap<Integer>();
 	}
 

@@ -30,77 +30,77 @@ public class Memory {
 		}
 	}
 
-	public short readShort(Context context, Cache cache, int location) {
-		readBlock(context, location, 0, cache.data, 2);
+	public short readShort(PageTable pageTable, Cache cache, int location) {
+		readBlock(pageTable, location, 0, cache.data, 2);
 		return cache.buffer.getShort(0);
 	}
 
-	public void writeShort(Context context, Cache cache, int location, short value) {
+	public void writeShort(PageTable pageTable, Cache cache, int location, short value) {
 		cache.buffer.putShort(0, value);
-		writeBlock(context, location, 0, cache.data, 2);
+		writeBlock(pageTable, location, 0, cache.data, 2);
 	}
 
-	public int readInt(Context context, Cache cache, int location) {
-		readBlock(context, location, 0, cache.data, 4);
+	public int readInt(PageTable pageTable, Cache cache, int location) {
+		readBlock(pageTable, location, 0, cache.data, 4);
 		return cache.buffer.getInt(0);
 	}
 
-	public void writeInt(Context context, Cache cache, int location, int value) {
+	public void writeInt(PageTable pageTable, Cache cache, int location, int value) {
 		cache.buffer.putInt(0, value);
-		writeBlock(context, location, 0, cache.data, 4);
+		writeBlock(pageTable, location, 0, cache.data, 4);
 	}
 
-	public long readLong(Context context, Cache cache, int location) {
-		readBlock(context, location, 0, cache.data, 8);
+	public long readLong(PageTable pageTable, Cache cache, int location) {
+		readBlock(pageTable, location, 0, cache.data, 8);
 		return cache.buffer.getLong(0);
 	}
 
-	public void writeLong(Context context, Cache cache, int location, long value) {
+	public void writeLong(PageTable pageTable, Cache cache, int location, long value) {
 		cache.buffer.putLong(0, value);
-		writeBlock(context, location, 0, cache.data, 8);
+		writeBlock(pageTable, location, 0, cache.data, 8);
 	}
 
-	public float readFloat(Context context, Cache cache, int location) {
-		readBlock(context, location, 0, cache.data, 4);
+	public float readFloat(PageTable pageTable, Cache cache, int location) {
+		readBlock(pageTable, location, 0, cache.data, 4);
 		return cache.buffer.getFloat(0);
 	}
 
-	public void writeFloat(Context context, Cache cache, int location, float value) {
+	public void writeFloat(PageTable pageTable, Cache cache, int location, float value) {
 		cache.buffer.putFloat(value);
-		writeBlock(context, location, 0, cache.data, 4);
+		writeBlock(pageTable, location, 0, cache.data, 4);
 	}
 
-	public double readDouble(Context context, Cache cache, int location) {
-		readBlock(context, location, 0, cache.data, 8);
+	public double readDouble(PageTable pageTable, Cache cache, int location) {
+		readBlock(pageTable, location, 0, cache.data, 8);
 		return cache.buffer.getDouble(0);
 	}
 
-	public void writeDouble(Context context, Cache cache, int location, double value) {
+	public void writeDouble(PageTable pageTable, Cache cache, int location, double value) {
 		cache.buffer.putDouble(value);
-		writeBlock(context, location, 0, cache.data, 8);
+		writeBlock(pageTable, location, 0, cache.data, 8);
 	}
 
-	public byte readByte(Context context, int location) {
+	public byte readByte(PageTable pageTable, int location) {
 		// TODO: bound checking
-		return getPage(context, getPageId(location)).readByte(getPageOffset(location));
+		return getPage(pageTable, getPageId(location)).readByte(getPageOffset(location));
 	}
 
-	public void writeByte(Context context, int location, byte data) {
+	public void writeByte(PageTable pageTable, int location, byte data) {
 		// TODO: bound checking
-		getPage(context, getPageId(location)).writeByte(getPageOffset(location), data);
+		getPage(pageTable, getPageId(location)).writeByte(getPageOffset(location), data);
 	}
 
-	public byte[] readBlock(Context context, int start, int size) {
+	public byte[] readBlock(PageTable pageTable, int start, int size) {
 		byte[] result = new byte[size];
-		readBlock(context, start, 0, result, size);
+		readBlock(pageTable, start, 0, result, size);
 		return result;
 	}
 
-	public void writeBlock(Context context, int start, byte[] data) {
-		writeBlock(context, start, 0, data, data.length);
+	public void writeBlock(PageTable pageTable, int start, byte[] data) {
+		writeBlock(pageTable, start, 0, data, data.length);
 	}
 
-	public void readBlock(Context context, int start, int dst, byte[] out, int size) {
+	public void readBlock(PageTable pageTable, int start, int dst, byte[] out, int size) {
 		debug("Reading block from " + start + " to " + (size + size) + " (" + size + ")");
 		// TODO: bound checking
 
@@ -108,7 +108,7 @@ public class Memory {
 		int startPage = getPageId(start);
 		int endPage = getPageId(start + size);
 
-		page = getPage(context, startPage);
+		page = getPage(pageTable, startPage);
 		if (startPage == endPage) {
 			page.readBlock(start - page.getStart(), dst, out, size);
 			return;
@@ -117,16 +117,16 @@ public class Memory {
 
 		int curPos = MemoryPage.size;
 		for (int currentPage = start + 1; currentPage < endPage; currentPage++) {
-			page = getPage(context, getPageId(curPos));
+			page = getPage(pageTable, getPageId(curPos));
 			page.readBlock(0, dst + curPos, out, MemoryPage.size);
 			curPos += MemoryPage.size;
 		}
 
-		page = getPage(context, endPage);
+		page = getPage(pageTable, endPage);
 		page.readBlock(0, curPos, out, size - curPos);
 	}
 
-	public void writeBlock(Context context, int start, int src, byte[] data, int size) {
+	public void writeBlock(PageTable pageTable, int start, int src, byte[] data, int size) {
 		debug("Writing block from " + start + " to " + (size + size) + " (" + size + ")");
 		// TODO: bound checking
 
@@ -134,7 +134,7 @@ public class Memory {
 		int startPage = getPageId(start);
 		int endPage = getPageId(start + size);
 
-		page = getPage(context, startPage);
+		page = getPage(pageTable, startPage);
 		if (startPage == endPage) {
 			page.writeBlock(start - page.getStart(), src, data, size);
 			return;
@@ -143,24 +143,24 @@ public class Memory {
 
 		int curPos = MemoryPage.size;
 		for (int currentPage = start + 1; currentPage < endPage; currentPage++) {
-			page = getPage(context, getPageId(curPos));
+			page = getPage(pageTable, getPageId(curPos));
 			page.writeBlock(0, src + curPos, data, MemoryPage.size);
 			curPos += MemoryPage.size;
 		}
 
-		page = getPage(context, endPage);
+		page = getPage(pageTable, endPage);
 		page.writeBlock(0, curPos, data, size - curPos);
 	}
 
-	public MemoryPage getPage(Context context, int id) {
+	public MemoryPage getPage(PageTable pageTable, int id) {
 		if (id > maxPageId) {
 			// TODO: throw out of memory error
 		} else if (id < 0) {
 			// TODO: throw invalid page id error
 		}
 
-		if (context.isMappingEnabled()) {
-			id = context.getPageMapping(id);
+		if (pageTable.isMappingEnabled()) {
+			id = pageTable.getPageMapping(id);
 		}
 
 		if (pages.containsKey(id))
