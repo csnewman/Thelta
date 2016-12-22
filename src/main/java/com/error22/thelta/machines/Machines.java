@@ -1,7 +1,7 @@
 package com.error22.thelta.machines;
 
-import com.error22.thelta.common.CraftingItem;
-import com.error22.thelta.common.CreativeTabCraftingMaterials;
+import com.error22.thelta.machines.blocks.BlockBasic;
+import com.error22.thelta.minivox.creativetabs.CreativeTabMinivox;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.Stage;
 import com.error22.thelta.pipeline.StageMethod;
@@ -12,12 +12,13 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Stages({ @Stage(name = "craft_init_config"), @Stage(name = "craft_init_items"),
-		@Stage(name = "craft_init_blocks"), @Stage(name = "craft_init_entities", after = { "craft_init_blocks" }),
+@Stages({ @Stage(name = "craft_init_config"), @Stage(name = "craft_init_items"), @Stage(name = "craft_init_blocks"),
+		@Stage(name = "craft_init_entities", after = { "craft_init_blocks" }),
 		@Stage(name = "craft_init_recipes", after = { "craft_init_items", "craft_init_blocks" }),
 		@Stage(name = "craft_init_renderers") })
 public class Machines {
 
+	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("myMod");
 	// blocks
 	public static Block blockConvayorT1;
 	public static Block blockBurnerMachineArm;
@@ -33,12 +34,12 @@ public class Machines {
 
 	@StageMethod(stage = "craft_init_blocks", pass = Pass.PreInit)
 	private static void init_blocks() {
-
+		blockConvayorT1 = new BlockBasic("convayorbeltt1");
 	}
 
 	@StageMethod(stage = "craft_init_items", pass = Pass.PreInit)
 	private static void init_items() {
-		
+
 	}
 
 	@StageMethod(stage = "craft_init_entities", pass = Pass.PreInit)
