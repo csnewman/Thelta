@@ -1,12 +1,6 @@
 package com.error22.thelta.virtualsystem;
 
-import java.nio.ByteBuffer;
-import java.util.Random;
-
-import javax.swing.text.AbstractDocument.Content;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 public class Memory {

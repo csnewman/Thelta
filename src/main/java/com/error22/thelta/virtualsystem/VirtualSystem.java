@@ -24,13 +24,19 @@ public class VirtualSystem {
 		Core core = processor.getCore(0);
 
 		ProgramWriter writer = new ProgramWriter(memory);
-		writer.loadByte((byte) 2);
-		writer.loadByte((byte) 3);
+		writer.loadConstByte((byte) 11);
+		writer.loadConstByte((byte) 10);
+		writer.loadConstByte((byte) 12);
+		writer.loadConstByte((byte) -50);
 		writer.addBytes();
-		writer.debugPrintByte();
+		writer.addBytes();
+		writer.addBytes();
+		writer.debugPrintSByte();
 		core.setupStack(writer.getPosition(), writer.getPosition() + 100, writer.getPosition());
-		
-		for(int i = 0; i < writer.getInstructionCount(); i++){
+
+		System.out.println("Stack start " + writer.getPosition());
+
+		for (int i = 0; i < writer.getInstructionCount(); i++) {
 			core.step();
 		}
 

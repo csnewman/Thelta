@@ -2,9 +2,6 @@ package com.error22.thelta.virtualsystem;
 
 import java.util.Random;
 
-import com.google.common.primitives.UnsignedInteger;
-import com.google.common.primitives.UnsignedInts;
-
 public class MemoryPage {
 	private static Random random = new Random();
 	private static final boolean DEBUG = false;
