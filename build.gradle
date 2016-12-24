@@ -63,7 +63,7 @@ configurations {
 uploadArchives {
 	repositories {
 		 mavenDeployer {
-			repository(url: System.getenv('JENKINS_MAVEN_URl')) {
+			repository(url: System.getenv('JENKINS_MAVEN_URL')) {
                 authentication(userName: System.getenv('JENKINS_MAVEN_USER'), password: System.getenv('JENKINS_MAVEN_PASS'))
             }
 			pom {
