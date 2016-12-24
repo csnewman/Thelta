@@ -1,8 +1,9 @@
-itemGroup.machinecraftingmaterials=Thelta Machine Crafting Materials
+itemGroup.machinecraftingmaterials=Thelta Crafting Materials
+itemGroup.machinescreativetab=Thelta Machines
+itemGroup.minivox=Thelta Minivox
 
 item.exampleingredient.name=Example Ingredient
 item.testitem.name=Test Item
-
 item.steelingot.name=Steel Ingot
 item.bronzeingot.name=Bronze Ingot
 item.tiningot.name=Tin Ingot
@@ -26,7 +27,36 @@ item.coperwire.name=Copper Wire
 item.goldwire.name=Gold Wire
 item.rubberjacket.name=Rubber Jacket
 item.machinearm.name=Machine Arm
+item.smallrubberwasher.name=Small Rubber Washer
+item.smallironwasher.name=Small Iron Washer
+item.smallsteelwasher.name=Small Steel Washer
+item.rubberwasher.name=Rubber Washer
+item.ironwasher.name=Iron Washer
+item.steelwasher.name=Steel Washer
+item.largerubberwasher.name=Large Rubber Washer
+item.largeironwasher.name=Large Iron Washer
+item.largesteelwasher.name=Large Steel Washer
+item.thickrubberwasher.name=Thick Rubber Washer
+item.thickironwasher.name=Thick Iron Washer
+item.thicksteelwasher.name=Thick Steel Washer
+item.ironnut.name=Iron Nut
+item.steelnut.name=Steel Nut
+item.ironbolt.name=Iron Bolt
+item.steelbolt.name=Steel Bolt
+item.plasticrivets.name=Plastic Rivet
+item.ironrivets.name=Iron Rivet
+item.steelrivets.name=Steel Rivet
+item.plasticcasing.name=Plastic Casing
+item.ironcasing.name=Iron Casing
+item.steelcasing.name=Steel Casing
+item.plastichousing.name=Plastic Housing
+item.ironhousing.name=Iron Housing
+item.steelhousing.name=Steel Housing
+item.plasticpanel.name=Plastic Panel
+item.ironpanel.name=Iron Panel
+item.steelpanel.name=Steel Panel
 
+tile.machinearm.name=[Development] Machine Arm
 tile.rottenfleshblock.name=Rotten Flesh Block
 tile.testblock.name=Test Block
 

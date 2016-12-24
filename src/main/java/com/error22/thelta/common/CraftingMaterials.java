@@ -24,8 +24,8 @@ public class CraftingMaterials {
 	// Creative Tab
 	public static CreativeTabCraftingMaterials creativeTabCraftingMaterials = new CreativeTabCraftingMaterials(
 			"machinecraftingmaterials");;
-			
-	//Automatic item render handeling
+
+	// Automatic item render handeling
 	public static List<Item> itemsToBeRegisteredByRender = new ArrayList<Item>();
 
 	// items
@@ -66,7 +66,7 @@ public class CraftingMaterials {
 	public static Item itemThickRubberWasher;
 	public static Item itemThickIronWasher;
 	public static Item itemThickSteelWasher;
-	
+
 	public static Item itemIronNut;
 	public static Item itemSteelNut;
 	public static Item itemIronBolt;
@@ -101,9 +101,7 @@ public class CraftingMaterials {
 		itemBronzeIngot = new CraftingItem("bronzeingot");
 		itemTinIngot = new CraftingItem("tiningot");
 		itemCopperIngot = new CraftingItem("copperingot");
-
 		// crafting materials
-		//part1
 		itemRubber = new CraftingItem("rubber");
 		itemPlastic = new CraftingItem("plastic");
 		itemBallBearing = new CraftingItem("bearing");
@@ -114,7 +112,6 @@ public class CraftingMaterials {
 		itemPlasticGasket = new CraftingItem("plasticgasket");
 		itemPipeSealent = new CraftingItem("pipesealent");
 		itemServeoMoter = new CraftingItem("servomoter");
-		//part2
 		itemElectricMotor = new CraftingItem("electricmotor");
 		itemBurnerMotor = new CraftingItem("burnermotor");
 		itemPCBBoard = new CraftingItem("pcbboard");
@@ -125,7 +122,6 @@ public class CraftingMaterials {
 		itemRubberJacket = new CraftingItem("rubberjacket");
 		itemSmallRubberWasher = new CraftingItem("smallrubberwasher");
 		itemSmallIronWasher = new CraftingItem("smallironwasher");
-		//part3
 		itemSmallSteelWasher = new CraftingItem("smallsteelwasher");
 		itemRubberWasher = new CraftingItem("rubberwasher");
 		itemIronWasher = new CraftingItem("ironwasher");
@@ -136,7 +132,6 @@ public class CraftingMaterials {
 		itemThickRubberWasher = new CraftingItem("thickrubberwasher");
 		itemThickIronWasher = new CraftingItem("thickironwasher");
 		itemThickSteelWasher = new CraftingItem("thicksteelwasher");
-		//part4
 		itemIronNut = new CraftingItem("ironnut");
 		itemSteelNut = new CraftingItem("steelnut");
 		itemIronBolt = new CraftingItem("ironbolt");
@@ -147,7 +142,6 @@ public class CraftingMaterials {
 		itemPlasticCasing = new CraftingItem("plasticcasing");
 		itemIronCasing = new CraftingItem("ironcasing");
 		itemSteelCasing = new CraftingItem("steelcasing");
-		//part5
 		itemPlasticHousing = new CraftingItem("plastichousing");
 		itemIronHousing = new CraftingItem("ironhousing");
 		itemSteelHousing = new CraftingItem("steelhousing");
@@ -169,9 +163,9 @@ public class CraftingMaterials {
 	@SideOnly(Side.CLIENT)
 	@StageMethod(stage = "machine_init_renderers", pass = Pass.Init, client = true)
 	private static void init_renderers() {
-		for(Item item : itemsToBeRegisteredByRender) {
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
-					new ModelResourceLocation(Thelta.MODID + ":" + item.getRegistryName().getResourcePath(), "inventory"));
+		for (Item item : itemsToBeRegisteredByRender) {
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(
+					Thelta.MODID + ":" + item.getRegistryName().getResourcePath(), "inventory"));
 		}
 	}
 }
