@@ -44,7 +44,7 @@ public class Minivox {
 	public static final String stagenameHandleRender	= "minivox-handlerenderers";
 	
 	//forge variables
-	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("myMod");
+	public static final CreativeTabMinivox creativetab = new CreativeTabMinivox("minivox");
 	public static Item testItem;
 	public static Item tacogodring;
 	public static QuickBlock rottenFleshBlock;

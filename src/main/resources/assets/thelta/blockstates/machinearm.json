@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "thelta:machinearm_base" }
+        "normal": { "model": "thelta:machinearm" }
     }
 }
