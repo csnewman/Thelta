@@ -2,7 +2,13 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
-		maven { url "http://error22.com:8081/repository/public/"}
+		maven {
+			if (System.getenv("BUILD_NUMBER") != null){
+				url = System.getenv('JENKINS_MAVEN_URL')
+			}else{
+				url = "http://error22.com:8081/repository/public/"
+			}
+		}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
