@@ -2,6 +2,7 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
+		maven { url "http://error22.com:8081/repository/public/"}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
@@ -52,4 +53,63 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+configurations {
+	deployerJars
+}
+
+
+uploadArchives {
+	repositories {
+		 mavenDeployer {
+			repository(url: "http://error22.com:8081/repository/public/") {
+                authentication(userName: "jenkins", password: System.getenv('JENKINS_MAVEN_PASS'))
+            }
+			pom {
+                groupId = project.group
+                version = project.version
+                artifactId = project.archivesBaseName
+				
+				project{
+					name project.archivesBaseName
+                    packaging 'jar'
+                    description 'A new tech mod'
+                    url 'https://github.com/Error22/Thelta'
+					
+					scm {
+                        url 'https://github.com/Error22/Thelta'
+                        connection 'scm:git:git://github.com/Error22/Thelta.git'
+                        developerConnection 'scm:git:git@github.com:Error22/Thelta.git'
+                    }
+						
+					issueManagement {
+                        system 'github'
+                        url 'https://github.com/Error22/Thelta/issues'
+                    }
+					
+					licenses {
+                        license {
+                            name 'GNU LESSER GENERAL PUBLIC LICENSE 3'
+                            url 'https://github.com/Error22/Thelta/blob/master/LICENSE'
+                            distribution 'repo'
+                        }
+                    }
+						
+					developers {
+                        developer {
+                            id 'CSNewman'
+                            name 'CSNewman'
+                            roles { role 'developer' }
+                        }
+                        developer {
+                            id 'rater193'
+                            name 'rater193'
+                            roles { role 'developer' }
+                        }
+                    }			
+				}
+			}
+		}
+	}
 }
