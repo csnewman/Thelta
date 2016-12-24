@@ -63,8 +63,8 @@ configurations {
 uploadArchives {
 	repositories {
 		 mavenDeployer {
-			repository(url: "http://error22.com:8081/repository/public/") {
-                authentication(userName: "jenkins", password: System.getenv('JENKINS_MAVEN_PASS'))
+			repository(url: System.getenv('JENKINS_MAVEN_URl')) {
+                authentication(userName: System.getenv('JENKINS_MAVEN_USER'), password: System.getenv('JENKINS_MAVEN_PASS'))
             }
 			pom {
                 groupId = project.group
