@@ -3,6 +3,8 @@ package com.error22.thelta.machines;
 import com.error22.thelta.machines.blocks.BlockConvayorBelt;
 import com.error22.thelta.machines.blocks.BlockMachinearm;
 import com.error22.thelta.machines.creativetabs.CreativeTabMachines;
+import com.error22.thelta.machines.renderers.machinearm.TileEntityRendererMachineArm;
+import com.error22.thelta.machines.tileentities.TileEntityMachinearm;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.Stage;
 import com.error22.thelta.pipeline.StageMethod;
@@ -10,6 +12,8 @@ import com.error22.thelta.pipeline.Stages;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,10 +28,6 @@ public class Machines {
 	public static Block blockConvayorT1;
 	public static Block blockBurnerMachineArm;
 	public static Block blockMachinearm;
-
-	// block items
-	public static Item blockItemConvayorT1;
-	public static Item blockItemBurnerMachineArm;
 
 	@StageMethod(stage = "craft_init_config", pass = Pass.PreInit)
 	private static void init_config() {
@@ -51,7 +51,8 @@ public class Machines {
 
 	@StageMethod(stage = "craft_init_entities", pass = Pass.PreInit)
 	private static void init_entities() {
-
+		//Tile entities
+		GameRegistry.registerTileEntity(TileEntityMachinearm.class, "thelta_machinearm");
 	}
 
 	@StageMethod(stage = "craft_init_recipes", pass = Pass.PreInit)
@@ -62,6 +63,7 @@ public class Machines {
 	@SideOnly(Side.CLIENT)
 	@StageMethod(stage = "craft_init_renderers", pass = Pass.PreInit, client = true)
 	private static void init_renderers() {
-
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachinearm.class,
+				new TileEntityRendererMachineArm());
 	}
 }

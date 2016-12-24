@@ -35,7 +35,6 @@ public class BlockConvayorBelt extends BlockBasic {
 	@Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn)
     {
-        state = state.getActualState(worldIn, pos);
         addCollisionBoxToList(pos, entityBox, collidingBoxes, MainColisionBox);
     }
 

@@ -1,6 +1,6 @@
-# Blender v2.77 (sub 0) OBJ File: 'MachineArm_Base.blend'
+# Blender v2.77 (sub 0) OBJ File: 'machinearm_base.blend'
 # www.blender.org
-mtllib MachineArm_Base.mtl
+mtllib machinearm_base.mtl
 o Cube
 v 1.000000 0.000000 -1.000000
 v 1.000000 0.000000 1.000000
