@@ -1,6 +1,7 @@
 package com.error22.thelta.machines;
 
 import com.error22.thelta.machines.blocks.BlockConvayorBelt;
+import com.error22.thelta.machines.blocks.BlockMachinearm;
 import com.error22.thelta.minivox.creativetabs.CreativeTabMinivox;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.Stage;
@@ -9,6 +10,9 @@ import com.error22.thelta.pipeline.Stages;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,6 +26,7 @@ public class Machines {
 	// blocks
 	public static Block blockConvayorT1;
 	public static Block blockBurnerMachineArm;
+	public static Block blockMachinearm;
 
 	// block items
 	public static Item blockItemConvayorT1;
@@ -29,12 +34,15 @@ public class Machines {
 
 	@StageMethod(stage = "craft_init_config", pass = Pass.PreInit)
 	private static void init_config() {
-
+		//ResourceLocation texture = new ResourceLocation(YourMod.MODID, "models/[Your Block]Texture.png");
+        //ResourceLocation objModelLocation = new ResourceLocation(YourMod.MODID, "models/[Your Block]Model.obj");
+        //IModel model = OBJLoader.INSTANCE.loadModel(objModelLocation);
 	}
 
 	@StageMethod(stage = "craft_init_blocks", pass = Pass.PreInit)
 	private static void init_blocks() {
 		blockConvayorT1 = new BlockConvayorBelt("convayorbeltt1");
+		blockMachinearm = new BlockMachinearm("machinearm");
 	}
 
 	@StageMethod(stage = "craft_init_items", pass = Pass.PreInit)

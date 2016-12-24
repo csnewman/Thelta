@@ -6,7 +6,7 @@
 	},
 	"elements": [
 		{
-			"__comment": "Cube1",
+			"__comment": "rail1",
 			"from": [ 1, 0, 0 ],
 			"to": [ 2, 1, 16 ],
 			"faces": {
@@ -19,20 +19,20 @@
 			}
 		},
 		{
-			"__comment": "Cube2",
+			"__comment": "belt",
 			"from": [ 2, 0, 0 ],
 			"to": [ 14, 0.5, 16 ],
 			"faces": {
 				"down": { "uv": [ 1, 0, 15, 16 ], "texture": "#texture" },
 				"up": { "uv": [ 1, 0, 15, 16 ], "texture": "#texture" },
-				"north": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" },
+				"north": { "uv": [ 1, 16, 15, 15.5 ], "texture": "#texture" },
 				"south": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" },
 				"west": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" },
 				"east": { "uv": [ 1, 15.5, 15, 16 ], "texture": "#texture" }
 			}
 		},
 		{
-			"__comment": "Cube1",
+			"__comment": "rail2",
 			"from": [ 14, 0, 0 ],
 			"to": [ 15, 1, 16 ],
 			"faces": {

@@ -1,0 +1,61 @@
+{
+	"__comment": "Designed by Csnewman with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "blocks/e_particle",
+		"texture": "MachineArmBase"
+	},
+	"elements": [
+		{
+			"__comment": "Cube1",
+			"from": [ 5, 0.5, 5 ],
+			"to": [ 11, 1, 11 ],
+			"faces": {
+				"down": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"up": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"north": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Cube1",
+			"from": [ 6, 1, 6 ],
+			"to": [ 10, 3, 10 ],
+			"faces": {
+				"down": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"up": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"north": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Cube3",
+			"from": [ 2, 0, 2 ],
+			"to": [ 14, 0.5, 14 ],
+			"faces": {
+				"down": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"up": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"north": { "uv": [ 2, 15.5, 14, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 15.5, 14, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 2, 15.5, 14, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 2, 15.5, 14, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Cube1",
+			"from": [ 5, 3, 5 ],
+			"to": [ 11, 3.5, 11 ],
+			"faces": {
+				"down": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"up": { "uv": [ 2, 3, 14, 15 ], "texture": "#texture" },
+				"north": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 2, 15, 14, 16 ], "texture": "#texture" }
+			}
+		}
+	]
+}

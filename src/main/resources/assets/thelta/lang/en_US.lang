@@ -25,6 +25,7 @@ item.advancedcircuit.name=Advanced Circuit
 item.coperwire.name=Copper Wire
 item.goldwire.name=Gold Wire
 item.rubberjacket.name=Rubber Jacket
+item.machinearm.name=Machine Arm
 
 tile.rottenfleshblock.name=Rotten Flesh Block
 tile.testblock.name=Test Block

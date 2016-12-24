@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "thelta:items/tacogodsummonring"
+        "layer0": "thelta:items/placeholder"
     },
     "display": {
         "thirdperson": {
