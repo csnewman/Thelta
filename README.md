@@ -1,1 +1,1 @@
-# Thelta
+# Thelta [![Build Status](http://error22.com:8080/buildStatus/icon?job=Thelta)](http://error22.com:8080/job/Thelta/)
