@@ -1,19 +1,24 @@
 buildscript {
     repositories {
-        jcenter()
+	    jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
-		maven {
-			if (System.getenv("BUILD_NUMBER") != null){
-				url = System.getenv('JENKINS_MAVEN_URL')
-			}else{
-				url = "http://error22.com:8081/repository/public/"
-			}
-		}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
+
+repositories {
+	maven {
+		name = "error22"
+		if(System.getenv("JENKINS_MAVEN_URL") != null){
+			url = System.getenv("JENKINS_MAVEN_URL")
+		}else{
+			url = "http://error22.com:8081/repository/public"	
+		}
+	}
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven' 
 
@@ -43,7 +48,18 @@ minecraft {
     mappings = config.mappings_version
 }
 
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
+
 dependencies {
+	embed "com.error22.elang:elang-java:1.0-+"
+}
+
+jar {
+    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
 processResources
