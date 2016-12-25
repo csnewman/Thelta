@@ -26,7 +26,7 @@ public class BlockMachinearm extends BlockContainer {
 	public Item blockItem;
 	
 	//Temporary, update this later!
-    public static final AxisAlignedBB MainColisionBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+    public static final AxisAlignedBB MainColisionBox = new AxisAlignedBB(-0.5D, 0.0D, -0.5D, 1.5D, 2D, 1.5D);
 
 	public BlockMachinearm(String itemname) {
 		super(Material.ROCK);
