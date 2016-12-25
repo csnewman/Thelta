@@ -42,8 +42,6 @@ public class Machines {
 
 	@StageMethod(stage = "craft_init_blocks", pass = Pass.PreInit)
 	private static void init_blocks() {
-		OBJLoader.INSTANCE.addDomain(Thelta.MODID);
-		
 		blockConvayorT1 = new BlockConvayorBelt("convayorbeltt1");
 		blockMachinearm = new BlockMachinearm("machinearm");
 	}
