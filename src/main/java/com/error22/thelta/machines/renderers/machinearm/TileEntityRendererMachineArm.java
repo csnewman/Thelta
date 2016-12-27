@@ -251,14 +251,18 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		renderModel(bakedModelArmUpper);
 		GlStateManager.translate(0, 1.2, 0);
 		
-		te.entityitem.rotationPitch = 0f;
-		te.entityitem.rotationYaw = 0f;
-		te.entityitem.height = 0f;
-		te.entityitem.hoverStart = 0f;
-		te.entityitem.setAngles(0, 0);
-		te.entityitem.setRotationYawHead(0);
-		te.entityitem.setRenderYawOffset(0);
-		Minecraft.getMinecraft().getRenderManager().doRenderEntity(te.entityitem, 0, 0, 0, 0, 0, false);
+		try {
+			if(te.entityitem!=null) {
+				te.entityitem.height = 0f;
+				te.entityitem.hoverStart = 0f;
+				te.entityitem.setAngles(0, 0);
+				te.entityitem.setRotationYawHead(0);
+				te.entityitem.setRenderYawOffset(0);
+				Minecraft.getMinecraft().getRenderManager().doRenderEntity(te.entityitem, 0, 0, 0, 0, 0, false);
+			}
+		}catch(Exception e) {
+			System.err.println("[ERR] [RENDERING] Failed to render machine arm item!");
+		}
 
 		// GlStateManager.disableRescaleNormal();
 		// GlStateManager.enableLighting();

@@ -33,11 +33,7 @@ public class Machines {
 
 	@StageMethod(stage = "craft_init_config", pass = Pass.PreInit)
 	private static void init_config() {
-		// ResourceLocation texture = new ResourceLocation(YourMod.MODID,
-		// "models/[Your Block]Texture.png");
-		// ResourceLocation objModelLocation = new
-		// ResourceLocation(YourMod.MODID, "models/[Your Block]Model.obj");
-		// IModel model = OBJLoader.INSTANCE.loadModel(objModelLocation);
+		
 	}
 
 	@StageMethod(stage = "craft_init_blocks", pass = Pass.PreInit)
