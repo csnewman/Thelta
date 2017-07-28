@@ -1,23 +1,13 @@
 buildscript {
     repositories {
-	    jcenter()
+        jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
-repositories {
-	maven {
-		name = "error22"
-		if(System.getenv("JENKINS_MAVEN_URL") != null){
-			url = System.getenv("JENKINS_MAVEN_URL")
-		}else{
-			url = "http://error22.com:8081/repository/public"	
-		}
-	}
-}
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven' 
@@ -55,7 +45,6 @@ configurations {
 
 
 dependencies {
-	embed "com.error22.elang:elang-java:1.0-+"
 }
 
 jar {
