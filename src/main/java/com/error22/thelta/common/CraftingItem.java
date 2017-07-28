@@ -1,7 +1,7 @@
 package com.error22.thelta.common;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class CraftingItem extends Item {
 	public CraftingItem(String itemname) {
@@ -10,7 +10,7 @@ public class CraftingItem extends Item {
 		setRegistryName(itemname);
 		setUnlocalizedName(itemname);
 		setCreativeTab(CraftingMaterials.creativeTabCraftingMaterials);
-		GameRegistry.register(this);
+		ForgeRegistries.ITEMS.register(this);
 		CraftingMaterials.itemsToBeRegisteredByRender.add(this);
 	}
 }

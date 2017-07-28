@@ -4,6 +4,7 @@ import com.error22.thelta.Thelta;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class MinivoxSoundEvents {
@@ -27,7 +28,9 @@ public class MinivoxSoundEvents {
 	
 	private static SoundEvent registerSound(String soundName) {
 		final ResourceLocation soundID = new ResourceLocation(Thelta.MODID, soundName);
-		return GameRegistry.register(new SoundEvent(soundID).setRegistryName(soundID));
+		SoundEvent event = new SoundEvent(soundID).setRegistryName(soundID);
+		ForgeRegistries.SOUND_EVENTS.register(event);
+		return event;
 	}
 
 }

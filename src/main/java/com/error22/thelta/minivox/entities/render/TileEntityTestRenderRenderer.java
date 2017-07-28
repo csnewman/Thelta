@@ -12,9 +12,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 public class TileEntityTestRenderRenderer extends TileEntitySpecialRenderer<TileEntityTestRender> {
 
 	@Override
-	public void renderTileEntityAt(TileEntityTestRender te, double x, double y, double z, float partialTicks,
-			int destroyStage) {
-		//super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
+	public void render(TileEntityTestRender te, double x, double y, double z, float partialTicks, int destroyStage,
+			float alpha) {
 
 		GlStateManager.pushMatrix();
 		GlStateManager.disableLighting();

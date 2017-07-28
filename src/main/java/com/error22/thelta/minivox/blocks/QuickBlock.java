@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class QuickBlock extends Block {
@@ -28,8 +29,8 @@ public class QuickBlock extends Block {
 	private ItemBlock registerSimpleBlock() {
 		ItemBlock item = new ItemBlock(this);
 		item.setRegistryName(getRegistryName());
-		GameRegistry.register(this);
-		GameRegistry.register(item);
+		ForgeRegistries.BLOCKS.register(this);
+		ForgeRegistries.ITEMS.register(item);
 		return item;
 	}
 	

@@ -9,6 +9,7 @@ import com.error22.thelta.pipeline.Stages;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,12 +23,12 @@ public class TheltaTubes {
 	@StageMethod(stage = tubesStage, pass = Pass.PreInit)
 	private static void registerTubes() {
 		basicTube = new BlockTube("tube_basic");
-		GameRegistry.register(basicTube);
+		ForgeRegistries.BLOCKS.register(basicTube);
 		GameRegistry.registerTileEntity(TileEntityTube.class, "thelta_tube");
 
 		basicTubeItem = new ItemBlock(basicTube);
 		basicTubeItem.setRegistryName(basicTube.getRegistryName());
-		GameRegistry.register(basicTubeItem);
+		ForgeRegistries.ITEMS.register(basicTubeItem);
 	}
 
 	@SideOnly(Side.CLIENT)

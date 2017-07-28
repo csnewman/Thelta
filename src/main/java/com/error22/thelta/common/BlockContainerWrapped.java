@@ -21,25 +21,25 @@ public abstract class BlockContainerWrapped extends BlockContainer {
 	protected BlockContainerWrapped(Material material) {
 		super(material);
 	}
-	
+
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer) {
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+			float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		for (int x = -1; x < 2; x++) {
 			for (int y = -1; y < 2; y++) {
 				for (int z = -1; z < 2; z++) {
 					if (x == 0 && y == 0 && z == 0)
 						continue;
 					BlockPos pos1 = pos.add(x, y, z);
-					if (worldIn.getBlockState(pos1).getBlock() instanceof BlockContainerWrapped) {
-						getTileEntity(worldIn, pos1).onNeighborChange(pos);
+					if (world.getBlockState(pos1).getBlock() instanceof BlockContainerWrapped) {
+						getTileEntity(world, pos1).onNeighborChange(pos);
 					}
 				}
 			}
 		}
 		return getDefaultState();
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
 			ItemStack stack) {

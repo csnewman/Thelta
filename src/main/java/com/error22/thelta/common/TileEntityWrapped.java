@@ -33,8 +33,7 @@ public class TileEntityWrapped extends TileEntity implements ITickable {
 	public void onFirstRun() {
 	}
 
-	public void onBlockPlacedBy(IBlockState state, EntityLivingBase placer,
-			ItemStack stack){
+	public void onBlockPlacedBy(IBlockState state, EntityLivingBase placer, ItemStack stack) {
 	}
 
 	public boolean onBlockActivated(IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
@@ -46,21 +45,21 @@ public class TileEntityWrapped extends TileEntity implements ITickable {
 	}
 
 	public void markForRedraw() {
-		if (hasWorldObj() && worldObj.isRemote) {
-			IBlockState state = worldObj.getBlockState(pos);
-			worldObj.notifyBlockUpdate(pos, state, state, 0);
+		if (hasWorld() && world.isRemote) {
+			IBlockState state = world.getBlockState(pos);
+			world.notifyBlockUpdate(pos, state, state, 0);
 
 			double x = getPos().getX() + 0.5;
 			double y = getPos().getY() + 0.5;
 			double z = getPos().getZ() + 0.5;
-			worldObj.spawnParticle(EnumParticleTypes.HEART, x, y, z, 0, 0, 0);
+			world.spawnParticle(EnumParticleTypes.HEART, x, y, z, 0, 0, 0);
 		}
 	}
 
 	public void markForUpdate() {
-		if (hasWorldObj()) {
-			IBlockState state = worldObj.getBlockState(pos);
-			worldObj.notifyBlockUpdate(pos, state, state, 0);
+		if (hasWorld()) {
+			IBlockState state = world.getBlockState(pos);
+			world.notifyBlockUpdate(pos, state, state, 0);
 		}
 	}
 

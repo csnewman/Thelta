@@ -20,9 +20,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -70,8 +75,8 @@ public class Minivox {
 
 		GameRegistry.registerTileEntity(TileEntityTestRender.class, "thelta_testrenderblock");
 		
-		GameRegistry.addRecipe(new ItemStack(rottenFleshBlock), "AAA", "AAA", "AAA", 'A', Items.ROTTEN_FLESH);
-		GameRegistry.addRecipe(new ItemStack(tacogodring), " A ", "B B", " B ", 'A', Blocks.LAPIS_BLOCK, 'B', Items.GOLD_INGOT);
+//		GameRegistry.addRecipe(new ItemStack(rottenFleshBlock), "AAA", "AAA", "AAA", 'A', Items.ROTTEN_FLESH);
+//		GameRegistry.addRecipe(new ItemStack(tacogodring), " A ", "B B", " B ", 'A', Blocks.LAPIS_BLOCK, 'B', Items.GOLD_INGOT);
 	}
 	
 	

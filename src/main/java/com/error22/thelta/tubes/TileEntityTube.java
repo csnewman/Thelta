@@ -40,7 +40,7 @@ public class TileEntityTube extends TileEntityWrapped {
 	@Override
 	public boolean onBlockActivated(IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
 			float side, float hitX, float hitY) {
-		if (worldObj.isRemote)
+		if (world.isRemote)
 			return false;
 		boolean shouldDye = (playerIn.getHeldItemMainhand().getItem() instanceof ItemDye);
 
@@ -63,7 +63,7 @@ public class TileEntityTube extends TileEntityWrapped {
 		double x = getPos().getX() + 0.5;
 		double y = getPos().getY() + 0.5;
 		double z = getPos().getZ() + 0.5;
-		worldObj.spawnParticle(EnumParticleTypes.BARRIER, x, y, z, 0, 0, 0);
+		world.spawnParticle(EnumParticleTypes.BARRIER, x, y, z, 0, 0, 0);
 
 		connections[EnumFacing.UP.getIndex()] = canConnect(EnumFacing.UP);
 		connections[EnumFacing.DOWN.getIndex()] = canConnect(EnumFacing.DOWN);
@@ -75,7 +75,7 @@ public class TileEntityTube extends TileEntityWrapped {
 	}
 
 	private boolean canConnect(EnumFacing direction) {
-		IBlockState state = worldObj.getBlockState(pos.offset(direction));
+		IBlockState state = world.getBlockState(pos.offset(direction));
 		return state.getBlock() instanceof BlockTube;
 	}
 

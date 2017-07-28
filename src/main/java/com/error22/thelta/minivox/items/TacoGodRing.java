@@ -36,13 +36,13 @@ public class TacoGodRing extends QuickItem {
 				check(world, pos.getX()-1, pos.getY(), pos.getZ()-1)
 				) {
 				EntityLightningBolt lightning = new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), true);
-				world.spawnEntityInWorld(lightning);
+				world.spawnEntity(lightning);
 				player.inventory.deleteStack(player.getHeldItem(hand));
 
 			if(world.isRemote == false) {
 				EntityMinivox minivox = new EntityMinivox(world);
 				minivox.setLocationAndAngles(pos.getX()+0.5f,pos.getY()+1,pos.getZ()+0.5f,0f, 0f);
-				world.spawnEntityInWorld(minivox);
+				world.spawnEntity(minivox);
 			}
 			
 			for(int _x = -1; _x <= 1; _x++) {

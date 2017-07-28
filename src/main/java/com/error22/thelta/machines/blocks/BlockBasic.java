@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockBasic extends Block {
@@ -30,8 +31,8 @@ public class BlockBasic extends Block {
 	private ItemBlock registerSimpleBlock() {
 		ItemBlock item = new ItemBlock(this);
 		item.setRegistryName(getRegistryName());
-		GameRegistry.register(this);
-		GameRegistry.register(item);
+		ForgeRegistries.BLOCKS.register(this);
+		ForgeRegistries.ITEMS.register(item);
 		
 		CraftingMaterials.itemsToBeRegisteredByRender.add(item);
 		return item;

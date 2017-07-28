@@ -12,26 +12,21 @@ import com.error22.thelta.Thelta;
 import com.error22.thelta.computers.CGAColor;
 import com.error22.thelta.machines.tileentities.TileEntityMachinearm;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.Attributes;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.client.model.pipeline.ForgeBlockModelRenderer;
-import net.minecraftforge.client.model.pipeline.LightUtil;
 import net.minecraftforge.common.model.TRSRTransformation;
 
 public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<TileEntityMachinearm> {
@@ -97,7 +92,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 	public static void renderModel(IBakedModel model) {
 
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer buffer = tessellator.getBuffer();
+		BufferBuilder buffer = tessellator.getBuffer();
 
 		// System.out.println("123");
 
@@ -151,7 +146,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 	}
 
-	private void drawPlane_z(VertexBuffer vertexbuffer, double x1, double y1, double x2, double y2, double z) {
+	private void drawPlane_z(BufferBuilder vertexbuffer, double x1, double y1, double x2, double y2, double z) {
 
 		vertexbuffer.pos(x2, y1, z).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
 		vertexbuffer.pos(x1, y1, z).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
@@ -159,7 +154,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		vertexbuffer.pos(x2, y2, z).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
 	}
 
-	private void drawPlane_x(VertexBuffer vertexbuffer, double z1, double y1, double z2, double y2, double x) {
+	private void drawPlane_x(BufferBuilder vertexbuffer, double z1, double y1, double z2, double y2, double x) {
 
 		vertexbuffer.pos(x, y1, z2).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
 		vertexbuffer.pos(x, y1, z1).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
@@ -167,7 +162,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		vertexbuffer.pos(x, y2, z2).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
 	}
 
-	private void drawPlane_y(VertexBuffer vertexbuffer, double x1, double z1, double x2, double z2, double y) {
+	private void drawPlane_y(BufferBuilder vertexbuffer, double x1, double z1, double x2, double z2, double y) {
 		vertexbuffer.pos(x1, y, z2).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
 		vertexbuffer.pos(x1, y, z1).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
 		vertexbuffer.pos(x2, y, z1).tex(0, 1).color(1f, 1f, 1f, 1f).endVertex();
@@ -177,7 +172,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 	private void drawBlock(double x1, double y1, double z1, double x2, double y2, double z2) {
 
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer vertexbuffer = tessellator.getBuffer();
+		BufferBuilder vertexbuffer = tessellator.getBuffer();
 
 		vertexbuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
 		// front/back
@@ -194,10 +189,10 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		tessellator.draw();
 
 	}
-
+	
 	@Override
-	public void renderTileEntityAt(TileEntityMachinearm te, double x, double y, double z, float partialTicks,
-			int destroyStage) {
+	public void render(TileEntityMachinearm te, double x, double y, double z, float partialTicks, int destroyStage,
+			float alpha) {
 		// Here we are generating a temporary texture
 		if (textureId == -1) {
 			textureId = createTexture();
@@ -255,7 +250,6 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 			if(te.entityitem!=null) {
 				te.entityitem.height = 0f;
 				te.entityitem.hoverStart = 0f;
-				te.entityitem.setAngles(0, 0);
 				te.entityitem.setRotationYawHead(0);
 				te.entityitem.setRenderYawOffset(0);
 				Minecraft.getMinecraft().getRenderManager().doRenderEntity(te.entityitem, 0, 0, 0, 0, 0, false);

@@ -19,6 +19,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockMachinearm extends BlockContainer {
@@ -39,8 +40,8 @@ public class BlockMachinearm extends BlockContainer {
 		// Pre-Registering the block
 		blockItem = new ItemBlock(this);
 		blockItem.setRegistryName(getRegistryName());
-		GameRegistry.register(this);
-		GameRegistry.register(blockItem);
+		ForgeRegistries.BLOCKS.register(this);
+		ForgeRegistries.ITEMS.register(blockItem);
 		// Here we are adding out item to the render queue, so we dont have to
 		// register it ourselves :P
 		// (the lazy way out)
@@ -66,10 +67,9 @@ public class BlockMachinearm extends BlockContainer {
 		return false;
 	}
 
-	// This handles the main collision for the block
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
-			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+			List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) {
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, MainColisionBox);
 	}
 

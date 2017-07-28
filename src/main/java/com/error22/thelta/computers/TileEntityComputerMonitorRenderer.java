@@ -2,21 +2,20 @@ package com.error22.thelta.computers;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 public class TileEntityComputerMonitorRenderer extends TileEntitySpecialRenderer<TileEntityComputerMonitor> {
 
 	@Override
-	public void renderTileEntityAt(TileEntityComputerMonitor te, double x, double y, double z, float partialTicks,
-			int destroyStage) {
+	public void render(TileEntityComputerMonitor te, double x, double y, double z, float partialTicks, int destroyStage,
+			float alpha) {
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer vertexbuffer = tessellator.getBuffer();
+		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		int meta = te.getBlockMetadata();
 		TileEntityComputerMonitor monitor = (TileEntityComputerMonitor) te;
 
@@ -52,11 +51,11 @@ public class TileEntityComputerMonitorRenderer extends TileEntitySpecialRenderer
 		GlStateManager.scale(1f, ratio, 1);
 
 		GlStateManager.bindTexture(monitor.getTextureId());
-		vertexbuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-		vertexbuffer.pos(1, 0, 0).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(0, 0, 0).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(0, 1, 0).tex(0, 1).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(1, 1, 0).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
+		bufferbuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+		bufferbuilder.pos(1, 0, 0).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
+		bufferbuilder.pos(0, 0, 0).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
+		bufferbuilder.pos(0, 1, 0).tex(0, 1).color(1f, 1f, 1f, 1f).endVertex();
+		bufferbuilder.pos(1, 1, 0).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
 		tessellator.draw();
 
 		GlStateManager.disableRescaleNormal();

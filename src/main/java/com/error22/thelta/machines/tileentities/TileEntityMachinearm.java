@@ -37,11 +37,6 @@ implements ISidedInventory {
 	}
 
 	@Override
-	public boolean func_191420_l() {
-		return false;
-	}
-
-	@Override
 	public ItemStack getStackInSlot(int index) {
 		// TODO Auto-generated method stub
 		return stack;
@@ -71,11 +66,6 @@ implements ISidedInventory {
 		return 64;
 	}
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		return true;
-	}
 
 	@Override
 	public void openInventory(EntityPlayer player) {
@@ -160,5 +150,17 @@ implements ISidedInventory {
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

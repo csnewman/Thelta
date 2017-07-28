@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,12 +26,12 @@ public class TheltaComputers {
 	@StageMethod(stage = monitorStage, pass = Pass.PreInit)
 	private static void registerMonitors() {
 		basicMonitor = new BasicMonitor("computer_monitor_basic");
-		GameRegistry.register(basicMonitor);
+		ForgeRegistries.BLOCKS.register(basicMonitor);
 		GameRegistry.registerTileEntity(TileEntityComputerMonitor.class, "thelta_computer_monitor");
 
 		basicMonitorItem = new ItemBlock(basicMonitor);
 		basicMonitorItem.setRegistryName(basicMonitor.getRegistryName());
-		GameRegistry.register(basicMonitorItem);
+		ForgeRegistries.ITEMS.register(basicMonitorItem);
 	}
 
 	@SideOnly(Side.CLIENT)
