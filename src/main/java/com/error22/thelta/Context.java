@@ -108,6 +108,13 @@ public class Context {
 		return item;
 	}
 
+	public ItemBlock registerBlock(Block block, String name, CreativeTabs tab) {
+		block.setUnlocalizedName(name);
+		block.setRegistryName(name);
+		block.setCreativeTab(tab);
+		return registerBlock(block);
+	}
+
 	public ItemBlock registerBlock(Block block) {
 		ForgeRegistries.BLOCKS.register(block);
 
