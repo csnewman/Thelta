@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Context {
 	protected ContextState state;
@@ -93,6 +96,20 @@ public class Context {
 		ForgeRegistries.ITEMS.register(item);
 		addAutoItemRendererRegistration(item);
 		return item;
+	}
+
+	public ItemBlock registerBlock(Block block) {
+		ForgeRegistries.BLOCKS.register(block);
+
+		ItemBlock item = new ItemBlock(block);
+		item.setRegistryName(block.getRegistryName());
+		ForgeRegistries.ITEMS.register(item);
+		addAutoItemRendererRegistration(item);
+		return item;
+	}
+
+	public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String key) {
+		GameRegistry.registerTileEntity(tileEntityClass, key);
 	}
 
 	protected void addAutoItemRendererRegistration(Item item) {

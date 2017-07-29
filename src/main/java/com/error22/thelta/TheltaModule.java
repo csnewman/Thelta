@@ -21,7 +21,7 @@ public abstract class TheltaModule {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void registerRenderers(Context context) {
+	public void registerRenderers(ClientContext context) {
 	}
 
 	public void lateInit(Context context) {
