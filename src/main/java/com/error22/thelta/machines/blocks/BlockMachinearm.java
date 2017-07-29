@@ -29,23 +29,8 @@ public class BlockMachinearm extends BlockContainer {
 	// Temporary, update this later!
 	public static final AxisAlignedBB MainColisionBox = new AxisAlignedBB(-0.5D, 0.0D, -0.5D, 1.5D, 2D, 1.5D);
 
-	public BlockMachinearm(String itemname) {
+	public BlockMachinearm() {
 		super(Material.ROCK);
-
-		// Here we are creating the block
-		setUnlocalizedName(itemname);
-		setRegistryName(itemname);
-		setCreativeTab(Machines.creativetab);
-
-		// Pre-Registering the block
-		blockItem = new ItemBlock(this);
-		blockItem.setRegistryName(getRegistryName());
-		ForgeRegistries.BLOCKS.register(this);
-		ForgeRegistries.ITEMS.register(blockItem);
-		// Here we are adding out item to the render queue, so we dont have to
-		// register it ourselves :P
-		// (the lazy way out)
-		CraftingMaterials.itemsToBeRegisteredByRender.add(blockItem);
 	}
 
 	@Override

@@ -30,6 +30,7 @@ public class Thelta {
 	public void preInit(FMLPreInitializationEvent event) {
 		context.addModule(new CraftingMaterials());
 		context.addModule(new TheltaComputers());
+		context.addModule(new Machines());
 		context.preInit(event);
 	}
 
