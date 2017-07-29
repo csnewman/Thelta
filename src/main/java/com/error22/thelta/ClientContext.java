@@ -5,10 +5,13 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientContext extends Context {
 	private List<Item> autoItemRendererRegistrations;
@@ -37,7 +40,13 @@ public class ClientContext extends Context {
 
 	public <T extends TileEntity> void registerTESR(Class<T> tileEntityClass,
 			TileEntitySpecialRenderer<? super T> specialRenderer) {
+		assertState(ContextState.RendererRegistration);
 		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
+	}
+
+	public void registerEntityRenderingHandler(Class<? extends Entity> entityClass, Render<? extends Entity> renderer) {
+		assertState(ContextState.RendererRegistration);
+		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderer);
 	}
 
 }

@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -99,7 +106,11 @@ public class Context {
 
 	public Item createSimpleItem(String name, CreativeTabs tab) {
 		assertState(ContextState.ItemRegistration);
-		Item item = new Item();
+		return registerItem(new Item(), name, tab);
+	}
+
+	public Item registerItem(Item item, String name, CreativeTabs tab) {
+		assertState(ContextState.ItemRegistration);
 		item.setRegistryName(name);
 		item.setUnlocalizedName(name);
 		item.setCreativeTab(tab);
@@ -108,7 +119,14 @@ public class Context {
 		return item;
 	}
 
+	public Block createSimpleBlock(String name, Material material, CreativeTabs tab) {
+		Block block = new Block(material);
+		registerBlock(block, name, tab);
+		return block;
+	}
+
 	public ItemBlock registerBlock(Block block, String name, CreativeTabs tab) {
+		assertState(ContextState.BlockRegistration);
 		block.setUnlocalizedName(name);
 		block.setRegistryName(name);
 		block.setCreativeTab(tab);
@@ -116,6 +134,7 @@ public class Context {
 	}
 
 	public ItemBlock registerBlock(Block block) {
+		assertState(ContextState.BlockRegistration);
 		ForgeRegistries.BLOCKS.register(block);
 
 		ItemBlock item = new ItemBlock(block);
@@ -126,10 +145,25 @@ public class Context {
 	}
 
 	public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String key) {
+		assertState(ContextState.BlockRegistration);
 		GameRegistry.registerTileEntity(tileEntityClass, key);
 	}
 
 	protected void addAutoItemRendererRegistration(Item item) {
+	}
+
+	public SoundEvent registerSound(String soundName) {
+		assertState(ContextState.SoundRegistration);
+		ResourceLocation soundID = new ResourceLocation(Thelta.MODID, soundName);
+		SoundEvent event = new SoundEvent(soundID).setRegistryName(soundID);
+		ForgeRegistries.SOUND_EVENTS.register(event);
+		return event;
+	}
+
+	public void registerMob(int id, String name, Class<? extends Entity> entityClass) {
+		assertState(ContextState.EntityRegistration);
+		EntityRegistry.registerModEntity(new ResourceLocation(Thelta.MODID, "Entity" + name), entityClass, name, id,
+				Thelta.INSTANCE, 80, 3, true, 0, 0);
 	}
 
 	protected void assertState(ContextState state) {
