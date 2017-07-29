@@ -1,12 +1,17 @@
-package com.error22.thelta.virtualsystem;
+package com.error22.thelta.virtualsystem.silver;
 
-public class VirtualSystem {
+import com.error22.thelta.virtualsystem.ICore;
+import com.error22.thelta.virtualsystem.Memory;
+import com.error22.thelta.virtualsystem.Processor;
+
+public class SilverSystem {
 	private Memory memory;
 	private Processor processor;
 
-	public VirtualSystem() {
+	public SilverSystem() {
 		memory = new Memory(2000);
-		processor = new Processor(this, 1);
+		SilverCore core = new SilverCore(memory);
+		processor = new Processor(new ICore[] { core });
 	}
 
 	public Processor getProcessor() {
@@ -18,10 +23,10 @@ public class VirtualSystem {
 	}
 
 	public static void main(String[] args) {
-		VirtualSystem system = new VirtualSystem();
+		SilverSystem system = new SilverSystem();
 		Memory memory = system.getMemory();
 		Processor processor = system.getProcessor();
-		Core core = processor.getCore(0);
+		SilverCore core = (SilverCore) processor.getCore(0);
 
 		ProgramWriter writer = new ProgramWriter(memory);
 		writer.loadConstByte((byte) 11);

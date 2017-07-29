@@ -1,4 +1,4 @@
-package com.error22.thelta.virtualsystem;
+package com.error22.thelta.virtualsystem.silver;
 
 public class Instructions {
 	public static final short DEBUG_PRINT_UB = -1;
