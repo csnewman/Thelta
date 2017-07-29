@@ -203,10 +203,9 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 				for (int y1 = 0; y1 < getResolutionHeight(); y1++) {
 					int base = ((y1 * getResolutionWidth()) + x1) * 3;
 
-					byte[] colorData = CGAColor.getColorBytesData(CGAColor.findColor(255, 255, 255));
-					c_textureData[base] = colorData[0];
-					c_textureData[base + 1] = colorData[1];
-					c_textureData[base + 2] = colorData[2];
+					c_textureData[base] = (byte) 255;
+					c_textureData[base + 1] = (byte) 255;
+					c_textureData[base + 2] = (byte) 255;
 				}
 			}
 

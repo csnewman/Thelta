@@ -55,8 +55,8 @@ public class TileEntityComputerMonitor extends TileEntity {
 	}
 
 	public int getTextureId() {
-//		textureId = -1;
-		if(textureId == -1){
+		// textureId = -1;
+		if (textureId == -1) {
 			textureId = createTexture();
 
 			byte[] c_textureData = new byte[getResolutionWidth() * getResolutionHeight() * 3];
@@ -66,16 +66,17 @@ public class TileEntityComputerMonitor extends TileEntity {
 				for (int y = 0; y < getResolutionHeight(); y++) {
 					int base = ((y * getResolutionWidth()) + x) * 3;
 
-					byte[] colorData = CGAColor.getColorBytesData((byte) rand.nextInt(16));
-					c_textureData[base] = colorData[0];
-					c_textureData[base + 1] = colorData[1];
-					c_textureData[base + 2] = colorData[2];
+					CGAColor color = CGAColor.values()[rand.nextInt(CGAColor.values().length)];
+
+					c_textureData[base] = color.getR();
+					c_textureData[base + 1] = color.getG();
+					c_textureData[base + 2] = color.getB();
 				}
 			}
 
 			pushTextureArray(textureId, getResolutionWidth(), getResolutionHeight(), c_textureData);
 		}
-		
+
 		return textureId;
 	}
 
