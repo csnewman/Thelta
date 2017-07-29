@@ -4,13 +4,12 @@ import com.error22.thelta.common.CraftingMaterials;
 import com.error22.thelta.computers.TheltaComputers;
 import com.error22.thelta.machines.Machines;
 import com.error22.thelta.minivox.Minivox;
-import com.error22.thelta.mobapi.MobAPI;
 import com.error22.thelta.tubes.TheltaTubes;
 
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -32,6 +31,7 @@ public class Thelta {
 		context.addModule(new TheltaComputers());
 		context.addModule(new Machines());
 		context.addModule(new TheltaTubes());
+		context.addModule(new Minivox());
 		context.preInit(event);
 	}
 

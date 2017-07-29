@@ -2,15 +2,13 @@ package com.error22.thelta.minivox.entities.mobs;
 
 import javax.annotation.Nullable;
 
-import com.error22.thelta.minivox.MinivoxSoundEvents;
+import com.error22.thelta.minivox.Minivox;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
@@ -62,22 +60,22 @@ public class EntityMinivox extends EntityAnimal
 
     protected SoundEvent getAmbientSound()
     {
-        return MinivoxSoundEvents.ENTITY_MINIVOX_IDLE;
+        return Minivox.ENTITY_MINIVOX_IDLE;
     }
 
     protected SoundEvent getHurtSound()
     {
-        return MinivoxSoundEvents.ENTITY_MINIVOX_TAKEDAMAGE;
+        return Minivox.ENTITY_MINIVOX_TAKEDAMAGE;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return MinivoxSoundEvents.ENTITY_MINIVOX_DEATH;
+        return Minivox.ENTITY_MINIVOX_DEATH;
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        this.playSound(MinivoxSoundEvents.ENTITY_MINIVOX_WALK, 0.15F, 1.0F);
+        this.playSound(Minivox.ENTITY_MINIVOX_WALK, 0.15F, 1.0F);
     }
 
     /**
