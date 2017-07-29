@@ -28,7 +28,6 @@ public class Thelta {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		context = new Context();
 		context.addModule(new CraftingMaterials());
 		context.preInit(event);
 	}
