@@ -1,4 +1,4 @@
-package com.error22.thelta.machines.blocks;
+package com.error22.thelta.machines;
 
 import java.util.List;
 

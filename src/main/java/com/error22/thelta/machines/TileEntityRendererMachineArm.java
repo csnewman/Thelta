@@ -1,4 +1,4 @@
-package com.error22.thelta.machines.renderers.machinearm;
+package com.error22.thelta.machines;
 
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -10,7 +10,6 @@ import org.lwjgl.opengl.GL12;
 
 import com.error22.thelta.Thelta;
 import com.error22.thelta.computers.CGAColor;
-import com.error22.thelta.machines.tileentities.TileEntityMachinearm;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;

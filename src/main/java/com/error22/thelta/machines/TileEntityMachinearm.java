@@ -1,6 +1,4 @@
-package com.error22.thelta.machines.tileentities;
-
-import com.error22.thelta.machines.containers.ContainerMachinearm;
+package com.error22.thelta.machines;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

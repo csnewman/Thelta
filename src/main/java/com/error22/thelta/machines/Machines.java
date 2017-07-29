@@ -3,10 +3,6 @@ package com.error22.thelta.machines;
 import com.error22.thelta.ClientContext;
 import com.error22.thelta.Context;
 import com.error22.thelta.TheltaModule;
-import com.error22.thelta.machines.blocks.BlockConvayorBelt;
-import com.error22.thelta.machines.blocks.BlockMachinearm;
-import com.error22.thelta.machines.renderers.machinearm.TileEntityRendererMachineArm;
-import com.error22.thelta.machines.tileentities.TileEntityMachinearm;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;

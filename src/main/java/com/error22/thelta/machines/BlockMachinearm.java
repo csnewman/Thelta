@@ -1,12 +1,10 @@
-package com.error22.thelta.machines.blocks;
+package com.error22.thelta.machines;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
 import com.error22.thelta.common.CraftingMaterials;
-import com.error22.thelta.machines.Machines;
-import com.error22.thelta.machines.tileentities.TileEntityMachinearm;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

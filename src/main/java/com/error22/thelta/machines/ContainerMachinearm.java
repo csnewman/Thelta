@@ -1,4 +1,4 @@
-package com.error22.thelta.machines.containers;
+package com.error22.thelta.machines;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
