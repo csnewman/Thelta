@@ -1,8 +1,6 @@
-package com.error22.thelta.minivox.entities.mobs;
+package com.error22.thelta.minivox;
 
 import javax.annotation.Nullable;
-
-import com.error22.thelta.minivox.Minivox;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;

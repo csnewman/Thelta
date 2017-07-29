@@ -1,4 +1,4 @@
-package com.error22.thelta.minivox.models;
+package com.error22.thelta.minivox;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;

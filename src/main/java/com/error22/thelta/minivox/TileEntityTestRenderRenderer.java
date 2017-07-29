@@ -1,8 +1,6 @@
-package com.error22.thelta.minivox.entities.render;
+package com.error22.thelta.minivox;
 
 import org.lwjgl.opengl.GL11;
-
-import com.error22.thelta.minivox.entities.tiles.TileEntityTestRender;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;

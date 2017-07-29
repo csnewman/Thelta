@@ -1,6 +1,4 @@
-package com.error22.thelta.minivox.blocks;
-
-import com.error22.thelta.minivox.entities.tiles.TileEntityTestRender;
+package com.error22.thelta.minivox;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

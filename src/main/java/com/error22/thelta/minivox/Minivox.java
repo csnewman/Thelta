@@ -3,12 +3,6 @@ package com.error22.thelta.minivox;
 import com.error22.thelta.ClientContext;
 import com.error22.thelta.Context;
 import com.error22.thelta.TheltaModule;
-import com.error22.thelta.minivox.blocks.BlockTestRender;
-import com.error22.thelta.minivox.entities.mobs.EntityMinivox;
-import com.error22.thelta.minivox.entities.render.RenderMinivox;
-import com.error22.thelta.minivox.entities.render.TileEntityTestRenderRenderer;
-import com.error22.thelta.minivox.entities.tiles.TileEntityTestRender;
-import com.error22.thelta.minivox.items.TacoGodRing;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

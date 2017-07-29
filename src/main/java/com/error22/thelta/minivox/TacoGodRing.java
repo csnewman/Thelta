@@ -1,7 +1,4 @@
-package com.error22.thelta.minivox.items;
-
-import com.error22.thelta.minivox.Minivox;
-import com.error22.thelta.minivox.entities.mobs.EntityMinivox;
+package com.error22.thelta.minivox;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

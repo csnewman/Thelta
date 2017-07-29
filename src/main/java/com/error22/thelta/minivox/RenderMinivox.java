@@ -1,8 +1,6 @@
-package com.error22.thelta.minivox.entities.render;
+package com.error22.thelta.minivox;
 
 import com.error22.thelta.Thelta;
-import com.error22.thelta.minivox.entities.mobs.EntityMinivox;
-import com.error22.thelta.minivox.models.ModelMinivox;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;

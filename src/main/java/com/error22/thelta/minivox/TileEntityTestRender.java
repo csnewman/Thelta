@@ -1,4 +1,4 @@
-package com.error22.thelta.minivox.entities.tiles;
+package com.error22.thelta.minivox;
 
 import net.minecraft.tileentity.TileEntity;
 
