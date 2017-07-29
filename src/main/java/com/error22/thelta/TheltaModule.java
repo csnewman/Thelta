@@ -20,6 +20,12 @@ public abstract class TheltaModule {
 	public void registerRecipes(Context context) {
 	}
 
+	public void registerSounds(Context context) {
+	}
+
+	public void registerEntities(Context context) {
+	}
+
 	@SideOnly(Side.CLIENT)
 	public void registerRenderers(ClientContext context) {
 	}

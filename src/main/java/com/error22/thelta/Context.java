@@ -64,6 +64,14 @@ public class Context {
 		for (TheltaModule module : modules) {
 			module.registerRecipes(this);
 		}
+		state = ContextState.SoundRegistration;
+		for (TheltaModule module : modules) {
+			module.registerSounds(this);
+		}
+		state = ContextState.EntityRegistration;
+		for (TheltaModule module : modules) {
+			module.registerEntities(this);
+		}
 		initRenderers();
 		state = ContextState.LateInitialization;
 		for (TheltaModule module : modules) {
