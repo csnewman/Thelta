@@ -76,7 +76,7 @@ public class CraftingMaterials extends TheltaModule {
 
 	@Override
 	public void init(Context context) {
-		materialsTab = context.creativeTab("machinecraftingmaterials", () -> itemElectricMotor);
+		materialsTab = context.createTabWithItem("machinecraftingmaterials", () -> itemElectricMotor);
 	}
 
 	@Override

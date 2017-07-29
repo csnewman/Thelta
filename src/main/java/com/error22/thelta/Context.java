@@ -77,7 +77,17 @@ public class Context {
 		state = ContextState.Finished;
 	}
 
-	public CreativeTabs creativeTab(String name, Supplier<Item> icon) {
+	public CreativeTabs createTabWithItem(String name, Supplier<Item> icon) {
+		assertState(ContextState.Initialization);
+		return new CreativeTabs(name) {
+			@Override
+			public ItemStack getTabIconItem() {
+				return new ItemStack(icon.get());
+			}
+		};
+	}
+
+	public CreativeTabs createTabWithBlock(String name, Supplier<Block> icon) {
 		assertState(ContextState.Initialization);
 		return new CreativeTabs(name) {
 			@Override
