@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class CraftingMaterials extends TheltaModule {
 	// Creative Tab
@@ -78,6 +79,14 @@ public class CraftingMaterials extends TheltaModule {
 	public void init(Context context) {
 		materialsTab = context.createTabWithItem("machinecraftingmaterials", () -> itemElectricMotor);
 	}
+	
+	//Here we are regestering the forge ore dictionary for items
+	private void registerOreDict() {
+		OreDictionary.registerOre("ingotSteel", itemSteelIngot);
+		OreDictionary.registerOre("ingotBronze", itemBronzeIngot);
+		OreDictionary.registerOre("ingotTin", itemTinIngot);
+		OreDictionary.registerOre("ingotCopper", itemCopperIngot);
+	}
 
 	@Override
 	public void registerItems(Context context) {
@@ -134,6 +143,8 @@ public class CraftingMaterials extends TheltaModule {
 		itemPlasticPanel = context.createSimpleItem("plasticpanel", materialsTab);
 		itemIronPanel = context.createSimpleItem("ironpanel", materialsTab);
 		itemSteelPanel = context.createSimpleItem("steelpanel", materialsTab);
+		
+		registerOreDict();
 	}
 
 }
