@@ -32,6 +32,6 @@ public class TheltaWorld extends TheltaModule {
 
 	public void postinit() {
 		PutsInWorld putsInWorld = new PutsInWorld();
-		GameRegistry.registerWorldGenerator(putsInWorld, 1);
+		GameRegistry.registerWorldGenerator(putsInWorld, 0);
 	}
 }
