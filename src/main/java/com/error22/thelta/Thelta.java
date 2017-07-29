@@ -5,7 +5,7 @@ import com.error22.thelta.computers.TheltaComputers;
 import com.error22.thelta.machines.Machines;
 import com.error22.thelta.minivox.Minivox;
 import com.error22.thelta.tubes.TheltaTubes;
-import com.error22.thelta.worldgen.TheltaWorld;
+import com.error22.thelta.worldgen.MPWorld;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -33,7 +33,7 @@ public class Thelta {
 		context.addModule(new Machines());
 		context.addModule(new TheltaTubes());
 		context.addModule(new Minivox());
-		context.addModule(new TheltaWorld());
+		context.addModule(new MPWorld());
 		context.preInit(event);
 	}
 
