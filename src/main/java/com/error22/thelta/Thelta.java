@@ -31,6 +31,7 @@ public class Thelta {
 		context.addModule(new CraftingMaterials());
 		context.addModule(new TheltaComputers());
 		context.addModule(new Machines());
+		context.addModule(new TheltaTubes());
 		context.preInit(event);
 	}
 
