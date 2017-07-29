@@ -29,4 +29,8 @@ public class TheltaWorld extends TheltaModule {
 		blockTin = context.createSimpleBlock("thelta_Ore_Tin", Material.ROCK, creativetab);
 		plantRubber = context.createSimpleBlock("thelta_Plant_Rubber", Material.GRASS, creativetab);
 	}
+
+	public void postinit() {
+	GameRegistry.registerWorldGenerator(piw, 1);
+}
 }

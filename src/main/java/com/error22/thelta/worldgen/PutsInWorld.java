@@ -25,7 +25,7 @@ public void generate(Random random, int chunkX, int chunkZ, World world, IChunkG
 	generateWorld(random, chunkX, chunkZ, world);
 }
 
-private void generateWorld(Random random, int chunkX, int chunkZ, World world) {
+public void generateWorld(Random random, int chunkX, int chunkZ, World world) {
 
 	// shift to world coordinates
 	int x = chunkX << 4;
