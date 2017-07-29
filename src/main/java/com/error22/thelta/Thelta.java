@@ -7,7 +7,6 @@ import com.error22.thelta.minivox.Minivox;
 import com.error22.thelta.mobapi.MobAPI;
 import com.error22.thelta.pipeline.Pass;
 import com.error22.thelta.pipeline.TheltaPipeline;
-import com.error22.thelta.pipelineaddons.PipelineAddons;
 import com.error22.thelta.tubes.TheltaTubes;
 
 import net.minecraftforge.fml.common.Mod;
@@ -38,7 +37,6 @@ public class Thelta {
 		pipeline.construct(TheltaComputers.class);
 		pipeline.construct(Minivox.class);
 		pipeline.construct(MobAPI.class);
-		pipeline.construct(PipelineAddons.class);
 		pipeline.construct(TheltaTubes.class);
 		pipeline.construct(Machines.class);
 		pipeline.construct(CraftingMaterials.class);
