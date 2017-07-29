@@ -23,6 +23,7 @@ public class Context {
 	}
 
 	public void addModule(TheltaModule module) {
+		assertState(ContextState.Uninitialized);
 		modules.add(module);
 	}
 
