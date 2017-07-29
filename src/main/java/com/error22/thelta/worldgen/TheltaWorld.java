@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.error22.thelta.Context;
 import com.error22.thelta.TheltaModule;
+import com.error22.thelta.worldgen.PutsInWorld;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +15,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class TheltaWorld extends TheltaModule {
 
-	public static PutsInWorld piw;
 	public static Block blockCopper;
 	public static Block blockTin;
 	public static Block plantRubber;
@@ -31,6 +31,7 @@ public class TheltaWorld extends TheltaModule {
 	}
 
 	public void postinit() {
-	GameRegistry.registerWorldGenerator(piw, 1);
-}
+		PutsInWorld putsInWorld = new PutsInWorld();
+		GameRegistry.registerWorldGenerator(putsInWorld, 1);
+	}
 }
