@@ -3,30 +3,20 @@ package com.error22.thelta.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.error22.thelta.Context;
 import com.error22.thelta.Thelta;
-import com.error22.thelta.pipeline.Pass;
-import com.error22.thelta.pipeline.Stage;
-import com.error22.thelta.pipeline.StageMethod;
-import com.error22.thelta.pipeline.Stages;
+import com.error22.thelta.TheltaModule;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Stages({ @Stage(name = "machine_init_config"), @Stage(name = "machine_init_items"),
-		@Stage(name = "machine_init_blocks"), @Stage(name = "machine_init_entities", after = { "machine_init_blocks" }),
-		@Stage(name = "machine_init_recipes", after = { "machine_init_items", "machine_init_blocks" }),
-		@Stage(name = "machine_init_renderers") })
-public class CraftingMaterials {
-
+public class CraftingMaterials extends TheltaModule {
 	// Creative Tab
-	public static CreativeTabCraftingMaterials creativeTabCraftingMaterials = new CreativeTabCraftingMaterials(
-			"machinecraftingmaterials");;
-
-	// Automatic item render handeling
-	public static List<Item> itemsToBeRegisteredByRender = new ArrayList<Item>();
+	public static CreativeTabs materialsTab;
 
 	// items
 	// ingots
@@ -84,23 +74,19 @@ public class CraftingMaterials {
 	public static Item itemIronPanel;
 	public static Item itemSteelPanel;
 
-	@StageMethod(stage = "machine_init_config", pass = Pass.PreInit)
-	private static void init_config() {
-
+	@Override
+	public void init(Context context) {
+		materialsTab = context.creativeTab("machinecraftingmaterials", () -> itemElectricMotor);
 	}
 
-	@StageMethod(stage = "machine_init_blocks", pass = Pass.PreInit)
-	private static void init_blocks() {
-
-	}
-
-	@StageMethod(stage = "machine_init_items", pass = Pass.PreInit)
-	private static void init_items() {
+	@Override
+	public void registerItems(Context context) {
 		// Ingots
-		itemSteelIngot = new CraftingItem("steelingot");
+		itemSteelIngot = context.createSimpleItem("steelingot", materialsTab);
 		itemBronzeIngot = new CraftingItem("bronzeingot");
 		itemTinIngot = new CraftingItem("tiningot");
 		itemCopperIngot = new CraftingItem("copperingot");
+
 		// crafting materials
 		itemRubber = new CraftingItem("rubber");
 		itemPlastic = new CraftingItem("plastic");
@@ -150,22 +136,4 @@ public class CraftingMaterials {
 		itemSteelPanel = new CraftingItem("steelpanel");
 	}
 
-	@StageMethod(stage = "machine_init_entities", pass = Pass.PreInit)
-	private static void init_entities() {
-
-	}
-
-	@StageMethod(stage = "machine_init_recipes", pass = Pass.PreInit)
-	private static void init_recipes() {
-
-	}
-
-	@SideOnly(Side.CLIENT)
-	@StageMethod(stage = "machine_init_renderers", pass = Pass.Init, client = true)
-	private static void init_renderers() {
-		for (Item item : itemsToBeRegisteredByRender) {
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(
-					Thelta.MODID + ":" + item.getRegistryName().getResourcePath(), "inventory"));
-		}
-	}
 }
