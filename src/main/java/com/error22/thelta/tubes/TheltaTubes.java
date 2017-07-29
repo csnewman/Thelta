@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TheltaTubes extends TheltaModule {
-	public static final String tubesStage = "tubes-tubes";
 	public static BlockTube basicTube;
 	public static ItemBlock basicTubeItem;
 

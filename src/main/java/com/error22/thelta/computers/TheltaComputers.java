@@ -8,8 +8,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class TheltaComputers extends TheltaModule {
-	public static final String monitorStage = "computers-monitors";
-	public static final String renderersStage = "computers-renderers";
 	public static BasicMonitor basicMonitor;
 	public static ItemBlock basicMonitorItem;
 
