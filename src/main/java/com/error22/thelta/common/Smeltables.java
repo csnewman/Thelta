@@ -29,7 +29,7 @@ public class Smeltables extends TheltaModule {
 		//Register smelting recipes here
 		GameRegistry.addSmelting(blockOreCopper, new ItemStack(CraftingMaterials.itemCopperIngot), 1);
 		GameRegistry.addSmelting(blockOreTin, new ItemStack(CraftingMaterials.itemTinIngot), 1);
-		GameRegistry.addSmelting(blockOreUranium, new ItemStack(CraftingMaterials.itemUraniumIngot), 1);
+		GameRegistry.addSmelting(blockOreUranium, new ItemStack(CraftingMaterials.itemUraniumIngot), 50);
 	}
 
 	@Override
