@@ -7,6 +7,9 @@ import java.io.IOException;
 import org.objectweb.asm.ClassReader;
 
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
+import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
+import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
+import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
 
 public class JavaConverter {
 
@@ -18,6 +21,11 @@ public class JavaConverter {
 	public static void main(String[] args) throws Exception {
 		JavaProgram program = new JavaProgram();
 		loadFile(program, "C:\\Users\\chand\\eclipse-workspace\\Test1\\bin\\com\\tests\\TestC1.class");
+
+		JavaMethod entryMethod = program
+				.getMethod(new MethodSignature("com/tests/TestC1", "entry", PrimitiveType.Void));
+		System.out.println(" " + entryMethod);
+		
 	}
 
 }

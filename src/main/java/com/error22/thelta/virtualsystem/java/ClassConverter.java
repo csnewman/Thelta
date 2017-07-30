@@ -9,6 +9,7 @@ import org.objectweb.asm.Type;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
+import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 
 import scala.Console;
 
@@ -39,17 +40,18 @@ public class ClassConverter extends ClassVisitor {
 	}
 
 	@Override
-	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+	public MethodVisitor visitMethod(int access, String name, String desc, String signature1, String[] exceptions) {
 		System.out.println("\n" + name + desc);
 
 		IType returnType = ConversionUtils.convertType(Type.getReturnType(desc));
 		IType[] arguments = ConversionUtils.convertTypes(Type.getArgumentTypes(desc));
-		
-		JavaMethod method = new JavaMethod(name, returnType, arguments);
+		MethodSignature signature = new MethodSignature(clazz.getName(), name, returnType, arguments);
+
+		JavaMethod method = new JavaMethod(signature);
 		clazz.addMethod(method);
 		return new MethodConverter(method);
 	}
-	
+
 	public JavaClass getClazz() {
 		return clazz;
 	}

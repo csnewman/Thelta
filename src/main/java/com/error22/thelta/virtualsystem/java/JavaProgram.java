@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
+import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
+import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 
 public class JavaProgram {
 	private Map<String, JavaClass> classes;
@@ -20,6 +22,10 @@ public class JavaProgram {
 	
 	public JavaClass getClass(String name) {
 		return classes.get(name);
+	}
+	
+	public JavaMethod getMethod(MethodSignature signature) {
+		return getClass(signature.getClazz()).getMethod(signature);
 	}
 
 }
