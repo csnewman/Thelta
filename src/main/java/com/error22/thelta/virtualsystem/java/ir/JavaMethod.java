@@ -13,6 +13,10 @@ public class JavaMethod {
 		this.signature = signature;
 		instructions = new ArrayList<IInstruction>();
 	}
+	
+	public int getLocalCount() {
+		return localCount;
+	}
 
 	public void ensureLocalExists(int local) {
 		if (localCount <= local)
@@ -21,6 +25,10 @@ public class JavaMethod {
 
 	public void addInstruction(IInstruction instruction) {
 		instructions.add(instruction);
+	}
+	
+	public IInstruction[] getInstructions() {
+		return instructions.toArray(new IInstruction[0]);
 	}
 	
 	public MethodSignature getSignature() {

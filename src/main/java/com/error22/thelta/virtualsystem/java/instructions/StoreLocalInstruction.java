@@ -1,5 +1,7 @@
 package com.error22.thelta.virtualsystem.java.instructions;
 
+import com.error22.thelta.NotImplementedException;
+import com.error22.thelta.virtualsystem.java.StackFrame;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 
 public class StoreLocalInstruction implements IInstruction {
@@ -9,6 +11,11 @@ public class StoreLocalInstruction implements IInstruction {
 	public StoreLocalInstruction(IType type, int index) {
 		this.type = type;
 		this.index = index;
+	}
+
+	@Override
+	public void execute(StackFrame stackFrame) {
+		throw new NotImplementedException();
 	}
 
 }
