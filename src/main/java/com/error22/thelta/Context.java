@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import com.error22.thelta.worldgen.WorldGenStaticVars;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.entity.Render;
@@ -55,6 +57,14 @@ public class Context {
 		for (TheltaModule module : modules) {
 			module.registerItems(this);
 		}
+		
+		//Edit: rater193 (This is used for worldgen registration)
+		state = ContextState.WorldgenRegistration;
+		for (TheltaModule module : modules) {
+			module.registerWorldGenerators(this);
+		}
+		//End Edit
+		
 		state = ContextState.Intermediary;
 	}
 
@@ -92,6 +102,19 @@ public class Context {
 		state = ContextState.Finished;
 	}
 
+
+	//Edit: rater193 (This is used for worldgen registration)
+	//The api starts here
+	public void registerWorldGenOre(Block oreToGenerate) {
+		registerWorldGenOre(oreToGenerate, 1, 64, 8, 30);
+	}
+
+	public void registerWorldGenOre(Block oreToGenerate, int minHeight, int maxHeight, int size, int spawnAttempts) {
+		assertState(ContextState.WorldgenRegistration);
+		WorldGenStaticVars.registerNewWorldGenerator(oreToGenerate, minHeight, maxHeight, size, spawnAttempts);
+	}
+	//End Edit
+	
 	public CreativeTabs createTabWithItem(String name, Supplier<Item> icon) {
 		assertState(ContextState.Initialization);
 		return new CreativeTabs(name) {

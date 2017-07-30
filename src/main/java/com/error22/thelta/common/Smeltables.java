@@ -11,8 +11,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class Smeltables extends TheltaModule {
 	
-	public Block blockOreTin;
-	public Block blockOreCopper;
+	public static Block blockOreTin;
+	public static Block blockOreCopper;
 
 	@Override
 	public void registerBlocks(Context context) {

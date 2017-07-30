@@ -6,7 +6,7 @@ import com.error22.thelta.computers.TheltaComputers;
 import com.error22.thelta.machines.Machines;
 import com.error22.thelta.minivox.Minivox;
 import com.error22.thelta.tubes.TheltaTubes;
-import com.error22.thelta.worldgen.TheltaWorld;
+import com.error22.thelta.worldgen.WorldGenHandler;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -36,6 +36,7 @@ public class Thelta {
 		context.addModule(new TheltaTubes());
 		context.addModule(new Minivox());
 		//I will post the new world gen example with the world gen noobs api here.
+		context.addModule(new WorldGenHandler());
 		
 		//The old world gen from yesterday
 		//context.addModule(new TheltaWorld());

@@ -26,6 +26,9 @@ public abstract class TheltaModule {
 	public void registerEntities(Context context) {
 	}
 
+	public void registerWorldGenerators(Context context) {
+	}
+
 	@SideOnly(Side.CLIENT)
 	public void registerRenderers(ClientContext context) {
 	}
