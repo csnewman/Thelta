@@ -5,9 +5,11 @@ import java.util.Stack;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
 
 public class JavaThread {
+	private JavaProgram program;
 	private Stack<StackFrame> frames;
 
-	public JavaThread() {
+	public JavaThread(JavaProgram program) {
+		this.program = program;
 		frames = new Stack<StackFrame>();
 	}
 
@@ -28,6 +30,10 @@ public class JavaThread {
 		frames.pop();
 		if (result != null)
 			frames.peek().push(result);
+	}
+
+	public JavaProgram getProgram() {
+		return program;
 	}
 
 }

@@ -26,7 +26,7 @@ public class JavaConverter {
 				PrimitiveType.Void, PrimitiveType.Int, PrimitiveType.Int));
 		System.out.println(" " + entryMethod);
 
-		JavaThread thread = new JavaThread();
+		JavaThread thread = new JavaThread(program);
 		thread.callMethod(entryMethod, new StackObject(PrimitiveType.Int, 1), new StackObject(PrimitiveType.Int, 2));
 
 		while (true)

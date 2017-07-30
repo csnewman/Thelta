@@ -11,11 +11,13 @@ import org.objectweb.asm.commons.InstructionAdapter;
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.instructions.AddInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.GetFieldInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.GetStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.InvokeSpecialInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadConstantInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadLocalInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.PutFieldInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.PutStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.ReturnInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.StoreLocalInstruction;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
@@ -122,6 +124,16 @@ public class MethodConverter extends InstructionAdapter {
 	}
 
 	@Override
+	public void getstatic(String owner, String name, String desc) {
+		addInstruction(new GetStaticInstruction(ConversionUtils.parseFieldSignature(owner, name, desc)));
+	}
+
+	@Override
+	public void putstatic(String owner, String name, String desc) {
+		addInstruction(new PutStaticInstruction(ConversionUtils.parseFieldSignature(owner, name, desc)));
+	}
+
+	@Override
 	public void add(Type type) {
 		addInstruction(new AddInstruction((PrimitiveType) ConversionUtils.convertType(type)));
 	}
@@ -171,6 +183,8 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.INVOKESPECIAL);
 		SUPPORTED_OPS.add(Opcodes.GETFIELD);
 		SUPPORTED_OPS.add(Opcodes.PUTFIELD);
+		SUPPORTED_OPS.add(Opcodes.GETSTATIC);
+		SUPPORTED_OPS.add(Opcodes.PUTSTATIC);
 	}
 
 }

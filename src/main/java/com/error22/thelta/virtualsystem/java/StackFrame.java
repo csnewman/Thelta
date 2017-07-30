@@ -29,6 +29,10 @@ public class StackFrame {
 		instructionPointer++;
 		instruction.execute(this);
 	}
+	
+	public JavaThread getThread() {
+		return thread;
+	}
 
 	public JavaMethod getMethod() {
 		return method;
