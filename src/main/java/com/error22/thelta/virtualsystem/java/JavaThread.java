@@ -29,7 +29,8 @@ public class JavaThread {
 	public void exitFrame(StackObject result) {
 		frames.pop();
 		if (result != null)
-			frames.peek().push(result);
+			if (!frames.isEmpty())
+				frames.peek().push(result);
 	}
 
 	public JavaProgram getProgram() {

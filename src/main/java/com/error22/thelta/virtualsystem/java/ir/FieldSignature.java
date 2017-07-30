@@ -10,6 +10,18 @@ public class FieldSignature {
 		this.type = type;
 	}
 
+	public String getClazz() {
+		return clazz;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public IType getType() {
+		return type;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

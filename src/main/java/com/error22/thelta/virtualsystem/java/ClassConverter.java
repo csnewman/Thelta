@@ -6,10 +6,12 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
+import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
 import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
+import com.error22.thelta.virtualsystem.java.ir.StaticField;
 
 import scala.Console;
 
@@ -35,7 +37,13 @@ public class ClassConverter extends ClassVisitor {
 
 	@Override
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
-		System.out.println(name + " " + desc + " " + signature + " " + value);
+		System.out.println(access+"  "+name + " " + desc + " " + signature + " " + value);
+		if((access & Opcodes.ACC_PUBLIC) == Opcodes.ACC_PUBLIC) {
+			clazz.addStaticField(new StaticField(ConversionUtils.parseFieldSignature(clazz.getName(), name, desc), value));
+		}else {
+			throw new NotImplementedException();
+		}
+		
 		return super.visitField(access, name, desc, signature, value);
 	}
 

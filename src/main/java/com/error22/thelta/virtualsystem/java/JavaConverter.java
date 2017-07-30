@@ -23,11 +23,11 @@ public class JavaConverter {
 		loadFile(program, "C:\\Users\\chand\\eclipse-workspace\\Test1\\bin\\com\\tests\\TestC1.class");
 
 		JavaMethod entryMethod = program.getMethod(new MethodSignature("com/tests/TestC1", "example",
-				PrimitiveType.Void, PrimitiveType.Int, PrimitiveType.Int));
+				PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int));
 		System.out.println(" " + entryMethod);
 
 		JavaThread thread = new JavaThread(program);
-		thread.callMethod(entryMethod, new StackObject(PrimitiveType.Int, 1), new StackObject(PrimitiveType.Int, 2));
+		thread.callMethod(entryMethod, new StackObject(PrimitiveType.Int, 30), new StackObject(PrimitiveType.Int, 2));
 
 		while (true)
 			thread.step();
