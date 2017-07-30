@@ -1,10 +1,13 @@
 package com.error22.thelta.virtualsystem.java.ir;
 
-import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.JavaProgram;
 
-public class StringType implements IType {
-	public static final StringType INSTANCE = new StringType();
+public class ObjectType implements IType {
+	private String name;
+
+	public ObjectType(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public Object getDefault() {
@@ -13,7 +16,7 @@ public class StringType implements IType {
 
 	@Override
 	public JavaClass getClass(JavaProgram program) {
-		throw new NotImplementedException();
+		return program.getClass(name);
 	}
 
 }

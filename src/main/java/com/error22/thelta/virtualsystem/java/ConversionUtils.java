@@ -6,6 +6,7 @@ import org.objectweb.asm.commons.InstructionAdapter;
 import com.error22.thelta.virtualsystem.java.ir.FieldSignature;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
+import com.error22.thelta.virtualsystem.java.ir.ObjectType;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
 import com.error22.thelta.virtualsystem.java.ir.StringType;
 
@@ -44,8 +45,10 @@ public class ConversionUtils {
 			return PrimitiveType.Object;
 		} else if (type.getDescriptor().equals("Ljava/lang/String;")) {
 			return StringType.INSTANCE;
+		} else if (type.getSort() == Type.OBJECT) {
+			return new ObjectType(type.getClassName());
 		} else {
-			throw new IllegalArgumentException(type.toString());
+			throw new IllegalArgumentException(type.toString() + " sort=" + type.getSort());
 		}
 	}
 

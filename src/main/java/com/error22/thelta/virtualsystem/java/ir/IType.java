@@ -1,13 +1,11 @@
 package com.error22.thelta.virtualsystem.java.ir;
 
+import com.error22.thelta.virtualsystem.java.JavaProgram;
+
 public interface IType {
 
 	Object getDefault();
 	
-	@Override
-	boolean equals(Object obj);
-	
-	@Override
-	int hashCode();
+	JavaClass getClass(JavaProgram program);
 	
 }

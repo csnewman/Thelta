@@ -1,6 +1,7 @@
 package com.error22.thelta.virtualsystem.java.ir;
 
 import com.error22.thelta.NotImplementedException;
+import com.error22.thelta.virtualsystem.java.JavaProgram;
 
 public enum PrimitiveType implements IType {
 	Void,
@@ -24,5 +25,10 @@ public enum PrimitiveType implements IType {
 		default:
 			throw new NotImplementedException();
 		}
+	}
+
+	@Override
+	public JavaClass getClass(JavaProgram program) {
+		throw new NotImplementedException();
 	}
 }

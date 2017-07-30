@@ -10,11 +10,13 @@ import org.objectweb.asm.commons.InstructionAdapter;
 
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.instructions.AddInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.DuplicateInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.GetFieldInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.GetStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.InvokeSpecialInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.InvokeStaticInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.InvokeVirtualInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadConstantInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadLocalInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.NewInstruction;
@@ -130,6 +132,11 @@ public class MethodConverter extends InstructionAdapter {
 	}
 
 	@Override
+	public void invokevirtual(String owner, String name, String desc) {
+		addInstruction(new InvokeVirtualInstruction(ConversionUtils.parseMethodSignature(owner, name, desc)));
+	}
+
+	@Override
 	public void getfield(String owner, String name, String desc) {
 		addInstruction(new GetFieldInstruction(ConversionUtils.parseFieldSignature(owner, name, desc)));
 	}
@@ -158,10 +165,15 @@ public class MethodConverter extends InstructionAdapter {
 	public void areturn(Type t) {
 		addInstruction(new ReturnInstruction((PrimitiveType) ConversionUtils.convertType(t)));
 	}
-	
+
 	@Override
 	public void anew(Type type) {
 		addInstruction(new NewInstruction(ConversionUtils.convertType(type)));
+	}
+
+	@Override
+	public void dup() {
+		addInstruction(new DuplicateInstruction());
 	}
 
 	@Override
@@ -201,6 +213,7 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.DRETURN);
 		SUPPORTED_OPS.add(Opcodes.ARETURN);
 		SUPPORTED_OPS.add(Opcodes.RETURN);
+		SUPPORTED_OPS.add(Opcodes.INVOKEVIRTUAL);
 		SUPPORTED_OPS.add(Opcodes.INVOKESTATIC);
 		SUPPORTED_OPS.add(Opcodes.INVOKESPECIAL);
 		SUPPORTED_OPS.add(Opcodes.GETFIELD);
@@ -208,6 +221,7 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.GETSTATIC);
 		SUPPORTED_OPS.add(Opcodes.PUTSTATIC);
 		SUPPORTED_OPS.add(Opcodes.NEW);
+		SUPPORTED_OPS.add(Opcodes.DUP);
 	}
 
 }
