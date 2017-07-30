@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
+import com.error22.thelta.virtualsystem.java.IObjectInstance;
 import com.error22.thelta.virtualsystem.java.JavaProgram;
 import com.error22.thelta.virtualsystem.java.StackFrame;
 import com.error22.thelta.virtualsystem.java.instructions.ExternalHookInstruction;
@@ -21,8 +23,8 @@ public class ExternalManager {
 		boundMethodHooks = new HashMap<MethodSignature, IMethodHook>();
 	}
 
-	public void defineExternalClass(String name) {
-		program.addClass(new JavaClass(name, "java/lang/Object", new String[0]));
+	public void defineExternalClass(String name, Supplier<IObjectInstance> instanceCreator) {
+		program.addClass(new ExternalClass(name, "java/lang/Object", new String[0], instanceCreator));
 	}
 
 	public void defineHook(MethodSignature signature) {

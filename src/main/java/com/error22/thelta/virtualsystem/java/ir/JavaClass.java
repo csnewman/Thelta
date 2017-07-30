@@ -1,9 +1,10 @@
 package com.error22.thelta.virtualsystem.java.ir;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import com.error22.thelta.virtualsystem.java.IObjectInstance;
+import com.error22.thelta.virtualsystem.java.StandardObjectInstance;
 
 public class JavaClass {
 	private String name;
@@ -18,6 +19,10 @@ public class JavaClass {
 		this.interfaces = interfaces;
 		methods = new HashMap<MethodSignature, JavaMethod>();
 		staticFields = new HashMap<FieldSignature, StaticField>();
+	}
+	
+	public IObjectInstance createInstance() {
+		return new StandardObjectInstance(this);
 	}
 
 	public void addStaticField(StaticField field) {
