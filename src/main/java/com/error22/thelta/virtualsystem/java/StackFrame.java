@@ -20,8 +20,8 @@ public class StackFrame {
 		stack = new Stack<StackObject>();
 	}
 
-	public void init() {
-		locals = new StackObject[method.getLocalCount()];
+	public void init(StackObject[] arguments) {
+		locals = arguments;
 	}
 
 	public void step() {
@@ -37,12 +37,22 @@ public class StackFrame {
 	public JavaMethod getMethod() {
 		return method;
 	}
+	
+	private void ensureLocalExists(int index) {
+		if(locals.length <= index) {
+			StackObject[] newLocals = new StackObject[index + 1];
+			System.arraycopy(locals, 0, newLocals, 0, locals.length);
+			locals = newLocals;
+		}
+	}
 
 	public void setLocal(int index, StackObject object) {
+		ensureLocalExists(index);
 		locals[index] = object;
 	}
 
 	public StackObject getLocal(int index) {
+		ensureLocalExists(index);
 		return locals[index];
 	}
 

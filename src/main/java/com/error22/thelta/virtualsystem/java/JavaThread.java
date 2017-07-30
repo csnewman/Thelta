@@ -15,10 +15,7 @@ public class JavaThread {
 
 	public void callMethod(JavaMethod method, StackObject... arguments) {
 		StackFrame frame = new StackFrame(this, method);
-		frame.init();
-		for (int i = 0; i < arguments.length; i++) {
-			frame.setLocal(i, arguments[i]);
-		}
+		frame.init(arguments);
 		frames.push(frame);
 	}
 

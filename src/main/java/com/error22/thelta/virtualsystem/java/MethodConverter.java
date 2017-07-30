@@ -111,13 +111,11 @@ public class MethodConverter extends InstructionAdapter {
 
 	@Override
 	public void load(int var, Type type) {
-		method.ensureLocalExists(var);
 		addInstruction(new LoadLocalInstruction(ConversionUtils.convertType(type), var));
 	}
 
 	@Override
 	public void store(int var, Type type) {
-		method.ensureLocalExists(var);
 		addInstruction(new StoreLocalInstruction(ConversionUtils.convertType(type), var));
 	}
 

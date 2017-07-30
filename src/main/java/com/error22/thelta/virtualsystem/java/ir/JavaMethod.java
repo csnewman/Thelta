@@ -6,24 +6,13 @@ import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
 
 public class JavaMethod {
 	private MethodSignature signature;
-	private int localCount;
 	private ArrayList<IInstruction> instructions;
 
 	public JavaMethod(MethodSignature signature) {
 		this.signature = signature;
-		localCount = signature.getArguments().length;
 		instructions = new ArrayList<IInstruction>();
 	}
 	
-	public int getLocalCount() {
-		return localCount;
-	}
-
-	public void ensureLocalExists(int local) {
-		if (localCount <= local)
-			localCount = local + 1;
-	}
-
 	public void addInstruction(IInstruction instruction) {
 		instructions.add(instruction);
 	}
