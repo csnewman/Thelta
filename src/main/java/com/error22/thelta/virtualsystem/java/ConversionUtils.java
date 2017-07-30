@@ -4,18 +4,25 @@ import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.InstructionAdapter;
 
 import com.error22.thelta.virtualsystem.java.ir.IType;
+import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
 
 public class ConversionUtils {
-	
+
+	public static MethodSignature parseSignature(String parent, String name, String desc) {
+		IType returnType = ConversionUtils.convertType(Type.getReturnType(desc));
+		IType[] arguments = ConversionUtils.convertTypes(Type.getArgumentTypes(desc));
+		return new MethodSignature(parent, name, returnType, arguments);
+	}
+
 	public static IType[] convertTypes(Type[] types) {
 		IType[] out = new IType[types.length];
-		for(int i = 0; i < out.length; i++) {
+		for (int i = 0; i < out.length; i++) {
 			out[i] = convertType(types[i]);
 		}
 		return out;
 	}
-	
+
 	public static IType convertType(Type type) {
 		if (type == Type.VOID_TYPE) {
 			return PrimitiveType.Void;

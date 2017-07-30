@@ -11,6 +11,7 @@ import org.objectweb.asm.commons.InstructionAdapter;
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.instructions.AddInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.InvokeSpecialInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadConstantInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadLocalInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.ReturnInstruction;
@@ -105,12 +106,11 @@ public class MethodConverter extends InstructionAdapter {
 
 	@Override
 	public void invokespecial(String owner, String name, String desc) {
-		System.out.println("invokespecial owner:" + owner + "  name:" + name + "   desc:" + desc);
+		addInstruction(new InvokeSpecialInstruction(ConversionUtils.parseSignature(owner, name, desc)));
 	}
 
 	@Override
 	public void getfield(String owner, String name, String desc) {
-		// ByteBufUtils.
 		System.out.println("getfield owner:" + owner + " name:" + name + " desc:" + desc);
 	}
 
@@ -166,6 +166,7 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.DRETURN);
 		SUPPORTED_OPS.add(Opcodes.ARETURN);
 		SUPPORTED_OPS.add(Opcodes.RETURN);
+		SUPPORTED_OPS.add(Opcodes.INVOKESPECIAL);
 	}
 
 }
