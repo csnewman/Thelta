@@ -10,17 +10,21 @@ import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
 
+import scala.Console;
+
 public class ClassConverter extends ClassVisitor {
+	private JavaProgram program;
 	private JavaClass clazz;
 
-	public ClassConverter() {
+	public ClassConverter(JavaProgram program) {
 		super(Opcodes.ASM4);
+		this.program = program;
 	}
 
 	@Override
 	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-		System.out.println("visit");
-		clazz = new JavaClass();
+		clazz = new JavaClass(name, superName, interfaces);
+		program.addClass(clazz);
 	}
 
 	@Override
@@ -44,6 +48,10 @@ public class ClassConverter extends ClassVisitor {
 		JavaMethod method = new JavaMethod(name, returnType, arguments);
 		clazz.addMethod(method);
 		return new MethodConverter(method);
+	}
+	
+	public JavaClass getClazz() {
+		return clazz;
 	}
 
 }
