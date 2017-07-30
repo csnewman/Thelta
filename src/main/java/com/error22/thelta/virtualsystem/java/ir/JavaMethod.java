@@ -11,6 +11,7 @@ public class JavaMethod {
 
 	public JavaMethod(MethodSignature signature) {
 		this.signature = signature;
+		localCount = signature.getArguments().length;
 		instructions = new ArrayList<IInstruction>();
 	}
 	

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.error22.thelta.virtualsystem.java.external.ExternalManager;
 import com.error22.thelta.virtualsystem.java.ir.FieldSignature;
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
@@ -12,10 +13,12 @@ import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 import com.error22.thelta.virtualsystem.java.ir.StaticField;
 
 public class JavaProgram {
+	private ExternalManager externalManager;
 	private Map<String, JavaClass> classes;
 
 	public JavaProgram() {
 		classes = new HashMap<String, JavaClass>();
+		externalManager = new ExternalManager(this);
 	}
 
 	public void addClass(JavaClass clazz) {
@@ -32,6 +35,10 @@ public class JavaProgram {
 
 	public StaticField getStaticField(FieldSignature signature) {
 		return getClass(signature.getClazz()).getStaticField(signature);
+	}
+
+	public ExternalManager getExternalManager() {
+		return externalManager;
 	}
 
 }
