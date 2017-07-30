@@ -1,6 +1,7 @@
 package com.error22.thelta;
 
 import com.error22.thelta.common.CraftingMaterials;
+import com.error22.thelta.common.Smeltables;
 import com.error22.thelta.computers.TheltaComputers;
 import com.error22.thelta.machines.Machines;
 import com.error22.thelta.minivox.Minivox;
@@ -29,11 +30,12 @@ public class Thelta {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		context.addModule(new CraftingMaterials());
+		context.addModule(new Smeltables());
 		context.addModule(new TheltaComputers());
 		context.addModule(new Machines());
 		context.addModule(new TheltaTubes());
 		context.addModule(new Minivox());
-		context.addModule(new TheltaWorld());
+		//context.addModule(new TheltaWorld());
 		context.preInit(event);
 	}
 

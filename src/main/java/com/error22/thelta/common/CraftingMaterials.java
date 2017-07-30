@@ -105,8 +105,8 @@ public class CraftingMaterials extends TheltaModule {
 				new ItemStack(item, 9),
 				new Object[]{"W", 'W', block});
 	}
-	
-	private void registerRecipes() {
+
+	public void registerRecipes(Context context) {
 		//Here we are basically making the blocks craftable from ingots, and ingots craftable from the blocks.
 		registerIngotBlockRecipes(blockSteel, itemSteelIngot);
 		registerIngotBlockRecipes(blockBronze, itemBronzeIngot);
@@ -191,7 +191,7 @@ public class CraftingMaterials extends TheltaModule {
 	@Override
 	public void postInit(Context context) {
 		registerOreDict();
-		registerRecipes();
 	}
+
 
 }
