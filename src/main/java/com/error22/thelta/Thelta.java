@@ -35,6 +35,9 @@ public class Thelta {
 		context.addModule(new Machines());
 		context.addModule(new TheltaTubes());
 		context.addModule(new Minivox());
+		//I will post the new world gen example with the world gen noobs api here.
+		
+		//The old world gen from yesterday
 		//context.addModule(new TheltaWorld());
 		context.preInit(event);
 	}
