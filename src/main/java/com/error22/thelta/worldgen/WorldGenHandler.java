@@ -15,8 +15,8 @@ public class WorldGenHandler extends TheltaModule {
 
 	@Override
 	public void registerWorldGenerators(Context context) {
-		context.registerWorldGenOre(Smeltables.blockOreCopper);
-		context.registerWorldGenOre(Smeltables.blockOreTin);
+		context.registerWorldGenOre(Smeltables.blockOreCopper, 16, 64, 8, 40);
+		context.registerWorldGenOre(Smeltables.blockOreTin, 16, 64, 8, 20);
 	}
 
 }
