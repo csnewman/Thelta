@@ -14,7 +14,7 @@ public class NewInstruction implements IInstruction {
 
 	@Override
 	public void execute(StackFrame stackFrame) {
-		stackFrame.push(new StackObject(type, type.getClass(stackFrame.getThread().getProgram())));
+		stackFrame.push(new StackObject(type, type.getClass(stackFrame.getThread().getProgram()).createInstance()));
 	}
 
 }
