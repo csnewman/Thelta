@@ -29,9 +29,10 @@ public class TheltaWorld extends TheltaModule {
 	}
 
 	public void postinit() {
+		/*
 		PutsInWorld TinOre = new PutsInWorld().generateOre(oreTin, world, rand, x, z, 2, 9, 20, 0, 64, Blocks.STONE);
 		PutsInWorld CopperOre = new PutsInWorld().generateOre(oreCopper, world, rand, x, z, 2, 9, 20, 0, 64, Blocks.STONE);
 		GameRegistry.registerWorldGenerator(TinOre, 0);
-		GameRegistry.registerWorldGenerator(CopperOre, 0);
+		GameRegistry.registerWorldGenerator(CopperOre, 0);*/
 	}
 }

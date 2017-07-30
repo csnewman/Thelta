@@ -7,10 +7,17 @@ import com.error22.thelta.Context;
 import com.error22.thelta.Thelta;
 import com.error22.thelta.TheltaModule;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -25,6 +32,12 @@ public class CraftingMaterials extends TheltaModule {
 	public static Item itemBronzeIngot;
 	public static Item itemTinIngot;
 	public static Item itemCopperIngot;
+
+	//Ingot blocks
+	public static Block blockSteel;
+	public static Block blockBronze;
+	public static Block blockTin;
+	public static Block blockCopper;
 
 	// crafting materials
 	public static Item itemRubber;
@@ -57,7 +70,6 @@ public class CraftingMaterials extends TheltaModule {
 	public static Item itemThickRubberWasher;
 	public static Item itemThickIronWasher;
 	public static Item itemThickSteelWasher;
-
 	public static Item itemIronNut;
 	public static Item itemSteelNut;
 	public static Item itemIronBolt;
@@ -80,12 +92,43 @@ public class CraftingMaterials extends TheltaModule {
 		materialsTab = context.createTabWithItem("machinecraftingmaterials", () -> itemElectricMotor);
 	}
 	
+	private void registerIngotBlockRecipes(Block block, Item item) {
+		GameRegistry.addShapedRecipe(
+				new ResourceLocation("thelta:"+block.getUnlocalizedName()),
+				new ResourceLocation("thelta:recipes"),
+				new ItemStack(block, 1),
+				new Object[]{"WWW","WWW","WWW", 'W', item});
+		
+		GameRegistry.addShapedRecipe(
+				new ResourceLocation("thelta:"+item.getUnlocalizedName()),
+				new ResourceLocation("thelta:recipes"),
+				new ItemStack(item, 9),
+				new Object[]{"W", 'W', block});
+	}
+	
+	private void registerRecipes() {
+		//Here we are basically making the blocks craftable from ingots, and ingots craftable from the blocks.
+		registerIngotBlockRecipes(blockSteel, itemSteelIngot);
+		registerIngotBlockRecipes(blockBronze, itemBronzeIngot);
+		registerIngotBlockRecipes(blockTin, itemTinIngot);
+		registerIngotBlockRecipes(blockCopper, itemCopperIngot);
+	}
+	
 	//Here we are regestering the forge ore dictionary for items
 	private void registerOreDict() {
 		OreDictionary.registerOre("ingotSteel", itemSteelIngot);
 		OreDictionary.registerOre("ingotBronze", itemBronzeIngot);
 		OreDictionary.registerOre("ingotTin", itemTinIngot);
 		OreDictionary.registerOre("ingotCopper", itemCopperIngot);
+	}
+
+	@Override
+	public void registerBlocks(Context context) {
+		// Blocks
+		blockSteel = context.createSimpleBlock("steelBlock", Material.IRON, materialsTab);
+		blockBronze = context.createSimpleBlock("bronzeBlock", Material.IRON, materialsTab);
+		blockTin = context.createSimpleBlock("tinBlock", Material.IRON, materialsTab);
+		blockCopper = context.createSimpleBlock("copperBlock", Material.IRON, materialsTab);
 	}
 
 	@Override
@@ -143,8 +186,12 @@ public class CraftingMaterials extends TheltaModule {
 		itemPlasticPanel = context.createSimpleItem("plasticpanel", materialsTab);
 		itemIronPanel = context.createSimpleItem("ironpanel", materialsTab);
 		itemSteelPanel = context.createSimpleItem("steelpanel", materialsTab);
-		
+	}
+
+	@Override
+	public void postInit(Context context) {
 		registerOreDict();
+		registerRecipes();
 	}
 
 }

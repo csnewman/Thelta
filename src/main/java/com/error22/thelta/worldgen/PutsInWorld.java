@@ -15,6 +15,7 @@ public class PutsInWorld implements IWorldGenerator{
 
 	public Block oreCopper, oreTin;	
 	
+	/*
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch(world.provider.getDimension()){
@@ -29,7 +30,7 @@ public class PutsInWorld implements IWorldGenerator{
                 break;
         }
 
-    }
+    }*/
 
 	private void generateNether(World world, Random rand, int x, int z) {
 		// TODO Auto-generated method stub

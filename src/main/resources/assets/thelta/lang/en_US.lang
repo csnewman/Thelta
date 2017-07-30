@@ -2,6 +2,11 @@ itemGroup.machinecraftingmaterials=Thelta Crafting Materials
 itemGroup.machinescreativetab=Thelta Machines
 itemGroup.minivox=Thelta Minivox
 
+tile.steelBlock.name=Steel Block
+tile.bronzeBlock.name=Bronze Block
+tile.tinBlock.name=Tin Block
+tile.copperBlock.name=Copper Block
+
 item.exampleingredient.name=Example Ingredient
 item.testitem.name=Test Item
 item.steelingot.name=Steel Ingot

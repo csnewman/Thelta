@@ -1,4 +1,6 @@
-{  
-    "parent":"thelta:item/craftingitem"
+{
+    "parent": "thelta:item/craftingitem",
+    "textures": {
+        "layer0": "thelta:items/bronzeingot"
+    }
 }
-
