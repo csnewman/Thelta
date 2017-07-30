@@ -161,6 +161,7 @@ public class Context {
 		block.setUnlocalizedName(name);
 		block.setRegistryName(name);
 		block.setCreativeTab(tab);
+		block.setHardness(5f);
 		return registerBlock(block);
 	}
 
