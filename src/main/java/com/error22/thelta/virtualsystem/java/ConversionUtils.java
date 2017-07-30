@@ -7,6 +7,7 @@ import com.error22.thelta.virtualsystem.java.ir.FieldSignature;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
+import com.error22.thelta.virtualsystem.java.ir.StringType;
 
 public class ConversionUtils {
 
@@ -15,7 +16,7 @@ public class ConversionUtils {
 		IType[] arguments = ConversionUtils.convertTypes(Type.getArgumentTypes(desc));
 		return new MethodSignature(parent, name, returnType, arguments);
 	}
-	
+
 	public static FieldSignature parseFieldSignature(String owner, String name, String desc) {
 		return new FieldSignature(owner, name, ConversionUtils.convertType(Type.getType(desc)));
 	}
@@ -41,6 +42,8 @@ public class ConversionUtils {
 			return PrimitiveType.Double;
 		} else if (type == InstructionAdapter.OBJECT_TYPE) {
 			return PrimitiveType.Object;
+		} else if (type.getDescriptor().equals("Ljava/lang/String;")) {
+			return StringType.INSTANCE;
 		} else {
 			throw new IllegalArgumentException(type.toString());
 		}

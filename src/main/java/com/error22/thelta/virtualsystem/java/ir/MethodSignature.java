@@ -32,6 +32,10 @@ public class MethodSignature {
 	public IType[] getArguments() {
 		return arguments;
 	}
+	
+	public String toNiceString() {
+		return clazz+"::"+name;
+	}
 
 	@Override
 	public int hashCode() {

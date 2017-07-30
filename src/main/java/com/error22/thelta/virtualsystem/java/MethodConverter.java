@@ -23,6 +23,7 @@ import com.error22.thelta.virtualsystem.java.instructions.ReturnInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.StoreLocalInstruction;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
+import com.error22.thelta.virtualsystem.java.ir.StringType;
 
 public class MethodConverter extends InstructionAdapter {
 	private JavaMethod method;
@@ -95,6 +96,14 @@ public class MethodConverter extends InstructionAdapter {
 	@Override
 	public void iconst(int cst) {
 		addInstruction(new LoadConstantInstruction(PrimitiveType.Int, cst));
+	}
+
+	@Override
+	public void aconst(Object cst) {
+		if (cst == null)
+			addInstruction(new LoadConstantInstruction(PrimitiveType.Object, null));
+		else
+			addInstruction(new LoadConstantInstruction(StringType.INSTANCE, cst));
 	}
 
 	@Override
