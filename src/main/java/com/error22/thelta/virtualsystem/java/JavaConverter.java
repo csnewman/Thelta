@@ -3,9 +3,6 @@ package com.error22.thelta.virtualsystem.java;
 import java.io.FileInputStream;
 
 import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
-import org.objectweb.asm.commons.InstructionAdapter;
 
 public class JavaConverter {
 	
