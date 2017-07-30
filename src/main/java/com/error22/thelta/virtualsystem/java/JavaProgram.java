@@ -30,11 +30,17 @@ public class JavaProgram {
 	}
 
 	public JavaMethod getMethod(MethodSignature signature) {
-		return getClass(signature.getClazz()).getMethod(signature);
+		JavaMethod method = getClass(signature.getClazz()).getMethod(signature);
+		if (method == null)
+			throw new IllegalArgumentException("Method not found! " + signature.toNiceString());
+		return method;
 	}
 
 	public StaticField getStaticField(FieldSignature signature) {
-		return getClass(signature.getClazz()).getStaticField(signature);
+		StaticField field = getClass(signature.getClazz()).getStaticField(signature);
+		if (field == null)
+			throw new IllegalArgumentException("Static field not found! " + signature.getName());
+		return field;
 	}
 
 	public ExternalManager getExternalManager() {
