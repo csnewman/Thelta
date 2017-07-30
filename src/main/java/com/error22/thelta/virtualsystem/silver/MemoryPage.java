@@ -1,4 +1,4 @@
-package com.error22.thelta.virtualsystem;
+package com.error22.thelta.virtualsystem.silver;
 
 import java.util.Random;
 

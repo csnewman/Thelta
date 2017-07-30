@@ -1,12 +1,6 @@
 package com.error22.thelta.virtualsystem.silver;
 
-import com.error22.thelta.virtualsystem.ALU;
-import com.error22.thelta.virtualsystem.Cache;
-import com.error22.thelta.virtualsystem.ICore;
-import com.error22.thelta.virtualsystem.Memory;
-import com.error22.thelta.virtualsystem.PageTable;
-
-public class SilverCore implements ICore{
+public class SilverCore{
 	private Memory memory;
 	private PageTable pageTable;
 	private int codePointer, stackPointer, stackMax, stackMin;

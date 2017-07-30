@@ -1,9 +1,5 @@
 package com.error22.thelta.virtualsystem.silver;
 
-import com.error22.thelta.virtualsystem.Cache;
-import com.error22.thelta.virtualsystem.Memory;
-import com.error22.thelta.virtualsystem.PageTable;
-
 public class ProgramWriter {
 	private Memory memory;
 	private PageTable pageTable;
