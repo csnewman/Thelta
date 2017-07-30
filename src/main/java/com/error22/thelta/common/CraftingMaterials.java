@@ -28,16 +28,18 @@ public class CraftingMaterials extends TheltaModule {
 
 	// items
 	// ingots
-	public static Item itemSteelIngot;
 	public static Item itemBronzeIngot;
-	public static Item itemTinIngot;
 	public static Item itemCopperIngot;
+	public static Item itemSteelIngot;
+	public static Item itemTinIngot;
+	public static Item itemUraniumIngot;
 
 	//Ingot blocks
-	public static Block blockSteel;
 	public static Block blockBronze;
-	public static Block blockTin;
 	public static Block blockCopper;
+	public static Block blockTin;
+	public static Block blockSteel;
+	public static Block blockUranium;
 
 	// crafting materials
 	public static Item itemRubber;
@@ -112,32 +114,36 @@ public class CraftingMaterials extends TheltaModule {
 		registerIngotBlockRecipes(blockBronze, itemBronzeIngot);
 		registerIngotBlockRecipes(blockTin, itemTinIngot);
 		registerIngotBlockRecipes(blockCopper, itemCopperIngot);
+		registerIngotBlockRecipes(blockUranium, itemUraniumIngot);
 	}
 	
 	//Here we are regestering the forge ore dictionary for items
 	private void registerOreDict() {
-		OreDictionary.registerOre("ingotSteel", itemSteelIngot);
 		OreDictionary.registerOre("ingotBronze", itemBronzeIngot);
-		OreDictionary.registerOre("ingotTin", itemTinIngot);
 		OreDictionary.registerOre("ingotCopper", itemCopperIngot);
+		OreDictionary.registerOre("ingotTin", itemTinIngot);
+		OreDictionary.registerOre("ingotSteel", itemSteelIngot);
+		OreDictionary.registerOre("ingotUranium", itemUraniumIngot);
 	}
 
 	@Override
 	public void registerBlocks(Context context) {
 		// Blocks
-		blockSteel = context.createSimpleBlock("steelBlock", Material.IRON, materialsTab);
 		blockBronze = context.createSimpleBlock("bronzeBlock", Material.IRON, materialsTab);
-		blockTin = context.createSimpleBlock("tinBlock", Material.IRON, materialsTab);
 		blockCopper = context.createSimpleBlock("copperBlock", Material.IRON, materialsTab);
+		blockTin = context.createSimpleBlock("tinBlock", Material.IRON, materialsTab);
+		blockSteel = context.createSimpleBlock("steelBlock", Material.IRON, materialsTab);
+		blockUranium = context.createSimpleBlock("uraniumBlock", Material.IRON, materialsTab);
 	}
 
 	@Override
 	public void registerItems(Context context) {
 		// Ingots
-		itemSteelIngot = context.createSimpleItem("steelingot", materialsTab);
 		itemBronzeIngot = context.createSimpleItem("bronzeingot", materialsTab);
-		itemTinIngot = context.createSimpleItem("tiningot", materialsTab);
 		itemCopperIngot = context.createSimpleItem("copperingot", materialsTab);
+		itemSteelIngot = context.createSimpleItem("steelingot", materialsTab);
+		itemTinIngot = context.createSimpleItem("tiningot", materialsTab);
+		itemUraniumIngot = context.createSimpleItem("uraniumingot", materialsTab);
 
 		// crafting materials
 		itemRubber = context.createSimpleItem("rubber", materialsTab);

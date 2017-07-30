@@ -11,29 +11,33 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class Smeltables extends TheltaModule {
-	
-	public static Block blockOreTin;
+
 	public static Block blockOreCopper;
+	public static Block blockOreTin;
+	public static Block blockOreUranium;
 	
 	@Override
 	public void registerBlocks(Context context) {
 		//Register ore blocks here
-		blockOreTin = createOre(context, "oreTin", Material.IRON, CraftingMaterials.materialsTab);
 		blockOreCopper = createOre(context, "oreCopper", Material.IRON, CraftingMaterials.materialsTab);
+		blockOreTin = createOre(context, "oreTin", Material.IRON, CraftingMaterials.materialsTab);
+		blockOreUranium = createOre(context, "oreUranium", Material.IRON, CraftingMaterials.materialsTab);
 	}
 
 	@Override
 	public void registerRecipes(Context context) {
 		//Register smelting recipes here
-		GameRegistry.addSmelting(blockOreTin, new ItemStack(CraftingMaterials.itemTinIngot), 1);
 		GameRegistry.addSmelting(blockOreCopper, new ItemStack(CraftingMaterials.itemCopperIngot), 1);
+		GameRegistry.addSmelting(blockOreTin, new ItemStack(CraftingMaterials.itemTinIngot), 1);
+		GameRegistry.addSmelting(blockOreUranium, new ItemStack(CraftingMaterials.itemUraniumIngot), 1);
 	}
 
 	@Override
 	public void postInit(Context context) {
 		//Register forge ore dictionaries here
-		OreDictionary.registerOre("oreCopper", blockOreCopper);
 		OreDictionary.registerOre("oreTin", blockOreTin);
+		OreDictionary.registerOre("oreCopper", blockOreCopper);
+		OreDictionary.registerOre("oreUranium", blockOreUranium);
 	}
 	
 	public Block createOre(Context context, String name, Material material, CreativeTabs tab) {

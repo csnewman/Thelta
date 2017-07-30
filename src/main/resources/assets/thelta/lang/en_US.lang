@@ -4,11 +4,13 @@ itemGroup.minivox=Thelta Minivox
 
 tile.oreCopper.name=Copper Ore
 tile.oreTin.name=Tin Ore
+tile.oreUranium.name=Uranium Ore
 
 tile.steelBlock.name=Steel Block
 tile.bronzeBlock.name=Bronze Block
 tile.tinBlock.name=Tin Block
 tile.copperBlock.name=Copper Block
+tile.uraniumBlock.name=Uranium Block
 
 item.exampleingredient.name=Example Ingredient
 item.testitem.name=Test Item
@@ -16,6 +18,7 @@ item.steelingot.name=Steel Ingot
 item.bronzeingot.name=Bronze Ingot
 item.tiningot.name=Tin Ingot
 item.copperingot.name=Copper Ingot
+item.uraniumingot.name=Uranium Ingot
 item.rubber.name=Rubber
 item.plastic.name=Plastic
 item.bearing.name=Ball Bearing
