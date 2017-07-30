@@ -46,7 +46,7 @@ public class ConversionUtils {
 		} else if (type.getDescriptor().equals("Ljava/lang/String;")) {
 			return StringType.INSTANCE;
 		} else if (type.getSort() == Type.OBJECT) {
-			return new ObjectType(type.getClassName());
+			return new ObjectType(type.getClassName().replaceAll("\\.", "/"));
 		} else {
 			throw new IllegalArgumentException(type.toString() + " sort=" + type.getSort());
 		}
