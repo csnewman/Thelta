@@ -25,7 +25,13 @@ public class JavaConverter {
 		JavaMethod entryMethod = program
 				.getMethod(new MethodSignature("com/tests/TestC1", "entry", PrimitiveType.Void));
 		System.out.println(" " + entryMethod);
-		
+
+		JavaThread thread = new JavaThread();
+		thread.callMethod(entryMethod);
+
+		while (true)
+			thread.step();
+
 	}
 
 }

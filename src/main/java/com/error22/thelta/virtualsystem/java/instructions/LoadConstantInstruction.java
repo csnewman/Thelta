@@ -2,6 +2,7 @@ package com.error22.thelta.virtualsystem.java.instructions;
 
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.StackFrame;
+import com.error22.thelta.virtualsystem.java.StackObject;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
 
 public class LoadConstantInstruction implements IInstruction{
@@ -15,7 +16,7 @@ public class LoadConstantInstruction implements IInstruction{
 
 	@Override
 	public void execute(StackFrame stackFrame) {
-		throw new NotImplementedException();
+		stackFrame.push(new StackObject(type, value));
 	}
 
 }

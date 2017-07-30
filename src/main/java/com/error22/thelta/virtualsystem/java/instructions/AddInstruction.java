@@ -2,6 +2,7 @@ package com.error22.thelta.virtualsystem.java.instructions;
 
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.StackFrame;
+import com.error22.thelta.virtualsystem.java.StackObject;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
 
 public class AddInstruction implements IInstruction {
@@ -13,7 +14,16 @@ public class AddInstruction implements IInstruction {
 
 	@Override
 	public void execute(StackFrame stackFrame) {
-		throw new NotImplementedException();
+		StackObject rhs = stackFrame.pop();
+		StackObject lhs = stackFrame.pop();
+
+		if (!rhs.getType().equals(lhs.getType()))
+			throw new NotImplementedException();
+
+		if (lhs.getType().equals(PrimitiveType.Int))
+			stackFrame.push(new StackObject(PrimitiveType.Int, (int) lhs.getValue() + (int) rhs.getValue()));
+		else
+			throw new NotImplementedException();
 	}
 
 }

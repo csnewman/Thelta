@@ -15,7 +15,7 @@ public class StoreLocalInstruction implements IInstruction {
 
 	@Override
 	public void execute(StackFrame stackFrame) {
-		throw new NotImplementedException();
+		stackFrame.setLocal(index, stackFrame.pop());
 	}
 
 }

@@ -15,7 +15,7 @@ public class LoadLocalInstruction implements IInstruction {
 
 	@Override
 	public void execute(StackFrame stackFrame) {
-		throw new NotImplementedException();
+		stackFrame.push(stackFrame.getLocal(index));
 	}
 
 }

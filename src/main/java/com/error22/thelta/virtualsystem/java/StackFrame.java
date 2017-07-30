@@ -6,13 +6,15 @@ import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
 
 public class StackFrame {
+	private JavaThread thread;
 	private JavaMethod method;
 	private IInstruction[] instructions;
 	private int instructionPointer;
 	private StackObject[] locals;
 	private Stack<StackObject> stack;
 
-	public StackFrame(JavaMethod method) {
+	public StackFrame(JavaThread thread, JavaMethod method) {
+		this.thread = thread;
 		this.method = method;
 		instructions = method.getInstructions();
 		stack = new Stack<StackObject>();
@@ -50,6 +52,10 @@ public class StackFrame {
 
 	public void setInstructionPointer(int instructionPointer) {
 		this.instructionPointer = instructionPointer;
+	}
+
+	public void exit(StackObject result) {
+		thread.exitFrame(result);
 	}
 
 }
