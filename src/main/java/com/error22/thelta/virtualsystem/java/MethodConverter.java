@@ -10,10 +10,12 @@ import org.objectweb.asm.commons.InstructionAdapter;
 
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.instructions.AddInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.GetFieldInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.InvokeSpecialInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadConstantInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadLocalInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.PutFieldInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.ReturnInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.StoreLocalInstruction;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
@@ -106,17 +108,17 @@ public class MethodConverter extends InstructionAdapter {
 
 	@Override
 	public void invokespecial(String owner, String name, String desc) {
-		addInstruction(new InvokeSpecialInstruction(ConversionUtils.parseSignature(owner, name, desc)));
+		addInstruction(new InvokeSpecialInstruction(ConversionUtils.parseMethodSignature(owner, name, desc)));
 	}
 
 	@Override
 	public void getfield(String owner, String name, String desc) {
-		System.out.println("getfield owner:" + owner + " name:" + name + " desc:" + desc);
+		addInstruction(new GetFieldInstruction(ConversionUtils.parseFieldSignature(owner, name, desc)));
 	}
 
 	@Override
 	public void putfield(String owner, String name, String desc) {
-		System.out.println("putfield owner:" + owner + " name:" + name + " desc:" + desc);
+		addInstruction(new PutFieldInstruction(ConversionUtils.parseFieldSignature(owner, name, desc)));
 	}
 
 	@Override
@@ -167,6 +169,8 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.ARETURN);
 		SUPPORTED_OPS.add(Opcodes.RETURN);
 		SUPPORTED_OPS.add(Opcodes.INVOKESPECIAL);
+		SUPPORTED_OPS.add(Opcodes.GETFIELD);
+		SUPPORTED_OPS.add(Opcodes.PUTFIELD);
 	}
 
 }

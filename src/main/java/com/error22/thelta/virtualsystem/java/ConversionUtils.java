@@ -3,16 +3,21 @@ package com.error22.thelta.virtualsystem.java;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.InstructionAdapter;
 
+import com.error22.thelta.virtualsystem.java.ir.FieldSignature;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
 
 public class ConversionUtils {
 
-	public static MethodSignature parseSignature(String parent, String name, String desc) {
+	public static MethodSignature parseMethodSignature(String parent, String name, String desc) {
 		IType returnType = ConversionUtils.convertType(Type.getReturnType(desc));
 		IType[] arguments = ConversionUtils.convertTypes(Type.getArgumentTypes(desc));
 		return new MethodSignature(parent, name, returnType, arguments);
+	}
+	
+	public static FieldSignature parseFieldSignature(String owner, String name, String desc) {
+		return new FieldSignature(owner, name, ConversionUtils.convertType(Type.getType(desc)));
 	}
 
 	public static IType[] convertTypes(Type[] types) {

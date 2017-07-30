@@ -43,7 +43,7 @@ public class ClassConverter extends ClassVisitor {
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature1, String[] exceptions) {
 		System.out.println("\n" + name + desc);
 
-		MethodSignature signature = ConversionUtils.parseSignature(clazz.getName(), name, desc);
+		MethodSignature signature = ConversionUtils.parseMethodSignature(clazz.getName(), name, desc);
 		JavaMethod method = new JavaMethod(signature);
 		clazz.addMethod(method);
 		return new MethodConverter(method);
