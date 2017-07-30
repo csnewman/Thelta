@@ -7,10 +7,12 @@ import java.io.IOException;
 import org.objectweb.asm.ClassReader;
 
 import com.error22.thelta.virtualsystem.java.external.ExternalManager;
+import com.error22.thelta.virtualsystem.java.external.WrappedClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaMethod;
 import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
 import com.error22.thelta.virtualsystem.java.ir.PrimitiveType;
+import com.error22.thelta.virtualsystem.java.ir.StringType;
 
 public class JavaConverter {
 
@@ -21,31 +23,52 @@ public class JavaConverter {
 
 	public static void main(String[] args) throws Exception {
 		JavaProgram program = new JavaProgram();
-		loadFile(program, "C:\\Users\\chand\\eclipse-workspace\\Test1\\bin\\com\\tests\\TestC1.class");
+		loadFile(program, "C:\\Users\\chand\\eclipse-workspace\\JBIOS\\bin\\jbios\\JBIOS.class");
 
 		ExternalManager manager = program.getExternalManager();
-		manager.defineExternalClass("com/tests/Debug");
-		
-		MethodSignature printInt = new MethodSignature("com/tests/Debug", "printInt", PrimitiveType.Void, PrimitiveType.Int);
-		manager.defineHook(printInt);
-		manager.bindHook(printInt, sf -> {
-			StackObject so = sf.getLocal(0);
-			
-			System.out.println("DEBUG: (INT) "+so.getValue());
-			
+		manager.defineExternalClass("hw/GPU", null);
+
+		MethodSignature fillRect = new MethodSignature("hw/GPU", "fillRect", PrimitiveType.Void, PrimitiveType.Int,
+				PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int);
+		manager.defineHook(fillRect);
+		manager.bindHook(fillRect, sf -> {
+
+			System.out.println("[GPU] Fill rect - x=" + sf.getLocal(0).getValue() + " y=" + sf.getLocal(1).getValue()
+					+ " width=" + sf.getLocal(2).getValue() + " height=" + sf.getLocal(3).getValue() + " color="
+					+ sf.getLocal(4).getValue());
+
 			sf.exit(null);
 		});
 
-		JavaMethod entryMethod = program
-				.getMethod(new MethodSignature("com/tests/TestC1", "entry", PrimitiveType.Void));
+		manager.defineExternalClass("hw/Debug", null);
+
+		MethodSignature print = new MethodSignature("hw/Debug", "print", PrimitiveType.Void, StringType.INSTANCE);
+		manager.defineHook(print);
+		manager.bindHook(print, sf -> {
+			System.out.println("[DEBUG] " + sf.getLocal(0).getValue());
+			sf.exit(null);
+		});
+
+		WrappedClass stringBuilder = new WrappedClass(StringBuilder.class);
+		stringBuilder.define(manager);
+		
+		
+		
+		JavaMethod entryMethod = program.getMethod(new MethodSignature("jbios/JBIOS", "entry", PrimitiveType.Void));
 		System.out.println(" " + entryMethod);
 
 		JavaThread thread = new JavaThread(program);
-		thread.callMethod(entryMethod, new StackObject(PrimitiveType.Int, 30), new StackObject(PrimitiveType.Int, 2));
+		thread.callMethod(entryMethod);
 
-		while (true)
-			thread.step();
-
+		long start = System.nanoTime();
+		try {
+			while (true)
+				thread.step();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		long taken = System.nanoTime() - start;
+		System.out.println("Took " + (taken / 1000000f) + "ms");
 	}
 
 }

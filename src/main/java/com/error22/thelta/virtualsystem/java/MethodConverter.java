@@ -17,6 +17,7 @@ import com.error22.thelta.virtualsystem.java.instructions.InvokeSpecialInstructi
 import com.error22.thelta.virtualsystem.java.instructions.InvokeStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadConstantInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadLocalInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.NewInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.PutFieldInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.PutStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.ReturnInstruction;
@@ -157,6 +158,11 @@ public class MethodConverter extends InstructionAdapter {
 	public void areturn(Type t) {
 		addInstruction(new ReturnInstruction((PrimitiveType) ConversionUtils.convertType(t)));
 	}
+	
+	@Override
+	public void anew(Type type) {
+		addInstruction(new NewInstruction(ConversionUtils.convertType(type)));
+	}
 
 	@Override
 	public void visitLabel(Label label) {
@@ -201,6 +207,7 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.PUTFIELD);
 		SUPPORTED_OPS.add(Opcodes.GETSTATIC);
 		SUPPORTED_OPS.add(Opcodes.PUTSTATIC);
+		SUPPORTED_OPS.add(Opcodes.NEW);
 	}
 
 }
