@@ -14,6 +14,7 @@ import com.error22.thelta.virtualsystem.java.instructions.GetFieldInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.GetStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.IInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.InvokeSpecialInstruction;
+import com.error22.thelta.virtualsystem.java.instructions.InvokeStaticInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadConstantInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.LoadLocalInstruction;
 import com.error22.thelta.virtualsystem.java.instructions.PutFieldInstruction;
@@ -109,6 +110,11 @@ public class MethodConverter extends InstructionAdapter {
 	}
 
 	@Override
+	public void invokestatic(String owner, String name, String desc) {
+		addInstruction(new InvokeStaticInstruction(ConversionUtils.parseMethodSignature(owner, name, desc)));
+	}
+
+	@Override
 	public void invokespecial(String owner, String name, String desc) {
 		addInstruction(new InvokeSpecialInstruction(ConversionUtils.parseMethodSignature(owner, name, desc)));
 	}
@@ -180,6 +186,7 @@ public class MethodConverter extends InstructionAdapter {
 		SUPPORTED_OPS.add(Opcodes.DRETURN);
 		SUPPORTED_OPS.add(Opcodes.ARETURN);
 		SUPPORTED_OPS.add(Opcodes.RETURN);
+		SUPPORTED_OPS.add(Opcodes.INVOKESTATIC);
 		SUPPORTED_OPS.add(Opcodes.INVOKESPECIAL);
 		SUPPORTED_OPS.add(Opcodes.GETFIELD);
 		SUPPORTED_OPS.add(Opcodes.PUTFIELD);
