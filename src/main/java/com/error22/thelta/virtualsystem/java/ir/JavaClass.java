@@ -45,6 +45,17 @@ public class JavaClass {
 		return methods.get(signature);
 	}
 
+	public JavaMethod findMethod(MethodSignature signature) {
+		for (JavaMethod method : methods.values()) {
+			if (method.getSignature().matches(signature)) {
+				return method;
+			}
+		}
+		if (superName == null)
+			throw new RuntimeException("Failed to find method " + signature.toNiceString());
+		return program.getClass(superName).findMethod(signature);
+	}
+
 	public String getName() {
 		return name;
 	}

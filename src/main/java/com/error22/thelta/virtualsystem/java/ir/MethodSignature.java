@@ -41,6 +41,11 @@ public class MethodSignature {
 		return clazz + "::" + name;
 	}
 
+	public boolean matches(MethodSignature signature) {
+		return name.equals(signature.name) && returnType.equals(signature.returnType)
+				&& Arrays.equals(arguments, signature.arguments);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
