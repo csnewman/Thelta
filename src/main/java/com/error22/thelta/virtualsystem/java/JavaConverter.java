@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.objectweb.asm.ClassReader;
 
+import com.error22.thelta.virtualsystem.java.external.ExternalClass;
 import com.error22.thelta.virtualsystem.java.external.ExternalManager;
 import com.error22.thelta.virtualsystem.java.external.WrappedClass;
 import com.error22.thelta.virtualsystem.java.ir.JavaClass;
@@ -26,6 +27,8 @@ public class JavaConverter {
 		loadFile(program, "C:\\Users\\chand\\eclipse-workspace\\JBIOS\\bin\\jbios\\JBIOS.class");
 
 		ExternalManager manager = program.getExternalManager();
+		program.addClass(new ExternalClass(program, "java/lang/Object", null, new String[0], null));
+
 		manager.defineExternalClass("hw/GPU", null);
 
 		MethodSignature fillRect = new MethodSignature("hw/GPU", "fillRect", PrimitiveType.Void, PrimitiveType.Int,
@@ -51,9 +54,7 @@ public class JavaConverter {
 
 		WrappedClass stringBuilder = new WrappedClass(StringBuilder.class);
 		stringBuilder.define(manager);
-		
-		
-		
+
 		JavaMethod entryMethod = program.getMethod(new MethodSignature("jbios/JBIOS", "entry", PrimitiveType.Void));
 		System.out.println(" " + entryMethod);
 

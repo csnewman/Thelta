@@ -24,7 +24,7 @@ public class ExternalManager {
 	}
 
 	public void defineExternalClass(String name, Supplier<IObjectInstance> instanceCreator) {
-		program.addClass(new ExternalClass(name, "java/lang/Object", new String[0], instanceCreator));
+		program.addClass(new ExternalClass(program, name, "java/lang/Object", new String[0], instanceCreator));
 	}
 
 	public void defineHook(MethodSignature signature) {
@@ -38,7 +38,10 @@ public class ExternalManager {
 	}
 
 	public void executeHook(MethodSignature signature, StackFrame stackFrame) {
-		boundMethodHooks.get(signature).execute(stackFrame);
+		IMethodHook hook = boundMethodHooks.get(signature);
+		if(hook == null)
+			throw new RuntimeException("Hook not bound! "+signature.toNiceString());
+		hook.execute(stackFrame);
 	}
 
 }

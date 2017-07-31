@@ -26,7 +26,7 @@ public class ClassConverter extends ClassVisitor {
 
 	@Override
 	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-		clazz = new JavaClass(name, superName, interfaces);
+		clazz = new JavaClass(program, name, superName, interfaces);
 		program.addClass(clazz);
 	}
 
@@ -37,13 +37,14 @@ public class ClassConverter extends ClassVisitor {
 
 	@Override
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
-		System.out.println(access+"  "+name + " " + desc + " " + signature + " " + value);
-		if((access & Opcodes.ACC_PUBLIC) == Opcodes.ACC_PUBLIC) {
-			clazz.addStaticField(new StaticField(ConversionUtils.parseFieldSignature(clazz.getName(), name, desc), value));
-		}else {
+		System.out.println(access + "  " + name + " " + desc + " " + signature + " " + value);
+		if ((access & Opcodes.ACC_PUBLIC) == Opcodes.ACC_PUBLIC) {
+			clazz.addStaticField(
+					new StaticField(ConversionUtils.parseFieldSignature(clazz.getName(), name, desc), value));
+		} else {
 			throw new NotImplementedException();
 		}
-		
+
 		return super.visitField(access, name, desc, signature, value);
 	}
 

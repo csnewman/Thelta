@@ -17,6 +17,10 @@ public class MethodSignature {
 		this.arguments = arguments;
 	}
 
+	public boolean isInitializer() {
+		return name.equals("<init>");
+	}
+
 	public String getClazz() {
 		return clazz;
 	}
@@ -32,9 +36,9 @@ public class MethodSignature {
 	public IType[] getArguments() {
 		return arguments;
 	}
-	
+
 	public String toNiceString() {
-		return clazz+"::"+name;
+		return clazz + "::" + name;
 	}
 
 	@Override

@@ -26,7 +26,10 @@ public class JavaProgram {
 	}
 
 	public JavaClass getClass(String name) {
-		return classes.get(name);
+		JavaClass clazz = classes.get(name);
+		if(clazz == null)
+			throw new IllegalArgumentException("Class not found! " + name);
+		return clazz;
 	}
 
 	public JavaMethod getMethod(MethodSignature signature) {
