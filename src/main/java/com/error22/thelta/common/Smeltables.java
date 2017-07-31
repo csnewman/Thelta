@@ -13,13 +13,17 @@ import net.minecraftforge.oredict.OreDictionary;
 public class Smeltables extends TheltaModule {
 
 	public static Block blockOreCopper;
+	public static Block blockOrePlatinum;
 	public static Block blockOreTin;
+	public static Block blockOreSilver;
 	public static Block blockOreUranium;
 	
 	@Override
 	public void registerBlocks(Context context) {
 		//Register ore blocks here
 		blockOreCopper = createOre(context, "oreCopper", Material.IRON, CraftingMaterials.materialsTab);
+		blockOrePlatinum = createOre(context, "orePlatinum", Material.IRON, CraftingMaterials.materialsTab);
+		blockOreSilver = createOre(context, "oreSilver", Material.IRON, CraftingMaterials.materialsTab);
 		blockOreTin = createOre(context, "oreTin", Material.IRON, CraftingMaterials.materialsTab);
 		blockOreUranium = createOre(context, "oreUranium", Material.IRON, CraftingMaterials.materialsTab);
 	}
@@ -28,6 +32,8 @@ public class Smeltables extends TheltaModule {
 	public void registerRecipes(Context context) {
 		//Register smelting recipes here
 		GameRegistry.addSmelting(blockOreCopper, new ItemStack(CraftingMaterials.itemCopperIngot), 1);
+		GameRegistry.addSmelting(blockOrePlatinum, new ItemStack(CraftingMaterials.itemPlatinumIngot), 1);
+		GameRegistry.addSmelting(blockOreSilver, new ItemStack(CraftingMaterials.itemSilverIngot), 1);
 		GameRegistry.addSmelting(blockOreTin, new ItemStack(CraftingMaterials.itemTinIngot), 1);
 		GameRegistry.addSmelting(blockOreUranium, new ItemStack(CraftingMaterials.itemUraniumIngot), 50);
 	}
@@ -35,8 +41,10 @@ public class Smeltables extends TheltaModule {
 	@Override
 	public void postInit(Context context) {
 		//Register forge ore dictionaries here
-		OreDictionary.registerOre("oreTin", blockOreTin);
 		OreDictionary.registerOre("oreCopper", blockOreCopper);
+		OreDictionary.registerOre("orePlatinum", blockOrePlatinum);
+		OreDictionary.registerOre("oreSilver", blockOreSilver);
+		OreDictionary.registerOre("oreTin", blockOreTin);
 		OreDictionary.registerOre("oreUranium", blockOreUranium);
 	}
 	

@@ -30,6 +30,8 @@ public class CraftingMaterials extends TheltaModule {
 	// ingots
 	public static Item itemBronzeIngot;
 	public static Item itemCopperIngot;
+	public static Item itemPlatinumIngot;
+	public static Item itemSilverIngot;
 	public static Item itemSteelIngot;
 	public static Item itemTinIngot;
 	public static Item itemUraniumIngot;
@@ -37,8 +39,10 @@ public class CraftingMaterials extends TheltaModule {
 	//Ingot blocks
 	public static Block blockBronze;
 	public static Block blockCopper;
-	public static Block blockTin;
+	public static Block blockPlatinum;
+	public static Block blockSilver;
 	public static Block blockSteel;
+	public static Block blockTin;
 	public static Block blockUranium;
 
 	// crafting materials
@@ -110,10 +114,12 @@ public class CraftingMaterials extends TheltaModule {
 
 	public void registerRecipes(Context context) {
 		//Here we are basically making the blocks craftable from ingots, and ingots craftable from the blocks.
-		registerIngotBlockRecipes(blockSteel, itemSteelIngot);
-		registerIngotBlockRecipes(blockBronze, itemBronzeIngot);
-		registerIngotBlockRecipes(blockTin, itemTinIngot);
 		registerIngotBlockRecipes(blockCopper, itemCopperIngot);
+		registerIngotBlockRecipes(blockBronze, itemBronzeIngot);
+		registerIngotBlockRecipes(blockPlatinum, itemPlatinumIngot);
+		registerIngotBlockRecipes(blockSilver, itemSilverIngot);
+		registerIngotBlockRecipes(blockSteel, itemSteelIngot);
+		registerIngotBlockRecipes(blockTin, itemTinIngot);
 		registerIngotBlockRecipes(blockUranium, itemUraniumIngot);
 	}
 	
@@ -121,8 +127,10 @@ public class CraftingMaterials extends TheltaModule {
 	private void registerOreDict() {
 		OreDictionary.registerOre("ingotBronze", itemBronzeIngot);
 		OreDictionary.registerOre("ingotCopper", itemCopperIngot);
-		OreDictionary.registerOre("ingotTin", itemTinIngot);
+		OreDictionary.registerOre("ingotPlatinum", itemPlatinumIngot);
+		OreDictionary.registerOre("ingotSilver", itemSilverIngot);
 		OreDictionary.registerOre("ingotSteel", itemSteelIngot);
+		OreDictionary.registerOre("ingotTin", itemTinIngot);
 		OreDictionary.registerOre("ingotUranium", itemUraniumIngot);
 	}
 
@@ -131,8 +139,10 @@ public class CraftingMaterials extends TheltaModule {
 		// Blocks
 		blockBronze = context.createSimpleBlock("bronzeBlock", Material.IRON, materialsTab);
 		blockCopper = context.createSimpleBlock("copperBlock", Material.IRON, materialsTab);
-		blockTin = context.createSimpleBlock("tinBlock", Material.IRON, materialsTab);
+		blockPlatinum = context.createSimpleBlock("platinumBlock", Material.IRON, materialsTab);
+		blockSilver = context.createSimpleBlock("silverBlock", Material.IRON, materialsTab);
 		blockSteel = context.createSimpleBlock("steelBlock", Material.IRON, materialsTab);
+		blockTin = context.createSimpleBlock("tinBlock", Material.IRON, materialsTab);
 		blockUranium = context.createSimpleBlock("uraniumBlock", Material.IRON, materialsTab);
 	}
 
@@ -141,6 +151,8 @@ public class CraftingMaterials extends TheltaModule {
 		// Ingots
 		itemBronzeIngot = context.createSimpleItem("bronzeingot", materialsTab);
 		itemCopperIngot = context.createSimpleItem("copperingot", materialsTab);
+		itemPlatinumIngot = context.createSimpleItem("platinumingot", materialsTab);
+		itemSilverIngot = context.createSimpleItem("silveringot", materialsTab);
 		itemSteelIngot = context.createSimpleItem("steelingot", materialsTab);
 		itemTinIngot = context.createSimpleItem("tiningot", materialsTab);
 		itemUraniumIngot = context.createSimpleItem("uraniumingot", materialsTab);
