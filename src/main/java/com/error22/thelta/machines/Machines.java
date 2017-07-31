@@ -9,10 +9,13 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class Machines extends TheltaModule {
 	public static CreativeTabs creativetab;
+	
 	// blocks
-	public static Block blockConvayorT1;
-	public static Block blockBurnerMachineArm;
-	public static Block blockMachinearm;
+	public static Block 
+					blockBurnerCrusher,
+					blockConvayorT1,
+					blockMachinearm
+					;
 
 	@Override
 	public void init(Context context) {
@@ -21,16 +24,21 @@ public class Machines extends TheltaModule {
 
 	@Override
 	public void registerBlocks(Context context) {
+		blockBurnerCrusher = new BlockBurnerCrusher();
 		blockConvayorT1 = new BlockConvayorBelt();
-		context.registerBlock(blockConvayorT1, "convayorbeltt1", creativetab);
-
 		blockMachinearm = new BlockMachinearm();
+		
+
+		context.registerBlock(blockBurnerCrusher, "burnercrusher", creativetab);
+		context.registerBlock(blockConvayorT1, "convayorbeltt1", creativetab);
 		context.registerBlock(blockMachinearm, "machinearm", creativetab);
+		context.registerTileEntity(TileEntityBurnerCrusher.class, "thelta_burnercrusher");
 		context.registerTileEntity(TileEntityMachinearm.class, "thelta_machinearm");
 	}
 
 	@Override
 	public void registerRenderers(ClientContext context) {
+		context.registerTESR(TileEntityBurnerCrusher.class, new TileEntityRendererBurnerCrusher());
 		context.registerTESR(TileEntityMachinearm.class, new TileEntityRendererMachineArm());
 	}
 

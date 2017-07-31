@@ -28,43 +28,15 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.TRSRTransformation;
 
-public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<TileEntityMachinearm> {
 
-	IBakedModel bakedModelBase;
-	IBakedModel bakedModelSwivel;
-	IBakedModel bakedModelArmLower;
-	IBakedModel bakedModelArmUpper;
-
+public class TileEntityRendererBurnerCrusher extends TileEntitySpecialRenderer<TileEntityBurnerCrusher> {
+	IBakedModel
+		modelMachineBase;
+	
 	private int textureId = -1;
-
-	public TileEntityRendererMachineArm() {
-		/*
-		 * // Here we are loading the models try {
-		 * 
-		 * ResourceLocation texture = new ResourceLocation(Thelta.MODID,
-		 * "textures/items/placeholder.png"); ResourceLocation objModelLocation
-		 * = new ResourceLocation(Thelta.MODID, "models/block/machinearm_base");
-		 * modelBase = OBJLoader.INSTANCE.loadModel(objModelLocation);
-		 * bakedModel = bake(modelBase);
-		 * 
-		 * } catch (Exception e) { e.printStackTrace(); }
-		 */
-
-		/*
-		 * try {
-		 * 
-		 * ResourceLocation texture = new ResourceLocation(Thelta.MODID,
-		 * "textures/items/placeholder.png"); ResourceLocation objModelLocation
-		 * = new ResourceLocation(Thelta.MODID,
-		 * "models/block/obj/machinearm_base.obj"); modelBase = (OBJModel)
-		 * OBJLoader.INSTANCE.loadModel(objModelLocation); bakedModel =
-		 * bake(modelBase); }catch(Exception e) { e.printStackTrace(); }
-		 */
-
-		bakedModelBase = loadModel("models/block/obj/machinearm_base.obj");
-		bakedModelSwivel = loadModel("models/block/obj/machinearm_swivel.obj");
-		bakedModelArmLower = loadModel("models/block/obj/machinearm_arm_lower.obj");
-		bakedModelArmUpper = loadModel("models/block/obj/machinearm_arm_upper.obj");
+	
+	public TileEntityRendererBurnerCrusher() {
+		modelMachineBase = loadModel("models/block/obj/burner_crusher.obj");
 	}
 
 	public IBakedModel loadModel(String modelname) {
@@ -96,22 +68,21 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		// System.out.println("123");
 
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-
-		try {
+//		try {
 			List<BakedQuad> quads = model.getQuads(null, null, 0);
 			for (BakedQuad bakedQuad : quads) {
 				buffer.addVertexData(bakedQuad.getVertexData());
 				// LightUtil.renderQuadColor(buffer, bakedQuad, color);
 			}
-		}catch(NullPointerException err) {
-			System.out.println("Unable to render model, maybe it didnt load properly?");
-			err.printStackTrace();
-		}
+//		}catch(NullPointerException err) {
+//			System.out.println("Unable to render model, maybe it didnt load properly?");
+//			err.printStackTrace();
+//		}
 		buffer.endVertex();
 
 		tessellator.draw();
 	}
-
+	
 	public static int createTexture() {
 		GlStateManager.enableTexture2D();
 		int textureId = GlStateManager.generateTexture();
@@ -149,54 +120,12 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 	}
 
-	private void drawPlane_z(BufferBuilder vertexbuffer, double x1, double y1, double x2, double y2, double z) {
 
-		vertexbuffer.pos(x2, y1, z).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x1, y1, z).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x1, y2, z).tex(0, 1).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x2, y2, z).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
-	}
-
-	private void drawPlane_x(BufferBuilder vertexbuffer, double z1, double y1, double z2, double y2, double x) {
-
-		vertexbuffer.pos(x, y1, z2).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x, y1, z1).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x, y2, z1).tex(0, 1).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x, y2, z2).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
-	}
-
-	private void drawPlane_y(BufferBuilder vertexbuffer, double x1, double z1, double x2, double z2, double y) {
-		vertexbuffer.pos(x1, y, z2).tex(1, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x1, y, z1).tex(0, 0).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x2, y, z1).tex(0, 1).color(1f, 1f, 1f, 1f).endVertex();
-		vertexbuffer.pos(x2, y, z2).tex(1, 1).color(1f, 1f, 1f, 1f).endVertex();
-	}
-
-	private void drawBlock(double x1, double y1, double z1, double x2, double y2, double z2) {
-
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder vertexbuffer = tessellator.getBuffer();
-
-		vertexbuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-		// front/back
-		drawPlane_z(vertexbuffer, x1, y1, x2, y2, z1);
-		drawPlane_z(vertexbuffer, x1, y2, x2, y1, z2);
-		// left/right
-		drawPlane_x(vertexbuffer, z1, y1, z2, y2, x2);
-		drawPlane_x(vertexbuffer, z1, y2, z2, y1, x1);
-		// top/bottom
-		drawPlane_y(vertexbuffer, x1, z2, x2, z1, y2);
-		drawPlane_y(vertexbuffer, x1, z1, x2, z2, y1);
-		vertexbuffer.endVertex();
-
-		tessellator.draw();
-
-	}
 	
 	@Override
-	public void render(TileEntityMachinearm te, double x, double y, double z, float partialTicks, int destroyStage,
+	public void render(TileEntityBurnerCrusher te, double x, double y, double z, float partialTicks, int destroyStage,
 			float alpha) {
-		// Here we are generating a temporary texture
+
 		if (textureId == -1) {
 			textureId = createTexture();
 
@@ -216,11 +145,6 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 			pushTextureArray(textureId, getResolutionWidth(), getResolutionHeight(), c_textureData);
 		}
 
-		// super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
-		// This variable is used for handeling animating the arm
-		te.animplace = te.animplace + (partialTicks / 20);
-		float animplace = te.animplace;
-
 		GlStateManager.pushMatrix();
 		// GlStateManager.disableLighting();
 		// GlStateManager.enableRescaleNormal();
@@ -229,40 +153,14 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		// 240.0F, 240.0F);
 
 		GlStateManager.translate(x + 0.5d, y, z + 0.5d);
-		GlStateManager.rotate((float) (animplace * 0), 0, 1, 0);
 		GlStateManager.bindTexture(textureId);
-
-		double strength = 110d;
-		float rotAmm = (float) ((((Math.sin(animplace) + 1) / 2) - 0.5) * strength);
-
-		renderModel(bakedModelBase);
-		// drawBlock(-0.5d, 0d, -0.5d, 0.5d, 1d, 0.5d);
-		GlStateManager.translate(0, 0.5, 0);
-		// drawBlock(-0.2d, 0d, -0.2d, 0.2d, length, 0.2d);
-		renderModel(bakedModelSwivel);
-		GlStateManager.translate(0, 0.5, 0);
-		GlStateManager.rotate(rotAmm, 0, 0, 1);
-		renderModel(bakedModelArmLower);
-		GlStateManager.translate(0, 1.2, 0);
-		GlStateManager.rotate(rotAmm * 1.8f, 0, 0, 1);
-		renderModel(bakedModelArmUpper);
-		GlStateManager.translate(0, 1.2, 0);
-		
-		try {
-			if(te.entityitem!=null) {
-				te.entityitem.height = 0f;
-				te.entityitem.hoverStart = 0f;
-				te.entityitem.setRotationYawHead(0);
-				te.entityitem.setRenderYawOffset(0);
-				Minecraft.getMinecraft().getRenderManager().doRenderEntity(te.entityitem, 0, 0, 0, 0, 0, false);
-			}
-		}catch(Exception e) {
-			System.err.println("[ERR] [RENDERING] Failed to render machine arm item!");
-		}
-
-		// GlStateManager.disableRescaleNormal();
-		// GlStateManager.enableLighting();
+		//try {
+		renderModel(modelMachineBase);
+		//}catch(NullPointerException err) {
+		//	
+		//}
 		GlStateManager.popMatrix();
+		
 	}
 
 }
