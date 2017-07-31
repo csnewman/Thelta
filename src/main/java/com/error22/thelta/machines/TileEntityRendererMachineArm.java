@@ -235,6 +235,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 		double strength = 110d;
 		float rotAmm = (float) ((((Math.sin(animplace) + 1) / 2) - 0.5) * strength);
 
+		
 		renderModel(bakedModelBase);
 		// drawBlock(-0.5d, 0d, -0.5d, 0.5d, 1d, 0.5d);
 		GlStateManager.translate(0, 0.5, 0);
