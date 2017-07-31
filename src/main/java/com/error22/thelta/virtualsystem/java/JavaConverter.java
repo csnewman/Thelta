@@ -30,7 +30,7 @@ public class JavaConverter {
 		program.addClass(new ExternalClass(program, "java/lang/Object", null, new String[0], null));
 
 		manager.defineExternalClass("hw/GPU", null);
-
+		
 		MethodSignature fillRect = new MethodSignature("hw/GPU", "fillRect", PrimitiveType.Void, PrimitiveType.Int,
 				PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int);
 		manager.defineHook(fillRect);
@@ -54,6 +54,7 @@ public class JavaConverter {
 
 		WrappedClass stringBuilder = new WrappedClass(StringBuilder.class);
 		stringBuilder.define(manager);
+		stringBuilder.bind(manager);
 
 		JavaMethod entryMethod = program.getMethod(new MethodSignature("jbios/JBIOS", "entry", PrimitiveType.Void));
 		System.out.println(" " + entryMethod);
