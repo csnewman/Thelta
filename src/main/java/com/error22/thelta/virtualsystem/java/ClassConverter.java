@@ -27,6 +27,7 @@ public class ClassConverter extends ClassVisitor {
 	@Override
 	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
 		clazz = new JavaClass(program, name, superName, interfaces);
+		clazz.setCanBeExtended(true);
 		program.addClass(clazz);
 	}
 

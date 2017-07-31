@@ -14,6 +14,7 @@ public class JavaClass {
 	private String[] interfaces;
 	private Map<MethodSignature, JavaMethod> methods;
 	private Map<FieldSignature, StaticField> staticFields;
+	private boolean canBeExtended;
 
 	public JavaClass(JavaProgram program, String name, String superName, String[] interfaces) {
 		this.program = program;
@@ -54,6 +55,14 @@ public class JavaClass {
 		if (superName.equals(clazz))
 			return true;
 		return program.getClass(superName).isParent(clazz);
+	}
+
+	public boolean canBeExtended() {
+		return canBeExtended;
+	}
+
+	public void setCanBeExtended(boolean canBeExtended) {
+		this.canBeExtended = canBeExtended;
 	}
 
 }

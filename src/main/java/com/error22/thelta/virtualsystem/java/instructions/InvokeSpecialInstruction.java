@@ -33,6 +33,12 @@ public class InvokeSpecialInstruction implements IInstruction {
 		boolean specialResolve = clazz.isParent(method.getSignature().getClazz())
 				&& !method.getSignature().isInitializer();
 
+		if (method.getSignature().isInitializer() && stackFrame.getMethod().getSignature().isInitializer()
+				&& !program.getClass(method.getSignature().getClazz()).canBeExtended()) {
+			throw new RuntimeException("Attempted to call constructor on type that can't be extended! "
+					+ method.getSignature().getClazz());
+		}
+
 		JavaMethod resolved = null;
 		if (specialResolve)
 			throw new NotImplementedException();
