@@ -31,6 +31,7 @@ public class CraftingMaterials extends TheltaModule {
 	public static Item itemBronzeIngot;
 	public static Item itemCopperIngot;
 	public static Item itemPlatinumIngot;
+	public static Item itemSiliconIngot;
 	public static Item itemSilverIngot;
 	public static Item itemSteelIngot;
 	public static Item itemTinIngot;
@@ -40,6 +41,7 @@ public class CraftingMaterials extends TheltaModule {
 	public static Block blockBronze;
 	public static Block blockCopper;
 	public static Block blockPlatinum;
+	public static Block blockSilicon;
 	public static Block blockSilver;
 	public static Block blockSteel;
 	public static Block blockTin;
@@ -117,6 +119,7 @@ public class CraftingMaterials extends TheltaModule {
 		registerIngotBlockRecipes(blockCopper, itemCopperIngot);
 		registerIngotBlockRecipes(blockBronze, itemBronzeIngot);
 		registerIngotBlockRecipes(blockPlatinum, itemPlatinumIngot);
+		registerIngotBlockRecipes(blockSilicon, itemSiliconIngot);
 		registerIngotBlockRecipes(blockSilver, itemSilverIngot);
 		registerIngotBlockRecipes(blockSteel, itemSteelIngot);
 		registerIngotBlockRecipes(blockTin, itemTinIngot);
@@ -128,6 +131,7 @@ public class CraftingMaterials extends TheltaModule {
 		OreDictionary.registerOre("ingotBronze", itemBronzeIngot);
 		OreDictionary.registerOre("ingotCopper", itemCopperIngot);
 		OreDictionary.registerOre("ingotPlatinum", itemPlatinumIngot);
+		OreDictionary.registerOre("ingotSilicon", itemSiliconIngot);
 		OreDictionary.registerOre("ingotSilver", itemSilverIngot);
 		OreDictionary.registerOre("ingotSteel", itemSteelIngot);
 		OreDictionary.registerOre("ingotTin", itemTinIngot);
@@ -140,6 +144,7 @@ public class CraftingMaterials extends TheltaModule {
 		blockBronze = context.createSimpleBlock("bronzeBlock", Material.IRON, materialsTab);
 		blockCopper = context.createSimpleBlock("copperBlock", Material.IRON, materialsTab);
 		blockPlatinum = context.createSimpleBlock("platinumBlock", Material.IRON, materialsTab);
+		blockSilicon = context.createSimpleBlock("siliconBlock", Material.IRON, materialsTab);
 		blockSilver = context.createSimpleBlock("silverBlock", Material.IRON, materialsTab);
 		blockSteel = context.createSimpleBlock("steelBlock", Material.IRON, materialsTab);
 		blockTin = context.createSimpleBlock("tinBlock", Material.IRON, materialsTab);
@@ -152,6 +157,7 @@ public class CraftingMaterials extends TheltaModule {
 		itemBronzeIngot = context.createSimpleItem("bronzeingot", materialsTab);
 		itemCopperIngot = context.createSimpleItem("copperingot", materialsTab);
 		itemPlatinumIngot = context.createSimpleItem("platinumingot", materialsTab);
+		itemSiliconIngot = context.createSimpleItem("siliconingot", materialsTab);
 		itemSilverIngot = context.createSimpleItem("silveringot", materialsTab);
 		itemSteelIngot = context.createSimpleItem("steelingot", materialsTab);
 		itemTinIngot = context.createSimpleItem("tiningot", materialsTab);
