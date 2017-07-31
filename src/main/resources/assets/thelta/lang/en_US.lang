@@ -3,17 +3,23 @@ itemGroup.machinescreativetab=Thelta Machines
 itemGroup.minivox=Thelta Minivox
 
 tile.oreCopper.name=Copper Ore
+tile.orePlatinum.name=Platinum Ore
+tile.oreSilver.name=Silver Ore
 tile.oreTin.name=Tin Ore
 tile.oreUranium.name=Uranium Ore
 
-tile.steelBlock.name=Steel Block
 tile.bronzeBlock.name=Bronze Block
-tile.tinBlock.name=Tin Block
 tile.copperBlock.name=Copper Block
+tile.platinumBlock.name=Platinum Block
+tile.silverBlock.name=Silver Block
+tile.steelBlock.name=Steel Block
+tile.tinBlock.name=Tin Block
 tile.uraniumBlock.name=Uranium Block
 
 item.exampleingredient.name=Example Ingredient
 item.testitem.name=Test Item
+item.silveringot.name=Silver Ingot
+item.platinumingot.name=Platinum Ingot
 item.steelingot.name=Steel Ingot
 item.bronzeingot.name=Bronze Ingot
 item.tiningot.name=Tin Ingot
