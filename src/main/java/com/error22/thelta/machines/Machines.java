@@ -38,12 +38,14 @@ public class Machines extends TheltaModule {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerRenderers(ClientContext context) {
 		context.registerTESR(TileEntityBurnerCrusher.class, new TileEntityRendererBurnerCrusher());
 		context.registerTESR(TileEntityMachinearm.class, new TileEntityRendererMachineArm());
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerModels(ClientContext context) {
 		newModel = context.registerAutoModel("block/newmodel");
 	}

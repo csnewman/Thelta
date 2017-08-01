@@ -9,6 +9,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Minivox extends TheltaModule {
 	// forge variables
@@ -71,6 +73,7 @@ public class Minivox extends TheltaModule {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerRenderers(ClientContext context) {
 		context.registerTESR(TileEntityTestRender.class, new TileEntityTestRenderRenderer());
 		context.registerEntityRenderingHandler(EntityMinivox.class, new RenderMinivox());

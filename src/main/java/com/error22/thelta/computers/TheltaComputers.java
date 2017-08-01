@@ -6,6 +6,8 @@ import com.error22.thelta.TheltaModule;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TheltaComputers extends TheltaModule {
 	public static BasicMonitor basicMonitor;
@@ -19,6 +21,7 @@ public class TheltaComputers extends TheltaModule {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerRenderers(ClientContext context) {
 		context.registerTESR(TileEntityComputerMonitor.class, new TileEntityComputerMonitorRenderer());
 	}
