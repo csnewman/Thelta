@@ -7,6 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Vector3f;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,7 +37,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class AutoModel {
 	private static Gson GSON = (new GsonBuilder()).registerTypeAdapter(AutoModel.class, AutoModel.Deserializer.INSTANCE)
-			.create();
+			.registerTypeAdapter(TRSRTransformation.class, ForgeBlockStateV1.TRSRDeserializer.INSTANCE).create();
+	private static TRSRTransformation cubikTransformation = new TRSRTransformation(new Vector3f(1, 0, 1), null,
+			new Vector3f(1f / 16f, 1f / 16f, 1f / 16f), null);
 
 	public static AutoModel load(ResourceLocation location) {
 		try {
@@ -67,7 +72,19 @@ public class AutoModel {
 
 			boolean flipV = obj.has("flip-v") && obj.get("flip-v").getAsBoolean();
 
-			return new AutoModel(objPath, textures, flipV);
+			TRSRTransformation transformation;
+			if (obj.has("transformation")) {
+				JsonElement elem = obj.get("transformation");
+
+				if (elem.isJsonPrimitive() && elem.getAsJsonPrimitive().isString()
+						&& elem.getAsString().equals("cubik"))
+					transformation = cubikTransformation;
+				else
+					transformation = GSON.fromJson(obj.get("transformation"), TRSRTransformation.class);
+			} else
+				transformation = TRSRTransformation.identity();
+
+			return new AutoModel(objPath, textures, flipV, transformation);
 		}
 
 	}
@@ -77,11 +94,14 @@ public class AutoModel {
 	private boolean flipV;
 	private IModel model;
 	private IBakedModel bakedModel;
+	private TRSRTransformation transformation;
 
-	private AutoModel(String objPath, List<ResourceLocation> textures, boolean flipV) {
+	private AutoModel(String objPath, List<ResourceLocation> textures, boolean flipV,
+			TRSRTransformation transformation) {
 		this.objPath = objPath;
 		this.textures = textures;
 		this.flipV = flipV;
+		this.transformation = transformation;
 	}
 
 	public void loadModelAndBake() {
@@ -93,8 +113,7 @@ public class AutoModel {
 			throw new RuntimeException(e);
 		}
 
-		bakedModel = model.bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM,
-				ModelLoader.defaultTextureGetter());
+		bakedModel = model.bake(transformation, DefaultVertexFormats.ITEM, ModelLoader.defaultTextureGetter());
 	}
 
 	public List<ResourceLocation> getTextures() {
