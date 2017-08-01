@@ -16,6 +16,9 @@ public enum ContextState {
 	SoundRegistration,
 	EntityRegistration,
 	RendererRegistration,
+	ModelRegistration,
+	LoadingModels,
+	LoadingTextures,
 	LateInitialization,
 	PostInitialization,
 	Finished

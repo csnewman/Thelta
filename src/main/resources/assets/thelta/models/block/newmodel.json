@@ -1,0 +1,7 @@
+{
+    "obj": "thelta:block/newmodel.obj",
+    "flip-v": true,
+    "textures": [
+        "thelta:blocks/newmodel"
+    ]
+}

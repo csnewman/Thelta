@@ -32,7 +32,19 @@ public abstract class TheltaModule {
 	@SideOnly(Side.CLIENT)
 	public void registerRenderers(ClientContext context) {
 	}
-
+	
+	@SideOnly(Side.CLIENT)
+	public void registerModels(ClientContext context) {
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void loadTextures(ClientContext context) {
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void loadModels(ClientContext context) {
+	}
+	
 	public void lateInit(Context context) {
 	}
 

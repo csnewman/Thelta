@@ -8,16 +8,7 @@ import com.error22.thelta.minivox.Minivox;
 import com.error22.thelta.tubes.TheltaTubes;
 import com.error22.thelta.worldgen.WorldGenHandler;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -25,7 +16,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = Thelta.MODID, version = Thelta.VERSION)
 public class Thelta {
@@ -40,8 +30,7 @@ public class Thelta {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		OBJLoader.INSTANCE.addDomain(MODID);
-		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(context);
 
 		context.addModule(new CraftingMaterials());
 		context.addModule(new Smeltables());
@@ -55,16 +44,6 @@ public class Thelta {
 		// The old world gen from yesterday
 		// context.addModule(new TheltaWorld());
 		context.preInit(event);
-	}
-
-	@SubscribeEvent
-	public void onModelBake(ModelBakeEvent event) {
-
-	}
-
-	@SubscribeEvent
-	public void onSomething(TextureStitchEvent.Pre pre) {
-		Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(new ResourceLocation("thelta:blocks/newmodel"));
 	}
 
 	@EventHandler
