@@ -1,9 +1,17 @@
 <h1 align="center"> Thelta</h1>
 <p align="center">
+    <img src="https://img.shields.io/badge/minecraft-1.12-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/version-pre--1-lightgrey.svg" />
+     <a href="https://discord.gg/fXgHPBw">
+        <img src="https://img.shields.io/badge/chat-discord-brightgreen.svg" alt="Discord"/>
+    </a>
+    <img src="https://img.shields.io/badge/license-LGPL-brightgreen.svg" />
     <a href="https://trello.com/b/xBDS3LMo/thelta">
         <img src="https://img.shields.io/badge/trello-view-brightgreen.svg?style=social"
              alt="Trello">
     </a>
+    
+     
 </p>
 <p align="center"><sup><strong>A new Minecraft tech mod!</strong></sup></p>
 
