@@ -27,9 +27,9 @@ public class JavaConverter {
 		loadFile(program, "C:\\Users\\chand\\eclipse-workspace\\JBIOS\\bin\\jbios\\JBIOS.class");
 
 		ExternalManager manager = program.getExternalManager();
-		program.addClass(new ExternalClass(program, "java/lang/Object", null, new String[0], null));
+		program.addClass(new ExternalClass(program, "java/lang/Object", null, new String[0], null, null, null));
 
-		manager.defineExternalClass("hw/GPU", null);
+		manager.defineExternalClass("hw/GPU", null, null, null);
 		
 		MethodSignature fillRect = new MethodSignature("hw/GPU", "fillRect", PrimitiveType.Void, PrimitiveType.Int,
 				PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int, PrimitiveType.Int);
@@ -43,7 +43,7 @@ public class JavaConverter {
 			sf.exit(null);
 		});
 
-		manager.defineExternalClass("hw/Debug", null);
+		manager.defineExternalClass("hw/Debug", null, null, null);
 
 		MethodSignature print = new MethodSignature("hw/Debug", "print", PrimitiveType.Void, StringType.INSTANCE);
 		manager.defineHook(print);

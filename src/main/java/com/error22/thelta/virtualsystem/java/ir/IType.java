@@ -7,5 +7,9 @@ public interface IType {
 	Object getDefault();
 	
 	JavaClass getClass(JavaProgram program);
+
+	Object wrap(JavaProgram program, Object value);
+
+	Object unwrap(JavaProgram program, Object value);
 	
 }

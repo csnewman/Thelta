@@ -76,4 +76,12 @@ public class JavaClass {
 		this.canBeExtended = canBeExtended;
 	}
 
+	public Object wrap(Object value) {
+		return value;
+	}
+
+	public Object unwrap(Object value) {
+		return value;
+	}
+
 }

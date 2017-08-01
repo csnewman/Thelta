@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import com.error22.thelta.virtualsystem.java.IObjectInstance;
@@ -23,8 +24,10 @@ public class ExternalManager {
 		boundMethodHooks = new HashMap<MethodSignature, IMethodHook>();
 	}
 
-	public void defineExternalClass(String name, Supplier<IObjectInstance> instanceCreator) {
-		program.addClass(new ExternalClass(program, name, "java/lang/Object", new String[0], instanceCreator));
+	public void defineExternalClass(String name, Supplier<IObjectInstance> instanceCreator,
+			Function<IObjectInstance, Object> unwrapFunction, Function<Object, IObjectInstance> wrapFunction) {
+		program.addClass(new ExternalClass(program, name, "java/lang/Object", new String[0], instanceCreator,
+				unwrapFunction, wrapFunction));
 	}
 
 	public void defineHook(MethodSignature signature) {
@@ -39,9 +42,13 @@ public class ExternalManager {
 
 	public void executeHook(MethodSignature signature, StackFrame stackFrame) {
 		IMethodHook hook = boundMethodHooks.get(signature);
-		if(hook == null)
-			throw new RuntimeException("Hook not bound! "+signature.toNiceString());
+		if (hook == null)
+			throw new RuntimeException("Hook not bound! " + signature.toNiceString());
 		hook.execute(stackFrame);
+	}
+
+	public JavaProgram getProgram() {
+		return program;
 	}
 
 }

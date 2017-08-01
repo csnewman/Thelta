@@ -25,14 +25,14 @@ public class WrappedClass {
 	}
 
 	public void define(ExternalManager manager) {
-		manager.defineExternalClass(name, this::createInstance);
+		manager.defineExternalClass(name, this::createInstance, this::unwrap, this::wrap);
 
 		for (Constructor<?> constructor : wrapped.getConstructors()) {
 			manager.defineHook(convertSignature(constructor));
 		}
 
 		for (Method method : wrapped.getMethods()) {
-			System.out.println(">> " + method.getName());
+			manager.defineHook(convertSignature(method));
 		}
 
 	}
@@ -46,7 +46,8 @@ public class WrappedClass {
 				Object[] args = new Object[paramCount];
 
 				for (int i = 0; i < paramCount; i++) {
-					args[i] = sf.getLocal(1 + i).getValue();
+					StackObject obj = sf.getLocal(1 + i);
+					args[i] = obj.getType().unwrap(null, obj.getValue());
 				}
 
 				try {
@@ -55,8 +56,30 @@ public class WrappedClass {
 						| InvocationTargetException e) {
 					throw new RuntimeException(e);
 				}
-				
+
 				sf.exit(null);
+			});
+		}
+
+		for (Method method : wrapped.getMethods()) {
+			manager.bindHook(convertSignature(method), sf -> {
+				WrappedObjectInstance woi = (WrappedObjectInstance) sf.getLocal(0).getValue();
+
+				int paramCount = method.getParameterTypes().length;
+				Object[] args = new Object[paramCount];
+
+				for (int i = 0; i < paramCount; i++) {
+					StackObject obj = sf.getLocal(1 + i);
+					args[i] = obj.getType().unwrap(manager.getProgram(), obj.getValue());
+				}
+
+				try {
+					Object value = method.invoke(woi.getInstance(), args);
+					IType type = ConversionUtils.convertType(Type.getType(method.getReturnType()));
+					sf.exit(new StackObject(type, type.wrap(manager.getProgram(), value)));
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					throw new RuntimeException(e);
+				}
 			});
 		}
 	}
@@ -72,8 +95,30 @@ public class WrappedClass {
 		return new MethodSignature(name, "<init>", PrimitiveType.Void, params);
 	}
 
+	private MethodSignature convertSignature(Method method) {
+		Class<?>[] paramTypes = method.getParameterTypes();
+		IType[] params = new IType[paramTypes.length];
+
+		for (int i = 0; i < paramTypes.length; i++) {
+			params[i] = ConversionUtils.convertType(Type.getType(paramTypes[i]));
+		}
+
+		IType returnType = ConversionUtils.convertType(Type.getType(method.getReturnType()));
+		return new MethodSignature(name, method.getName(), returnType, params);
+	}
+
 	private IObjectInstance createInstance() {
 		return new WrappedObjectInstance(this);
+	}
+
+	private Object unwrap(IObjectInstance instance) {
+		return ((WrappedObjectInstance) instance).getInstance();
+	}
+
+	private IObjectInstance wrap(Object value) {
+		WrappedObjectInstance inst = new WrappedObjectInstance(this);
+		inst.setInstance(value);
+		return inst;
 	}
 
 }

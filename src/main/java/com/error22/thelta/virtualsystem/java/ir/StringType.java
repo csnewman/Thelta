@@ -16,4 +16,14 @@ public class StringType implements IType {
 		throw new NotImplementedException();
 	}
 
+	@Override
+	public Object wrap(JavaProgram program, Object value) {
+		return value;
+	}
+
+	@Override
+	public Object unwrap(JavaProgram program, Object value) {
+		return value;
+	}
+
 }

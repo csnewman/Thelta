@@ -38,7 +38,7 @@ public class MethodSignature {
 	}
 
 	public String toNiceString() {
-		return clazz + "::" + name;
+		return clazz + "::" + name + "(" + Arrays.deepToString(arguments) + ")" + returnType.toString();
 	}
 
 	public boolean matches(MethodSignature signature) {

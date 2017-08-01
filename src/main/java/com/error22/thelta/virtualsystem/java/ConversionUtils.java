@@ -3,6 +3,7 @@ package com.error22.thelta.virtualsystem.java;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.InstructionAdapter;
 
+import com.error22.thelta.virtualsystem.java.ir.ArrayType;
 import com.error22.thelta.virtualsystem.java.ir.FieldSignature;
 import com.error22.thelta.virtualsystem.java.ir.IType;
 import com.error22.thelta.virtualsystem.java.ir.MethodSignature;
@@ -33,6 +34,10 @@ public class ConversionUtils {
 	public static IType convertType(Type type) {
 		if (type == Type.VOID_TYPE) {
 			return PrimitiveType.Void;
+		} else if (type == Type.BOOLEAN_TYPE) {
+			return PrimitiveType.Boolean;
+		} else if (type == Type.CHAR_TYPE) {
+			return PrimitiveType.Char;
 		} else if (type == Type.INT_TYPE) {
 			return PrimitiveType.Int;
 		} else if (type == Type.LONG_TYPE) {
@@ -47,6 +52,8 @@ public class ConversionUtils {
 			return StringType.INSTANCE;
 		} else if (type.getSort() == Type.OBJECT) {
 			return new ObjectType(type.getClassName().replaceAll("\\.", "/"));
+		} else if (type.getSort() == Type.ARRAY) {
+			return new ArrayType(convertType(type.getElementType()));
 		} else {
 			throw new IllegalArgumentException(type.toString() + " sort=" + type.getSort());
 		}

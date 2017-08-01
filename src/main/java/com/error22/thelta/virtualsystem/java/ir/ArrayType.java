@@ -3,38 +3,38 @@ package com.error22.thelta.virtualsystem.java.ir;
 import com.error22.thelta.NotImplementedException;
 import com.error22.thelta.virtualsystem.java.JavaProgram;
 
-public class ObjectType implements IType {
-	private String name;
+public class ArrayType implements IType {
+	private IType type;
 
-	public ObjectType(String name) {
-		this.name = name;
+	public ArrayType(IType type) {
+		this.type = type;
 	}
 
 	@Override
 	public Object getDefault() {
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public JavaClass getClass(JavaProgram program) {
-		return program.getClass(name);
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Object wrap(JavaProgram program, Object value) {
-		return getClass(program).wrap(value);
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Object unwrap(JavaProgram program, Object value) {
-		return getClass(program).unwrap(value);
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -46,11 +46,11 @@ public class ObjectType implements IType {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ObjectType other = (ObjectType) obj;
-		if (name == null) {
-			if (other.name != null)
+		ArrayType other = (ArrayType) obj;
+		if (type == null) {
+			if (other.type != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!type.equals(other.type))
 			return false;
 		return true;
 	}

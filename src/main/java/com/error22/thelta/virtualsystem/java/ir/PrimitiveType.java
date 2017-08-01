@@ -5,6 +5,8 @@ import com.error22.thelta.virtualsystem.java.JavaProgram;
 
 public enum PrimitiveType implements IType {
 	Void,
+	Boolean,
+	Char,
 	Int,
 	Long,
 	Float,
@@ -30,5 +32,15 @@ public enum PrimitiveType implements IType {
 	@Override
 	public JavaClass getClass(JavaProgram program) {
 		throw new NotImplementedException();
+	}
+
+	@Override
+	public Object wrap(JavaProgram program, Object value) {
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public Object unwrap(JavaProgram program, Object value) {
+		return value;
 	}
 }
