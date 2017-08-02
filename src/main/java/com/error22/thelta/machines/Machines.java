@@ -4,8 +4,11 @@ import com.error22.thelta.AutoModel;
 import com.error22.thelta.ClientContext;
 import com.error22.thelta.Context;
 import com.error22.thelta.TheltaModule;
+import com.error22.thelta.machines.powercable.PowerCable;
+import com.error22.thelta.machines.powercable.core.TileEntityPowerCable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -15,6 +18,8 @@ public class Machines extends TheltaModule {
 
 	// blocks
 	public static Block blockBurnerCrusher, blockConvayorT1, blockMachinearm;
+	
+	public static PowerCable test;
 
 	@SideOnly(Side.CLIENT)
 	public static AutoModel newModel;
@@ -29,12 +34,15 @@ public class Machines extends TheltaModule {
 		blockBurnerCrusher = new BlockBurnerCrusher();
 		blockConvayorT1 = new BlockConvayorBelt();
 		blockMachinearm = new BlockMachinearm();
-
+		test = new PowerCable(Material.IRON);
+		
 		context.registerBlock(blockBurnerCrusher, "burnercrusher", creativetab);
 		context.registerBlock(blockConvayorT1, "convayorbeltt1", creativetab);
 		context.registerBlock(blockMachinearm, "machinearm", creativetab);
+		context.registerBlock(test, "test", creativetab);
 		context.registerTileEntity(TileEntityBurnerCrusher.class, "thelta_burnercrusher");
 		context.registerTileEntity(TileEntityMachinearm.class, "thelta_machinearm");
+		context.registerTileEntity(TileEntityPowerCable.class, "thelta_powercable");
 	}
 
 	@Override
