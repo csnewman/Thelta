@@ -79,4 +79,4 @@ tile.machinearm.name=[Development] Machine Arm
 tile.rottenfleshblock.name=Rotten Flesh Block
 tile.testblock.name=Test Block
 
-entity.MiniVox.name=Mini Vox
+entity.Minivox.name=Mini Vox
