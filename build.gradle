@@ -43,6 +43,7 @@ minecraft {
 }
 
 dependencies {
+    compile 'com.error22.karonda-vm:karonda-vm:1.0.0'
 }
 
 processResources
