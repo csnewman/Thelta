@@ -12,6 +12,10 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven' 
 
+repositories {
+    jcenter()
+}
+
 ext.configFile = file "build.properties"
 configFile.withReader {
     def prop = new Properties()
@@ -38,17 +42,7 @@ minecraft {
     mappings = config.mappings_version
 }
 
-configurations {
-    embed
-    compile.extendsFrom(embed)
-}
-
-
 dependencies {
-}
-
-jar {
-    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
 processResources
@@ -69,7 +63,6 @@ processResources
 configurations {
 	deployerJars
 }
-
 
 uploadArchives {
 	repositories {

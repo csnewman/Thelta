@@ -255,7 +255,7 @@ public class TileEntityRendererMachineArm extends TileEntitySpecialRenderer<Tile
 				te.entityitem.hoverStart = 0f;
 				te.entityitem.setRotationYawHead(0);
 				te.entityitem.setRenderYawOffset(0);
-				Minecraft.getMinecraft().getRenderManager().doRenderEntity(te.entityitem, 0, 0, 0, 0, 0, false);
+				Minecraft.getMinecraft().getRenderManager().renderEntity(te.entityitem, 0, 0, 0, 0, 0, false);
 			}
 		}catch(Exception e) {
 			System.err.println("[ERR] [RENDERING] Failed to render machine arm item!");
